@@ -1,0 +1,13 @@
+﻿  Camera.cpp
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\MonkyGL\MonkyGraphics.h(3,17): warning C4099: 'GLFWwindow': type name first seen using 'struct' now seen using 'class'
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Dependencies\GLFW\include\glfw3.h(1403,16): message : see declaration of 'GLFWwindow'
+  MonkyGraphics.cpp
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Dependencies\GLFW\include\glfw3.h(1403,37): warning C4099: 'GLFWwindow': type name first seen using 'class' now seen using 'struct'
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\MonkyGL\MonkyGraphics.h(3,7): message : see declaration of 'GLFWwindow'
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Dependencies\Glad\include\glad\glad.h(650,1): message : see previous definition of 'APIENTRY'
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\MonkyGL\MonkyGraphics.cpp(50,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\MonkyGL\MonkyGraphics.cpp(51,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\MonkyGL\MonkyGraphics.cpp(121,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  MonkyGL.vcxproj -> C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Debug\MonkyGL.lib

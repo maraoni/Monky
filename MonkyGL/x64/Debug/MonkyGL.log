@@ -1,0 +1,11 @@
+﻿MonkyGraphics.obj : error LNK2019: unresolved external symbol glfwInit referenced in function "void __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YAXHH@Z)
+MonkyGraphics.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function "bool __cdecl Gorilla::ShouldClose(void)" (?ShouldClose@Gorilla@@YA_NXZ)
+MonkyGraphics.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function "void __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YAXHH@Z)
+MonkyGraphics.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function "void __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YAXHH@Z)
+MonkyGraphics.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function "bool __cdecl Gorilla::ShouldClose(void)" (?ShouldClose@Gorilla@@YA_NXZ)
+MonkyGraphics.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function "void __cdecl Gorilla::Render(void)" (?Render@Gorilla@@YAXXZ)
+MonkyGraphics.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "void __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YAXHH@Z)
+MonkyGraphics.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function "void __cdecl Gorilla::Render(void)" (?Render@Gorilla@@YAXXZ)
+MonkyGraphics.obj : error LNK2019: unresolved external symbol glfwGetProcAddress referenced in function "void __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YAXHH@Z)
+C:\Work_new\EngineCourse\MonkyEngine\Dependencies\GLFW\lib\glfw3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Work_new\EngineCourse\MonkyEngine\x64\Debug\MonkyGL.exe : fatal error LNK1120: 9 unresolved externals

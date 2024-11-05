@@ -1,0 +1,5 @@
+﻿  main.cpp
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Dependencies\GLFW\include\glfw3.h(1403,37): warning C4099: 'GLFWwindow': type name first seen using 'class' now seen using 'struct'
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\MonkyGL\MonkyGraphics.h(3,7): message : see declaration of 'GLFWwindow'
+C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Monky\main.cpp(19,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Monky.vcxproj -> C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Debug\Monky.exe

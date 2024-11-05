@@ -1,0 +1,75 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.36.32542.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/github/monkyengine/monkygl/monkygraphics.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "cdda5d8f83f7fa9b8ccf0aa6ad01c13f6cbc5363420b6818ddd428fd38897e28"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/github/monkyengine/monkygl/monkygraphics.h"
+          },
+          "hashes": {
+            "sha-256": "8e6fb10bc18a3729c11836f47f964e369e5580ba8f0e4c3fdfc70b3788bdedeb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/github/monkyengine/dependencies/glad/include/glad/glad.h"
+          },
+          "hashes": {
+            "sha-256": "7d2aaeb2a16374ad16bdd285796217769c2fa4c1481ebaad57bb807ac5f58974"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/github/monkyengine/dependencies/glad/include/khr/khrplatform.h"
+          },
+          "hashes": {
+            "sha-256": "7b1e01aaa7ad8f6fc34b5c7bdf79ebf5189bb09e2c4d2e79fc5d350623d11e83"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/github/monkyengine/dependencies/glfw/include/glfw3.h"
+          },
+          "hashes": {
+            "sha-256": "0fd04b330d92fc4bd6630c20d1006cef36d25b16ec9f911ec4041918482307bb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/github/monkyengine/monkygl/shader.h"
+          },
+          "hashes": {
+            "sha-256": "f2f930632246fd28e8302df3261ae482d488237e4bf140b4f5e52aa109113db7"
+          }
+        }
+      ]
+    }
+  ]
+}

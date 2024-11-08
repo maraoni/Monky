@@ -6,7 +6,7 @@
 int main()
 {
 
-	Gorilla::GorillaInitializeData RenderData = Gorilla::Initialize(840, 600);
+	Gorilla::GorillaInitializeData RenderData = Gorilla::Initialize(1280, 720);
 
 	Engine::MonkyEngine* engine = new Engine::MonkyEngine(RenderData.aWindow, RenderData.aCamera);
 

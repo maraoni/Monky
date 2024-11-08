@@ -10,8 +10,10 @@ Engine::MonkyEngine::MonkyEngine(GLFWwindow* aWindow, Gorilla::Camera* aCamera)
 {
 	myInput = new Input(aWindow);
 	myTime = new ETime();
+
 	myFlyingCamera = new FlyingCamera(aCamera, myInput, myTime);
 	myCamera = aCamera;
+
 	glfwSetInputMode(aWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 

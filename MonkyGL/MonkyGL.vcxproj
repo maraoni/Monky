@@ -155,6 +155,8 @@
     <ClInclude Include="MonkyGraphics.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Square.h" />
+    <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Texture.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
@@ -166,6 +168,8 @@
     <ClCompile Include="MonkyGraphics.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Square.cpp" />
+    <ClCompile Include="stb_image.cpp" />
+    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>

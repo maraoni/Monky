@@ -20,11 +20,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonkyPhysics", "MonkyPhysics\MonkyPhysics.vcxproj", "{22F163EE-F84E-4DDE-B90A-C2360922695F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{573C29B7-95A7-4239-A829-3A916908EB8A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{C0FB7487-382B-4144-B142-4E46415648D9}"
 	ProjectSection(SolutionItems) = preProject
-		Shaders\FragmentShader.glsl = Shaders\FragmentShader.glsl
-		Shaders\VertexShader.glsl = Shaders\VertexShader.glsl
+		Assets\Shaders\FragmentShader.glsl = Assets\Shaders\FragmentShader.glsl
+		Assets\Shaders\VertexShader.glsl = Assets\Shaders\VertexShader.glsl
 	EndProjectSection
 EndProject
 Global
@@ -78,9 +76,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C0FB7487-382B-4144-B142-4E46415648D9} = {573C29B7-95A7-4239-A829-3A916908EB8A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7226BC59-52F8-40C4-8F18-0967945C78CE}

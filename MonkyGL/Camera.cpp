@@ -11,7 +11,6 @@ Gorilla::Camera::Camera()
 	myDirection = glm::vec3(0.0f, 0.0f, -1.0f);
 	myPosition = glm::vec3(0.0f, 0.0f, 3.0f);
 	myUp = glm::vec3(0.0f, 1.0f, 0.0f);
-
 }
 
 void Gorilla::Camera::CameraUpdate()
@@ -36,7 +35,6 @@ void Gorilla::Camera::Move(const glm::vec3& aMove)
 	myPosition += myDirection * aMove.z;
 	myPosition += myRight * aMove.x;
 	myPosition += WorldUp * aMove.y;
-	//myTransform = glm::translate(myTransform, aMove);
 }
 
 void Gorilla::Camera::SetDirection(const glm::vec3& aDirection)

@@ -32,3 +32,6 @@ Texture::Texture(const char* aPath)
 	
 	stbi_image_free(data);
 }
+
+
+

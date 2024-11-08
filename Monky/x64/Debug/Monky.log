@@ -1,27 +1,4 @@
-﻿  glad.c
-  FlyingCamera.cpp
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Dependencies\GLFW\include\glfw3.h(1403,37): warning C4099: 'GLFWwindow': type name first seen using 'class' now seen using 'struct'
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\Input.h(4,7): message : see declaration of 'GLFWwindow'
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\FlyingCamera.cpp(36,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\FlyingCamera.cpp(37,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-  Input.cpp
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Dependencies\GLFW\include\glfw3.h(1403,37): warning C4099: 'GLFWwindow': type name first seen using 'class' now seen using 'struct'
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\Input.h(4,7): message : see declaration of 'GLFWwindow'
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\Input.cpp(22,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\Input.cpp(23,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\Input.cpp(61,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\Input.cpp(62,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\Input.cpp(55,14): warning C4101: 'return_struct': unreferenced local variable
-  main.cpp
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Dependencies\GLFW\include\glfw3.h(1403,37): warning C4099: 'GLFWwindow': type name first seen using 'class' now seen using 'struct'
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\MonkyGL\MonkyGraphics.h(3,7): message : see declaration of 'GLFWwindow'
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\main.cpp(19,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  MonkyEngine.cpp
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Dependencies\GLFW\include\glfw3.h(1403,37): warning C4099: 'GLFWwindow': type name first seen using 'class' now seen using 'struct'
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Monky\MonkyEngine.h(2,7): message : see declaration of 'GLFWwindow'
-  ETime.cpp
-  Generating Code...
-Input.obj : error LNK2019: unresolved external symbol glfwGetWindowSize referenced in function "public: __cdecl Engine::Input::Input(class GLFWwindow *)" (??0Input@Engine@@QEAA@PEAVGLFWwindow@@@Z)
+﻿Input.obj : error LNK2019: unresolved external symbol glfwGetWindowSize referenced in function "public: __cdecl Engine::Input::Input(class GLFWwindow *)" (??0Input@Engine@@QEAA@PEAVGLFWwindow@@@Z)
 Input.obj : error LNK2019: unresolved external symbol glfwGetKey referenced in function "public: bool __cdecl Engine::Input::IsKeyDown(int const &)" (?IsKeyDown@Input@Engine@@QEAA_NAEBH@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2001: unresolved external symbol glfwGetKey
 Input.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "public: __cdecl Engine::Input::Input(class GLFWwindow *)" (??0Input@Engine@@QEAA@PEAVGLFWwindow@@@Z)
@@ -39,5 +16,5 @@ MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwP
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "struct Gorilla::GorillaInitializeData __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YA?AUGorillaInitializeData@1@HH@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function "void __cdecl Gorilla::Render(class Gorilla::Camera *)" (?Render@Gorilla@@YAXPEAVCamera@1@@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwGetProcAddress referenced in function "struct Gorilla::GorillaInitializeData __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YA?AUGorillaInitializeData@1@HH@Z)
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\Dependencies\GLFW\lib\glfw3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-C:\Users\Martin.Andersson\Documents\GitHub\Monky\x64\Debug\Monky.exe : fatal error LNK1120: 16 unresolved externals
+C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\GLFW\lib\glfw3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\Martin.Andersson\Documents\Place\Monky\x64\Debug\Monky.exe : fatal error LNK1120: 16 unresolved externals

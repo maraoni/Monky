@@ -53,7 +53,6 @@ void Mesh::Draw(Shader* aShader)
 	if(myTexture != NULL) 
 	{
 		glBindTexture(GL_TEXTURE_2D, myTexture->TextureObject);
-		//aShader->SetMatrix4();
 	}
 
 	aShader->Use();
@@ -69,6 +68,7 @@ void Mesh::Draw(Shader* aShader)
 	}
 
 	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Mesh::ApplyTexture(Texture* aTexture)

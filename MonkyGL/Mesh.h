@@ -1,6 +1,5 @@
 #pragma once
 class Shader;
-class Texture;
 
 class Mesh
 {
@@ -9,10 +8,8 @@ public:
 	~Mesh();
 	void Draw(Shader* aShader);
 
-	void ApplyTexture(Texture* aTexture);
 protected:
 	unsigned int VBO, VAO, EBO;
-	Texture* myTexture;
 };
 
 

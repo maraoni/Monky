@@ -1,4 +1,5 @@
 #include "MonkyGraphics.h"
+
 #include <iostream>
 #include <glad/glad.h>
 #include <glfw3.h>
@@ -14,12 +15,20 @@
 #include <vector>
 #include "stb_image.h"
 #include "Texture.h"
+#include "Square.h"
+#include "VirtualObject.h"
 
 GLFWwindow* window;
+
 Shader* myShader;
+Shader* myBillboard;
+
+Square* mySquare;
 Triangle* myTriangle;
 Cube* myCube;
+
 Texture* myTexture;
+Texture* myConcreteTexture;
 
 float myWidth;
 float myHeight;
@@ -28,8 +37,7 @@ float lastTime;
 float currentTime;
 float DeltaTime;
 
-
-std::vector<glm::vec3> myCubePositions;
+std::vector<VirtualObject*> myObjects;
 
 Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 {
@@ -65,18 +73,14 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 		return someData;
 	}
 
-	//HMODULE module = GetModuleHandleW(NULL);
-	//WCHAR path[MAX_PATH];
-	//GetModuleFileNameW(module, path, MAX_PATH);
-
-	myTexture = new Texture("../Assets/Images/Concrete.png");
+	myTexture = new Texture("../Assets/Images/Default.png");
+	myConcreteTexture = new Texture("../Assets/Images/Concrete.png");
 	myShader = new Shader("../Assets/Shaders/VertexShader.glsl", "../Assets/Shaders/FragmentShader.glsl");
-	myTriangle = new Triangle();
+	myBillboard = new Shader("../Assets/Shaders/VertexBillboard.glsl", "../Assets/Shaders/FragmentShader.glsl");
 	myCube = new Cube();
+	mySquare = new Square();
 
-	//myCube->ApplyTexture(myTexture);
-
-	Camera* camera = new Camera();
+	Camera* camera = new Camera(aWidth, aHeight);
 
 	someData.aCamera = camera;
 	someData.aWindow = window;
@@ -87,32 +91,39 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 	{
 		for (size_t y = 0; y < 10; y++)
 		{
-			myCubePositions.push_back(glm::vec3(x * 2.0f, 0.0f, y * 2.0f));
+			VirtualObject* b = new VirtualObject(*myCube, *myTexture, *myShader);
+			myObjects.push_back(b);
+
+			b->Position = glm::vec3(x * 2.0f, 0, y * 2.0f);
 		}
 	}
+
+	myObjects[67]->SetTexture(*myConcreteTexture);
+
+	VirtualObject* billboard = new VirtualObject(*mySquare, *myConcreteTexture, *myBillboard);
+	myObjects.push_back(billboard);
+
+	billboard->Position = glm::vec3(0, 5, 0);
 
 	return someData;
 }
 
-void Gorilla::Render(Camera* aCamera)
+void Gorilla::BeginRender(Camera* aCamera)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glm::mat4 projection;
-	projection = glm::perspective(glm::radians(45.0f), myWidth / myHeight, 0.1f, 100.0f);
-
-	for (glm::vec3 v : myCubePositions)
+	for (VirtualObject* g : myObjects)
 	{
-		glm::mat4 trans = glm::mat4(1.0f);
-		trans = glm::translate(trans, v);
-
-		myShader->SetMatrix4(trans, "transform");
-		myShader->SetMatrix4(aCamera->myView, "view");
-		myShader->SetMatrix4(projection, "projection");
-
-		myCube->Draw(myShader);
+		g->Draw(aCamera);
 	}
 
+	myObjects[67]->Rotation.y = glm::cos(glfwGetTime()) * 2;
+
+	aCamera->CameraUpdate();
+}
+
+void Gorilla::End()
+{
 	glfwSwapBuffers(window);
 	Input(window);
 	glfwPollEvents();
@@ -120,9 +131,8 @@ void Gorilla::Render(Camera* aCamera)
 	currentTime = glfwGetTime();
 	DeltaTime = currentTime - lastTime;
 	lastTime = currentTime;
-
-	aCamera->CameraUpdate();
 }
+
 
 bool Gorilla::ShouldClose()
 {

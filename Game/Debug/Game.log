@@ -1,2 +1,1 @@
-﻿  Game.cpp
-LINK : fatal error LNK1104: cannot open file 'C:\Work_new\EngineCourse\Monky\Dependencies\GLFW\lib\glfw3.lib'
+﻿

@@ -1,20 +1,42 @@
-﻿Input.obj : error LNK2019: unresolved external symbol glfwGetWindowSize referenced in function "public: __cdecl Engine::Input::Input(class GLFWwindow *)" (??0Input@Engine@@QEAA@PEAVGLFWwindow@@@Z)
+﻿  glad.c
+  FlyingCamera.cpp
+C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\GLFW\include\glfw3.h(1403,37): warning C4099: 'GLFWwindow': type name first seen using 'class' now seen using 'struct'
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\Input.h(4,7): message : see declaration of 'GLFWwindow'
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\FlyingCamera.cpp(40,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\FlyingCamera.cpp(41,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Input.cpp
+C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\GLFW\include\glfw3.h(1403,37): warning C4099: 'GLFWwindow': type name first seen using 'class' now seen using 'struct'
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\Input.h(4,7): message : see declaration of 'GLFWwindow'
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\Input.cpp(22,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\Input.cpp(23,10): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\Input.cpp(61,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\Input.cpp(62,17): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\Input.cpp(55,14): warning C4101: 'return_struct': unreferenced local variable
+  main.cpp
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\main.cpp(35,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  MonkyEngine.cpp
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\Input.h(4,17): warning C4099: 'GLFWwindow': type name first seen using 'struct' now seen using 'class'
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\MonkyEngine.h(2,8): message : see declaration of 'GLFWwindow'
+  ETime.cpp
+  Generating Code...
+Input.obj : error LNK2019: unresolved external symbol glfwGetWindowSize referenced in function "public: __cdecl Engine::Input::Input(class GLFWwindow *)" (??0Input@Engine@@QEAA@PEAVGLFWwindow@@@Z)
 Input.obj : error LNK2019: unresolved external symbol glfwGetKey referenced in function "public: bool __cdecl Engine::Input::IsKeyDown(int const &)" (?IsKeyDown@Input@Engine@@QEAA_NAEBH@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2001: unresolved external symbol glfwGetKey
 Input.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "public: __cdecl Engine::Input::Input(class GLFWwindow *)" (??0Input@Engine@@QEAA@PEAVGLFWwindow@@@Z)
 Input.obj : error LNK2019: unresolved external symbol glfwSetCursorPosCallback referenced in function "public: __cdecl Engine::Input::Input(class GLFWwindow *)" (??0Input@Engine@@QEAA@PEAVGLFWwindow@@@Z)
 main.obj : error LNK2019: unresolved external symbol glfwGetTime referenced in function main
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2001: unresolved external symbol glfwGetTime
-MonkyEngine.obj : error LNK2019: unresolved external symbol glfwSetInputMode referenced in function "public: __cdecl Engine::MonkyEngine::MonkyEngine(class GLFWwindow *,class Gorilla::Camera *)" (??0MonkyEngine@Engine@@QEAA@PEAVGLFWwindow@@PEAVCamera@Gorilla@@@Z)
+MonkyEngine.obj : error LNK2019: unresolved external symbol glfwSetInputMode referenced in function "public: __cdecl Engine::MonkyEngine::MonkyEngine(struct GLFWwindow *)" (??0MonkyEngine@Engine@@QEAA@PEAUGLFWwindow@@@Z)
+MonkyEngine.obj : error LNK2019: unresolved external symbol "public: __cdecl Engine::Input::Input(struct GLFWwindow *)" (??0Input@Engine@@QEAA@PEAUGLFWwindow@@@Z) referenced in function "public: __cdecl Engine::MonkyEngine::MonkyEngine(struct GLFWwindow *)" (??0MonkyEngine@Engine@@QEAA@PEAUGLFWwindow@@@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwInit referenced in function "struct Gorilla::GorillaInitializeData __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YA?AUGorillaInitializeData@1@HH@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwTerminate referenced in function "bool __cdecl Gorilla::ShouldClose(void)" (?ShouldClose@Gorilla@@YA_NXZ)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwWindowHint referenced in function "struct Gorilla::GorillaInitializeData __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YA?AUGorillaInitializeData@1@HH@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function "struct Gorilla::GorillaInitializeData __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YA?AUGorillaInitializeData@1@HH@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function "bool __cdecl Gorilla::ShouldClose(void)" (?ShouldClose@Gorilla@@YA_NXZ)
-MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwSetWindowShouldClose referenced in function "void __cdecl Gorilla::Input(class GLFWwindow *)" (?Input@Gorilla@@YAXPEAVGLFWwindow@@@Z)
+MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwSetWindowShouldClose referenced in function "void __cdecl Gorilla::Input(struct GLFWwindow *)" (?Input@Gorilla@@YAXPEAUGLFWwindow@@@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwPollEvents referenced in function "void __cdecl Gorilla::Render(class Gorilla::Camera *)" (?Render@Gorilla@@YAXPEAVCamera@1@@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "struct Gorilla::GorillaInitializeData __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YA?AUGorillaInitializeData@1@HH@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function "void __cdecl Gorilla::Render(class Gorilla::Camera *)" (?Render@Gorilla@@YAXPEAVCamera@1@@Z)
 MonkyGL.lib(MonkyGraphics.obj) : error LNK2019: unresolved external symbol glfwGetProcAddress referenced in function "struct Gorilla::GorillaInitializeData __cdecl Gorilla::Initialize(int,int)" (?Initialize@Gorilla@@YA?AUGorillaInitializeData@1@HH@Z)
 C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\GLFW\lib\glfw3.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-C:\Users\Martin.Andersson\Documents\Place\Monky\x64\Debug\Monky.exe : fatal error LNK1120: 16 unresolved externals
+C:\Users\Martin.Andersson\Documents\Place\Monky\x64\Debug\Monky.exe : fatal error LNK1120: 17 unresolved externals

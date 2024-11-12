@@ -13,7 +13,7 @@ Texture::Texture(const char* aPath)
 	unsigned char* data = stbi_load(aPath, &Width, &Height, &Channels, 0);
 
 	glGenTextures(1, &TextureObject);
-	glBindTexture(GL_TEXTURE, TextureObject);
+	glBindTexture(GL_TEXTURE_2D, TextureObject);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -30,6 +30,7 @@ Texture::Texture(const char* aPath)
 		std::cout << "Could not load texture" << std::endl;
 	}
 	
+	glBindTexture(GL_TEXTURE_2D, 0);
 	stbi_image_free(data);
 }
 

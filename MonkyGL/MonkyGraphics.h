@@ -1,6 +1,5 @@
 #pragma once
-
-class GLFWwindow;
+struct GLFWwindow;
 
 namespace Gorilla
 {
@@ -13,7 +12,8 @@ namespace Gorilla
 	};
 
 	GorillaInitializeData Initialize(int aWidth, int aHeight);
-	void Render(Camera* aCamera);
+	void BeginRender(Camera* aCamera);
+	void End();
 	bool ShouldClose();
 
 	void Input(GLFWwindow* aWindow);

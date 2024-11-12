@@ -1,15 +1,14 @@
-﻿  Camera.cpp
-  Cube.cpp
-  Mesh.cpp
-  MonkyGraphics.cpp
-C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Dependencies\GLFW\include\glfw3.h(1403,37): warning C4099: 'GLFWwindow': type name first seen using 'class' now seen using 'struct'
-C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\MonkyGL\MonkyGraphics.h(3,7): message : see declaration of 'GLFWwindow'
+﻿  MonkyGraphics.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Dependencies\Glad\include\glad\glad.h(650,1): message : see previous definition of 'APIENTRY'
-C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\MonkyGL\MonkyGraphics.cpp(37,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\MonkyGL\MonkyGraphics.cpp(38,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Shader.cpp
-  Square.cpp
-  Triangle.cpp
-  glad.c
-  MonkyGL.vcxproj -> C:\Users\Martin.Andersson\Documents\GitHub\MonkyEngine\Release\MonkyGL.lib
+C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\Glad\include\glad\glad.h(650,1): message : see previous definition of 'APIENTRY'
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(56,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(57,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(76,38): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(76,30): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(109,54): warning C4244: '=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(119,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  MonkyGL.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Release\MonkyGL.lib

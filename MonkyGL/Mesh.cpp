@@ -22,19 +22,10 @@ Mesh::Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndi
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, aIndexSize, someIndices, GL_STATIC_DRAW);
 	}
 
-	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-	//glEnableVertexAttribArray(0);
-
-	//glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	//glEnableVertexAttribArray(1);
-
-	//glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-	//glEnableVertexAttribArray(2);
-
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -50,11 +41,6 @@ Mesh::~Mesh()
 
 void Mesh::Draw(Shader* aShader)
 {
-	if(myTexture != NULL) 
-	{
-		glBindTexture(GL_TEXTURE_2D, myTexture->TextureObject);
-	}
-
 	aShader->Use();
 	glBindVertexArray(VAO);
 
@@ -68,10 +54,4 @@ void Mesh::Draw(Shader* aShader)
 	}
 
 	glBindVertexArray(0);
-	glBindTexture(GL_TEXTURE_2D, 0);
-}
-
-void Mesh::ApplyTexture(Texture* aTexture)
-{
-	myTexture = aTexture;
 }

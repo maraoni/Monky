@@ -1,8 +1,6 @@
 #include "FlyingCamera.h"
 #include "Input.h"
 #include "Camera.h"
-#include <glfw3.h>
-#include <glm.hpp>
 #include "ETime.h"
 #include <iostream>
 
@@ -14,12 +12,25 @@ Engine::FlyingCamera::FlyingCamera(Gorilla::Camera* aCamera, Engine::Input* anIn
 	myCamera = aCamera;
 	myInput = anInput;
 	myTime = aTime;
+
+	lastX = 0;
+	lastY = 0;
+
+	pitch = 0;
+	yaw = 0;
 }
 
-void Engine::FlyingCamera::Update()
+void Engine::FlyingCamera::Update(GLFWwindow* aWindow)
 {
 	glm::vec3 velocity = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 direction = glm::vec3(0.0f, 0.0f, 0.0f);
+
+	if (myInput->IsKeyPressed(GLFW_KEY_TAB))
+	{
+		SetCamState(aWindow);
+	}
+
+	if (Editing) return;
 
 	if (myInput->IsKeyDown(GLFW_KEY_W)) velocity.z = 1;
 	if (myInput->IsKeyDown(GLFW_KEY_A)) velocity.x = -1;
@@ -58,4 +69,18 @@ void Engine::FlyingCamera::Update()
 
 	myCamera->Move(velocity * MoveSpeed * myTime->DeltaTime());
 	myCamera->SetDirection(direction);
+}
+
+void Engine::FlyingCamera::SetCamState(GLFWwindow* aWindow)
+{
+	Editing = !Editing;
+
+	if (Editing)
+	{
+		glfwSetInputMode(aWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	}
+	else
+	{
+		glfwSetInputMode(aWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	}
 }

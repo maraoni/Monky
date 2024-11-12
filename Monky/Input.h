@@ -1,7 +1,7 @@
 #pragma once
 
 
-class GLFWwindow;
+struct GLFWwindow;
 
 namespace Engine
 {

@@ -1,6 +1,7 @@
 #pragma once
 #include <glm.hpp>
 #include <glfw3.h>
+
 namespace Gorilla
 {
 
@@ -10,16 +11,18 @@ namespace Gorilla
 
 		glm::vec3 myPosition;
 		glm::vec3 myDirection;
-		glm::vec3 myTarget;
 
 		glm::vec3 myUp;
 		glm::vec3 myRight;
 
+
+
 	public:
 
+		glm::mat4 myProjection;
 		glm::mat4 myView;
 
-		Camera();
+		Camera(const float& aWidth, const float& aHeight);
 
 		void CameraUpdate();
 

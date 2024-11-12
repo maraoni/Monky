@@ -9,7 +9,8 @@
 #include "MonkyEngine.h"
 
 #include "MonkyGraphics.h"
-
+#include "VirtualObject.h"
+#include <vector>
 
 
 int main()
@@ -30,6 +31,8 @@ int main()
 	ImGui_ImplGlfw_InitForOpenGL(RenderData.aWindow, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
 
+	std::vector<VirtualObject*> objects = Gorilla::GetObjects();
+
 	while(!Gorilla::ShouldClose()) 
 	{
 		currentTime = glfwGetTime();
@@ -44,7 +47,13 @@ int main()
 
 
 		ImGui::Begin("Hello");
-		ImGui::Button("Cool button");
+
+
+		if(ImGui::Button("Cool button"))
+		{
+			objects[67]->Position += glm::vec3(0, 1, 0);
+		}
+		
 		ImGui::End();
 
 		ImGui::Render();

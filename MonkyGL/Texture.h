@@ -2,7 +2,7 @@
 class Texture
 {
 public:
-	Texture(const char* aPath);
+	Texture(const char* aPath, const bool& shouldAlpha);
 
 	int Width;
 	int Height;

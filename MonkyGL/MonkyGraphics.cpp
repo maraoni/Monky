@@ -1,5 +1,5 @@
 #include "MonkyGraphics.h"
-
+#include "VirtualObject.h"
 #include <iostream>
 #include <glad/glad.h>
 #include <glfw3.h>
@@ -12,11 +12,13 @@
 #include <fwd.hpp>
 #include <gtc/matrix_transform.hpp>
 #include "Camera.h"
-#include <vector>
 #include "stb_image.h"
 #include "Texture.h"
 #include "Square.h"
-#include "VirtualObject.h"
+
+#include <fstream>
+#include <sstream>
+
 
 GLFWwindow* window;
 
@@ -38,6 +40,9 @@ float currentTime;
 float DeltaTime;
 
 std::vector<VirtualObject*> myObjects;
+VirtualObject* myBillboardObject = nullptr;
+
+Mesh* CreateObjMesh(std::string anObj);
 
 Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 {
@@ -73,10 +78,13 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 		return someData;
 	}
 
-	myTexture = new Texture("../Assets/Images/Default.png");
-	myConcreteTexture = new Texture("../Assets/Images/Concrete.png");
+	myConcreteTexture = new Texture("../Assets/Images/Grass.png", true);
+	myTexture = new Texture("../Assets/Images/Default.png", false);
 	myShader = new Shader("../Assets/Shaders/VertexShader.glsl", "../Assets/Shaders/FragmentShader.glsl");
 	myBillboard = new Shader("../Assets/Shaders/VertexBillboard.glsl", "../Assets/Shaders/FragmentShader.glsl");
+
+	Mesh* tree = CreateObjMesh(LoadObjRaw("../Assets/Models/TreeTrunk.obj"));
+
 	myCube = new Cube();
 	mySquare = new Square();
 
@@ -86,24 +94,32 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 	someData.aWindow = window;
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+
+
+
+	VirtualObject* billboard = new VirtualObject(mySquare, myConcreteTexture, myBillboard);
+	myObjects.push_back(billboard);
+
+	billboard->Position = glm::vec3(-2.0f, 0, 0.0f);
+
+	myBillboardObject = billboard;
 
 	for (size_t x = 0; x < 10; x++)
 	{
 		for (size_t y = 0; y < 10; y++)
 		{
-			VirtualObject* b = new VirtualObject(*myCube, *myTexture, *myShader);
+			VirtualObject* b = new VirtualObject(myCube, myTexture, myShader);
 			myObjects.push_back(b);
 
 			b->Position = glm::vec3(x * 2.0f, 0, y * 2.0f);
 		}
 	}
 
-	myObjects[67]->SetTexture(*myConcreteTexture);
 
-	VirtualObject* billboard = new VirtualObject(*mySquare, *myConcreteTexture, *myBillboard);
-	myObjects.push_back(billboard);
+	//myObjects[67]->SetTexture(*myConcreteTexture);
 
-	billboard->Position = glm::vec3(0, 5, 0);
+
 
 	return someData;
 }
@@ -112,12 +128,15 @@ void Gorilla::BeginRender(Camera* aCamera)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	for (VirtualObject* g : myObjects)
-	{
-		g->Draw(aCamera);
-	}
 
-	myObjects[67]->Rotation.y = glm::cos(glfwGetTime()) * 2;
+	for (int i = 0; i < myObjects.size(); i++)
+	{
+		myObjects[i]->Draw(aCamera);
+	}
+	//myBillboardObject->Position.y = glm::cos(glfwGetTime());
+
+	float time = glfwGetTime();
+	myBillboard->SetFloat(time, "time");
 
 	aCamera->CameraUpdate();
 }
@@ -152,6 +171,59 @@ void Gorilla::Input(GLFWwindow* aWindow)
 	}
 }
 
+std::vector<VirtualObject*> Gorilla::GetObjects()
+{
+	return myObjects;
+}
 
 
 
+std::string Gorilla::LoadObjRaw(const char* aPath)
+{
+
+	std::string ObjFile;
+	std::ifstream shaderFile;
+	shaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
+
+	try
+	{
+		shaderFile.open(aPath);
+
+		std::stringstream shaderStream;
+		shaderStream << shaderFile.rdbuf();
+
+		shaderFile.close();
+		ObjFile = shaderStream.str();
+
+		return ObjFile;
+	}
+	catch (std::ifstream::failure e)
+	{
+		std::cout << "Could not load shader file from path - " << aPath << "\n";
+		return "";
+	}
+}
+
+
+Mesh* CreateObjMesh(std::string anObj)
+{
+	std::vector<glm::vec3> verts;
+
+	std::vector<std::string> lines;
+	auto ss = std::stringstream{ anObj };
+
+	for (std::string line; std::getline(ss, line, '\n');)
+	{
+		lines.push_back(line);
+	}
+
+	for (size_t i = 0; i < lines.size(); i++)
+	{
+		std::vector<std::string> words;
+		auto ss = std::stringstream{ anObj };
+		//lines[]
+	}
+
+
+	return nullptr;
+}

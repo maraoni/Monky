@@ -14,7 +14,7 @@ class VirtualObject
 {
 public:
 
-	VirtualObject(Mesh& aMesh, Texture& aTexture, Shader& aShader);
+	VirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader);
 
 	void SetMesh(Mesh& aMesh);
 	void SetTexture(Texture& aTexture);
@@ -23,6 +23,7 @@ public:
 	void Draw(Gorilla::Camera* aCamera);
 
 	glm::vec3 Position;
+	glm::vec3 Scale;
 	glm::vec3 Rotation;
 
 private:

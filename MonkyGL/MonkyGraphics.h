@@ -1,5 +1,9 @@
 #pragma once
+#include <vector>
+#include <string>
+
 struct GLFWwindow;
+class VirtualObject;
 
 namespace Gorilla
 {
@@ -16,7 +20,13 @@ namespace Gorilla
 	void End();
 	bool ShouldClose();
 
+	std::string LoadObjRaw(const char* aPath);
+
+
+
 	void Input(GLFWwindow* aWindow);
+
+	std::vector<VirtualObject*> GetObjects();
 
 
 }

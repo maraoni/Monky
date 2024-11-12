@@ -1,3 +1,1 @@
-﻿  main.cpp
-C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\main.cpp(35,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Monky.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\Monky.exe
+﻿  Monky.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\Monky.exe

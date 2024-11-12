@@ -1,7 +1,4 @@
-
-
 #include "MonkyEngine.h"
-
 
 #include "Camera.h"
 #include <glfw3.h>

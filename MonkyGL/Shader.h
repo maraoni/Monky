@@ -16,6 +16,7 @@ public:
 
 	void SetMatrix4(glm::mat4 aMatrix, const std::string& aName);
 
+	void SetVector4(glm::vec4 aVector4, const std::string& aName);  // not implemented
 	void SetVector3(glm::vec3 aVector3, const std::string& aName);  // not implemented
 	void SetVector2(glm::vec2 aVector2, const std::string& aName);  // not implemented
 	void SetFloat(float aFloat, const std::string& aName);			// not implemented

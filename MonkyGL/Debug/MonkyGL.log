@@ -1,11 +1,4 @@
-﻿  MonkyGraphics.cpp
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\Glad\include\glad\glad.h(650,1): message : see previous definition of 'APIENTRY'
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(66,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(67,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(91,38): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(91,30): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(132,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(138,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(150,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  Mesh.cpp
+  ObjLoader.cpp
+  Generating Code...
   MonkyGL.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyGL.lib

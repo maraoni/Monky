@@ -16,9 +16,9 @@ void main()
     modelTransform[0][1] = 0.0; 
     modelTransform[0][2] = 0.0; 
 
-    modelTransform[1][0] = 0.0; 
-    modelTransform[1][1] = 1.0; 
-    modelTransform[1][2] = 0.0; 
+    modelTransform[1][0] = 0.0; // 
+    modelTransform[1][1] = 1.0; //  Makes it spherical billboard
+    modelTransform[1][2] = 0.0; // 
   
     modelTransform[2][0] = 0.0; 
     modelTransform[2][1] = 0.0; 

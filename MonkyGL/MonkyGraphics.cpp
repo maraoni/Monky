@@ -31,6 +31,7 @@ Cube* myCube;
 
 Texture* myTexture;
 Texture* myConcreteTexture;
+Mesh* Tree;
 
 float myWidth;
 float myHeight;
@@ -42,7 +43,6 @@ float DeltaTime;
 std::vector<VirtualObject*> myObjects;
 VirtualObject* myBillboardObject = nullptr;
 
-Mesh* CreateObjMesh(std::string anObj);
 
 Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 {
@@ -83,7 +83,8 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 	myShader = new Shader("../Assets/Shaders/VertexShader.glsl", "../Assets/Shaders/FragmentShader.glsl");
 	myBillboard = new Shader("../Assets/Shaders/VertexBillboard.glsl", "../Assets/Shaders/FragmentShader.glsl");
 
-	Mesh* tree = CreateObjMesh(LoadObjRaw("../Assets/Models/TreeTrunk.obj"));
+
+	Tree = LoadObjMesh("../Assets/Models/TreeTrunk.obj");
 
 	myCube = new Cube();
 	mySquare = new Square();
@@ -94,7 +95,8 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 	someData.aWindow = window;
 
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND);
+	glfwSwapInterval(1);
+	//glEnable(GL_BLEND);
 
 
 
@@ -115,6 +117,11 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 			b->Position = glm::vec3(x * 2.0f, 0, y * 2.0f);
 		}
 	}
+
+	VirtualObject* tree = new VirtualObject(Tree, myTexture, myShader);
+	myObjects.push_back(tree);
+	tree->Position = glm::vec3(-5.0f, 0.0f, 0);
+
 
 
 	//myObjects[67]->SetTexture(*myConcreteTexture);
@@ -174,56 +181,4 @@ void Gorilla::Input(GLFWwindow* aWindow)
 std::vector<VirtualObject*> Gorilla::GetObjects()
 {
 	return myObjects;
-}
-
-
-
-std::string Gorilla::LoadObjRaw(const char* aPath)
-{
-
-	std::string ObjFile;
-	std::ifstream shaderFile;
-	shaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
-
-	try
-	{
-		shaderFile.open(aPath);
-
-		std::stringstream shaderStream;
-		shaderStream << shaderFile.rdbuf();
-
-		shaderFile.close();
-		ObjFile = shaderStream.str();
-
-		return ObjFile;
-	}
-	catch (std::ifstream::failure e)
-	{
-		std::cout << "Could not load shader file from path - " << aPath << "\n";
-		return "";
-	}
-}
-
-
-Mesh* CreateObjMesh(std::string anObj)
-{
-	std::vector<glm::vec3> verts;
-
-	std::vector<std::string> lines;
-	auto ss = std::stringstream{ anObj };
-
-	for (std::string line; std::getline(ss, line, '\n');)
-	{
-		lines.push_back(line);
-	}
-
-	for (size_t i = 0; i < lines.size(); i++)
-	{
-		std::vector<std::string> words;
-		auto ss = std::stringstream{ anObj };
-		//lines[]
-	}
-
-
-	return nullptr;
 }

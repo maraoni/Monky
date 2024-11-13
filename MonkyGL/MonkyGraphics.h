@@ -19,11 +19,6 @@ namespace Gorilla
 	void BeginRender(Camera* aCamera);
 	void End();
 	bool ShouldClose();
-
-	std::string LoadObjRaw(const char* aPath);
-
-
-
 	void Input(GLFWwindow* aWindow);
 
 	std::vector<VirtualObject*> GetObjects();

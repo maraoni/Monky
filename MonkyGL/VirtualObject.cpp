@@ -44,16 +44,14 @@ void VirtualObject::Draw(Gorilla::Camera* aCamera)
 
 	trans = glm::scale(trans, Scale);
 
-
-
 	glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
 	glBindTexture(GL_TEXTURE_2D, myTexture->TextureObject);
 
-	myMesh->Draw(myShader);
 
 	myShader->SetMatrix4(trans, "transform");
 	myShader->SetMatrix4(aCamera->myView, "view");
 	myShader->SetMatrix4(aCamera->myProjection, "projection");
+	myMesh->Draw(myShader);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 }

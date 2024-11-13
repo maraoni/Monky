@@ -7,6 +7,7 @@
 
 Mesh::Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize)
 {
+	IndicesSize = 0;
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
@@ -32,6 +33,64 @@ Mesh::Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndi
 	glBindVertexArray(0);
 }
 
+Mesh::Mesh(Gorilla::ObjData someData)
+{
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+
+    std::vector<float> vertexData;
+    for (size_t i = 0; i < someData.vertices.size(); ++i)
+    {
+        vertexData.push_back(someData.vertices[i].x);
+        vertexData.push_back(someData.vertices[i].y);
+        vertexData.push_back(someData.vertices[i].z);
+
+        if (i < someData.texCoords.size())
+        {
+            vertexData.push_back(someData.texCoords[i].x);
+            vertexData.push_back(someData.texCoords[i].y);
+        }
+        else 
+        {
+            vertexData.push_back(0.0f); // Default value
+            vertexData.push_back(0.0f); // Default value
+        }
+
+        // Normal
+        if (i < someData.normals.size())
+        {
+            vertexData.push_back(someData.normals[i].x);
+            vertexData.push_back(someData.normals[i].y);
+            vertexData.push_back(someData.normals[i].z);
+        }
+        else 
+        {
+            vertexData.push_back(0.0f); // Default value
+            vertexData.push_back(0.0f); // Default value
+            vertexData.push_back(1.0f); // Default normal pointing up
+        }
+    }
+
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertexData.size() * sizeof(float), vertexData.data(), GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
+    glEnableVertexAttribArray(2);
+
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, someData.indices.size() * sizeof(unsigned int), someData.indices.data(), GL_STATIC_DRAW);
+
+    glBindVertexArray(0);
+
+    IndicesSize = someData.indices.size();
+}
+
 Mesh::~Mesh()
 {
 	glDeleteVertexArrays(1, &VAO);
@@ -43,6 +102,15 @@ void Mesh::Draw(Shader* aShader)
 {
 	aShader->Use();
 	glBindVertexArray(VAO);
+
+	if (IndicesSize > 0)
+	{
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+
+		glDrawElements(GL_TRIANGLES, IndicesSize, GL_UNSIGNED_INT, (void*)0);
+
+		glBindVertexArray(0);
+	}
 
 	if (EBO == 0)
 	{

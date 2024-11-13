@@ -166,6 +166,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MonkyGraphics.h" />
+    <ClInclude Include="ObjLoader.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="stb_image.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MonkyGraphics.cpp" />
+    <ClCompile Include="ObjLoader.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Square.cpp" />
     <ClCompile Include="stb_image.cpp" />

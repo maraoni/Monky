@@ -31,7 +31,7 @@ Cube* myCube;
 
 Texture* myTexture;
 Texture* myConcreteTexture;
-Mesh* Tree;
+Mesh* MonkeyMesh;
 
 float myWidth;
 float myHeight;
@@ -84,7 +84,7 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 	myBillboard = new Shader("../Assets/Shaders/VertexBillboard.glsl", "../Assets/Shaders/FragmentShader.glsl");
 
 
-	Tree = LoadObjMesh("../Assets/Models/TreeTrunk.obj");
+	MonkeyMesh = LoadObjMesh("../Assets/Models/Monkey.obj");
 
 	myCube = new Cube();
 	mySquare = new Square();
@@ -96,37 +96,13 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 
 	glEnable(GL_DEPTH_TEST);
 	glfwSwapInterval(1);
-	//glEnable(GL_BLEND);
 
-
-
-	VirtualObject* billboard = new VirtualObject(mySquare, myConcreteTexture, myBillboard);
-	myObjects.push_back(billboard);
-
-	billboard->Position = glm::vec3(-2.0f, 0, 0.0f);
-
-	myBillboardObject = billboard;
-
-	for (size_t x = 0; x < 10; x++)
+	for (size_t i = 0; i < 3; i++)
 	{
-		for (size_t y = 0; y < 10; y++)
-		{
-			VirtualObject* b = new VirtualObject(myCube, myTexture, myShader);
-			myObjects.push_back(b);
-
-			b->Position = glm::vec3(x * 2.0f, 0, y * 2.0f);
-		}
+		VirtualObject* monkey = new VirtualObject(MonkeyMesh, myTexture, myShader);
+		myObjects.push_back(monkey);
+		monkey->Position = glm::vec3(i * 2.0f, 0.0f, 0);
 	}
-
-	VirtualObject* tree = new VirtualObject(Tree, myTexture, myShader);
-	myObjects.push_back(tree);
-	tree->Position = glm::vec3(-5.0f, 0.0f, 0);
-
-
-
-	//myObjects[67]->SetTexture(*myConcreteTexture);
-
-
 
 	return someData;
 }
@@ -135,12 +111,10 @@ void Gorilla::BeginRender(Camera* aCamera)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-
 	for (int i = 0; i < myObjects.size(); i++)
 	{
 		myObjects[i]->Draw(aCamera);
 	}
-	//myBillboardObject->Position.y = glm::cos(glfwGetTime());
 
 	float time = glfwGetTime();
 	myBillboard->SetFloat(time, "time");

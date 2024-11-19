@@ -26,6 +26,8 @@ public:
 	glm::vec3 Scale;
 	glm::vec3 Rotation;
 
+	Shader* GetShader();
+
 private:
 
 	Mesh* myMesh;

@@ -80,9 +80,9 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 
 	myConcreteTexture = new Texture("../Assets/Images/Grass.png", true);
 	myTexture = new Texture("../Assets/Images/Default.png", false);
+
 	myShader = new Shader("../Assets/Shaders/VertexShader.glsl", "../Assets/Shaders/FragmentShader.glsl");
 	myBillboard = new Shader("../Assets/Shaders/VertexBillboard.glsl", "../Assets/Shaders/FragmentShader.glsl");
-
 
 	MonkeyMesh = LoadObjMesh("../Assets/Models/Monkey.obj");
 

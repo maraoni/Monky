@@ -56,3 +56,8 @@ void VirtualObject::Draw(Gorilla::Camera* aCamera)
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
+Shader* VirtualObject::GetShader()
+{
+	return myShader;
+}
+

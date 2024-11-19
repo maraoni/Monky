@@ -10,6 +10,11 @@
 
 Shader::Shader(const char* aVertexPath, const char* aFragmentPath)
 {
+	RecompileShader(aVertexPath, aFragmentPath);
+}
+
+void Shader::RecompileShader(const char* aVertexPath, const char* aFragmentPath)
+{
 	int result;
 	char Log[512];
 

@@ -27,6 +27,7 @@ Chimp::MonkyGUI::~MonkyGUI()
 }
 
 int selectedItem = -1;
+bool alwaysTrue = true;
 
 void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects)
 {
@@ -35,13 +36,27 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects)
 	ImGui::NewFrame();
 
 
-	ImGui::Begin("Object Hierarchy");
+	ImGui::Begin("Object Hierarchy", &alwaysTrue, ImGuiWindowFlags_MenuBar);
+
+	if (ImGui::BeginMenuBar())
+	{
+		if (ImGui::BeginMenu("File"))
+		{
+			//if (ImGui::MenuItem("Open..", "Ctrl+O")) { /* Do stuff */ }
+			//if (ImGui::MenuItem("Save", "Ctrl+S")) { /* Do stuff */ }
+			//if (ImGui::MenuItem("Close", "Ctrl+W")) { my_tool_active = false; }
+			ImGui::EndMenu();
+		}
+		ImGui::EndMenuBar();
+	}
+
 
 	if (someObjects.size() != myObjectEntries.size())
 	{
 		RepopulateEntries(someObjects);
 	}
 
+	ImGui::BeginChild("Scrolling");
 	for (size_t i = 0; i < myObjectEntries.size(); i++)
 	{
 		std::string number = std::to_string(i);
@@ -67,6 +82,7 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects)
 			myObjectEntries[i]->Opened = false;
 		}
 	}
+	ImGui::EndChild();
 
 	ImGui::End();
 	ImGui::Render();

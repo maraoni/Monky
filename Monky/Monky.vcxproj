@@ -151,6 +151,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="MonkyEngine.h" />
     <ClInclude Include="ETime.h" />
+    <ClInclude Include="ResourceHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\MonkyGL\glad.c" />
@@ -159,6 +160,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MonkyEngine.cpp" />
     <ClCompile Include="ETime.cpp" />
+    <ClCompile Include="ResourceHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonkyGL\MonkyGL.vcxproj">

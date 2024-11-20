@@ -12,9 +12,9 @@ VirtualObject::VirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader)
 	myTexture = aTexture;
 	myShader = aShader;
 
-	Position = glm::vec3(0, 0, 0);
-	Rotation = glm::vec3(0, 0, 0);
-	Scale = glm::vec3(1, 1, 1);
+	Position =	glm::vec3(0, 0, 0);
+	Rotation =	glm::vec3(0, 0, 0);
+	Scale =		glm::vec3(1, 1, 1);
 }
 
 void VirtualObject::SetMesh(Mesh& aMesh)

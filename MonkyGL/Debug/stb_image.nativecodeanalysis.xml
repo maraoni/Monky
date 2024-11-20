@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>1895</LINE>
+      <COLUMN>45</COLUMN>
+    </SFA>
+    <DEFECTCODE>26451</DEFECTCODE>
+    <DESCRIPTION>Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).</DESCRIPTION>
+    <FUNCTION>stbi__hdr_to_ldr</FUNCTION>
+    <DECORATED>?stbi__hdr_to_ldr@@YAPAEPAMHHH@Z</DECORATED>
+    <FUNCLINE>1884</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>6963</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>6262</DEFECTCODE>
+    <DESCRIPTION>Function uses '34968' bytes of stack.  Consider moving some data to heap.</DESCRIPTION>
+    <FUNCTION>stbi__load_gif_main</FUNCTION>
+    <DECORATED>?stbi__load_gif_main@@YAPAXPAUstbi__context@@PAPAHPAH222H@Z</DECORATED>
+    <FUNCLINE>6963</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\</FILEPATH>
+      <FILENAME>stb_image.h</FILENAME>
+      <LINE>7048</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>6262</DEFECTCODE>
+    <DESCRIPTION>Function uses '34932' bytes of stack.  Consider moving some data to heap.</DESCRIPTION>
+    <FUNCTION>stbi__gif_load</FUNCTION>
+    <DECORATED>?stbi__gif_load@@YAPAXPAUstbi__context@@PAH11HPAUstbi__result_info@@@Z</DECORATED>
+    <FUNCLINE>7048</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

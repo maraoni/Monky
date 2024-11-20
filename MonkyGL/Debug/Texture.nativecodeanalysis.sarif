@@ -1,0 +1,75 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.36.32542.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/monkygl/texture.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "a1fde175469dc78cdc27f5456a65361fc5c462782baee55c0287cec3aadfed16"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/monkygl/texture.h"
+          },
+          "hashes": {
+            "sha-256": "d40d0f19dfa624d86c235ba62b580e3d09dd6055191caca2365e1acde753e35a"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/monkygl/stb_image.h"
+          },
+          "hashes": {
+            "sha-256": "1f8c1b6b408f26e3b20cbfbbd4758afb3dc9b837ff1e17c258928f406148a87c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/dependencies/glad/include/glad/glad.h"
+          },
+          "hashes": {
+            "sha-256": "0526a49f647083e7c0932de43e29948382dad88b93652b084490779389ff92de"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/dependencies/glad/include/khr/khrplatform.h"
+          },
+          "hashes": {
+            "sha-256": "5ee5d5c2c6b2abd028cec8dc1a24e995bb47b075654a6fc55f3a1293de36943f"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/dependencies/glfw/include/glfw3.h"
+          },
+          "hashes": {
+            "sha-256": "0fd04b330d92fc4bd6630c20d1006cef36d25b16ec9f911ec4041918482307bb"
+          }
+        }
+      ]
+    }
+  ]
+}

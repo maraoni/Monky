@@ -79,7 +79,7 @@
     <IncludePath>$(SolutionDir)Dependencies\Math\glm;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)Dependencies\Math\glm;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\Math\glm;$(SolutionDir)Monky\;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)Dependencies\Math\glm;$(IncludePath)</IncludePath>
@@ -147,10 +147,14 @@
   <ItemGroup>
     <ClInclude Include="MonkyGUI.h" />
     <ClInclude Include="ObjectEntry.h" />
+    <ClInclude Include="ResourceEditor.h" />
+    <ClInclude Include="ShaderEditor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonkyGUI.cpp" />
     <ClCompile Include="ObjectEntry.cpp" />
+    <ClCompile Include="ResourceEditor.cpp" />
+    <ClCompile Include="ShaderEditor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

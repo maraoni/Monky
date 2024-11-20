@@ -10,10 +10,18 @@
 
 Shader::Shader(const char* aVertexPath, const char* aFragmentPath)
 {
-	RecompileShader(aVertexPath, aFragmentPath);
+	if (!RecompileShader(aVertexPath, aFragmentPath))
+	{
+		delete this;
+	}
 }
 
-void Shader::RecompileShader(const char* aVertexPath, const char* aFragmentPath)
+Shader::~Shader()
+{
+
+}
+
+bool Shader::RecompileShader(const char* aVertexPath, const char* aFragmentPath)
 {
 	int result;
 	char Log[512];
@@ -31,10 +39,19 @@ void Shader::RecompileShader(const char* aVertexPath, const char* aFragmentPath)
 	{
 		glGetProgramInfoLog(myShaderProgram, 512, NULL, Log);
 		std::cout << "Shader program could not compile\n" << Log << std::endl;
+
+		glDeleteShader(VertexShader);
+		glDeleteShader(FragmentShader);
+
+		myShaderProgram = 0;
+
+		return false;
 	}
 
 	glDeleteShader(VertexShader);
 	glDeleteShader(FragmentShader);
+
+	return true;
 }
 
 void Shader::Use()

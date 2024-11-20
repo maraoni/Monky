@@ -1,3 +1,4 @@
 ﻿  Game.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppCommon.targets(1134,5): error MSB6006: "link.exe" exited with code 1120.
 Game.obj : error LNK2019: unresolved external symbol "public: bool __thiscall Engine::Input::IsKeyDown(int const &)" (?IsKeyDown@Input@Engine@@QAE_NABH@Z) referenced in function "public: void __thiscall Game::Update(float const &)" (?Update@Game@@QAEXABM@Z)
-C:\Work_new\EngineCourse\Monky\Debug\Game.exe : fatal error LNK1120: 1 unresolved externals
+C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\Game.exe : fatal error LNK1120: 1 unresolved externals

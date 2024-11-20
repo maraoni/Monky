@@ -26,8 +26,6 @@ Chimp::ObjectEntry::~ObjectEntry()
 
 }
 
-char vPath[256];
-char fPath[256];
 
 void Chimp::ObjectEntry::Update()
 {
@@ -64,22 +62,7 @@ void Chimp::ObjectEntry::Update()
 	ImGui::SliderFloat3("Rotation ", *rot, -glm::pi<float>(), glm::pi<float>());
 
 	// -- Move to dedicated shader tool
-	ImGui::InputText("vertex path", vPath, IM_ARRAYSIZE(vPath));
-	ImGui::InputText("fragment path", fPath, IM_ARRAYSIZE(fPath));
 
-	if (ImGui::Button("Load Shader"))
-	{
-		std::string FinalVPath = "../Assets/Shaders/";
-		std::string FinalFPath = "../Assets/Shaders/";
-
-		FinalVPath += vPath;
-		FinalFPath += fPath;
-
-		myObject->GetShader()->RecompileShader(FinalVPath.c_str(), FinalFPath.c_str());
-
-		memset(vPath, '\0', sizeof(vPath));
-		memset(fPath, '\0', sizeof(fPath));
-	}
 	// -- Move to dedicated shader tool
 
 }

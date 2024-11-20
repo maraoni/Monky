@@ -1,6 +1,7 @@
 #include "MonkyGUI.h"
 #include "MonkyEngine.h"
 #include "MonkyGraphics.h"
+#include "ResourceHandler.h"
 
 #include <glfw3.h>
 #include <iostream>
@@ -10,9 +11,11 @@
 
 int main()
 {
+	ResourceHandler* resources = new ResourceHandler();
 	Gorilla::GorillaInitializeData RenderData = Gorilla::Initialize(1280, 720);
 	Engine::MonkyEngine* engine = new Engine::MonkyEngine(RenderData.aWindow, RenderData.aCamera);
-	Chimp::MonkyGUI* Gui = new Chimp::MonkyGUI(RenderData.aWindow);
+	Chimp::MonkyGUI* Gui = new Chimp::MonkyGUI(RenderData.aWindow, resources);
+
 
 	glfwSetInputMode(RenderData.aWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 

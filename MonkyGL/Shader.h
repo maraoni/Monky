@@ -14,8 +14,9 @@ private:
 
 public:
 	Shader(const char* aVertexPath, const char* aFragmentPath);
+	~Shader();
 
-	void RecompileShader(const char* aVertexPath, const char* aFragmentPath);
+	bool RecompileShader(const char* aVertexPath, const char* aFragmentPath);
 
 	void SetMatrix4(glm::mat4 aMatrix, const std::string& aName);
 

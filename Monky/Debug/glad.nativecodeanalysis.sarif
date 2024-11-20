@@ -20,29 +20,29 @@
       "artifacts": [
         {
           "location": {
-            "uri": "file:///c:/users/martin.andersson/documents/github/monkyengine/monkygl/glad.c"
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/monkygl/glad.c"
           },
           "roles": [
             "analysisTarget"
           ],
           "hashes": {
-            "sha-256": "f5787fc629772579e52ac73eb4af772b87313db2d94815f126ff26e57c648493"
+            "sha-256": "490d15d806e410cb5b77c5e41129e4e6f447552b2f7007ed2db4a1b5835d9f11"
           }
         },
         {
           "location": {
-            "uri": "file:///c:/users/martin.andersson/documents/github/monkyengine/dependencies/glad/include/glad/glad.h"
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/dependencies/glad/include/glad/glad.h"
           },
           "hashes": {
-            "sha-256": "7d2aaeb2a16374ad16bdd285796217769c2fa4c1481ebaad57bb807ac5f58974"
+            "sha-256": "0526a49f647083e7c0932de43e29948382dad88b93652b084490779389ff92de"
           }
         },
         {
           "location": {
-            "uri": "file:///c:/users/martin.andersson/documents/github/monkyengine/dependencies/glad/include/khr/khrplatform.h"
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/dependencies/glad/include/khr/khrplatform.h"
           },
           "hashes": {
-            "sha-256": "7b1e01aaa7ad8f6fc34b5c7bdf79ebf5189bb09e2c4d2e79fc5d350623d11e83"
+            "sha-256": "5ee5d5c2c6b2abd028cec8dc1a24e995bb47b075654a6fc55f3a1293de36943f"
           }
         }
       ]

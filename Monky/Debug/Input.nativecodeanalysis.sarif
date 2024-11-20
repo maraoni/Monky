@@ -1,0 +1,51 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.36.32542.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/monky/input.cpp"
+          },
+          "roles": [
+            "analysisTarget"
+          ],
+          "hashes": {
+            "sha-256": "a7ad3d7cd860eb48e503eb2310a03e7d0c126f205f64be8871e6694e890397df"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/monky/input.h"
+          },
+          "hashes": {
+            "sha-256": "f28b70cba965eaf602434545220e4806aa339068b1b4c10970fb16526a32fbe1"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/dependencies/glfw/include/glfw3.h"
+          },
+          "hashes": {
+            "sha-256": "0fd04b330d92fc4bd6630c20d1006cef36d25b16ec9f911ec4041918482307bb"
+          }
+        }
+      ]
+    }
+  ]
+}

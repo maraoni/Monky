@@ -80,7 +80,6 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 
 	myConcreteTexture = new Texture("../Assets/Images/Grass.png", true);
 	myTexture = new Texture("../Assets/Images/Default.png", false);
-
 	myShader = new Shader("../Assets/Shaders/VertexShader.glsl", "../Assets/Shaders/FragmentShader.glsl");
 	myBillboard = new Shader("../Assets/Shaders/VertexBillboard.glsl", "../Assets/Shaders/FragmentShader.glsl");
 
@@ -97,12 +96,12 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 	glEnable(GL_DEPTH_TEST);
 	glfwSwapInterval(1);
 
-	for (size_t i = 0; i < 3; i++)
-	{
-		VirtualObject* monkey = new VirtualObject(MonkeyMesh, myTexture, myShader);
-		myObjects.push_back(monkey);
-		monkey->Position = glm::vec3(i * 2.0f, 0.0f, 0);
-	}
+	//for (size_t i = 0; i < 3; i++)
+	//{
+	//	VirtualObject* monkey = new VirtualObject(MonkeyMesh, myTexture, myShader);
+	//	myObjects.push_back(monkey);
+	//	monkey->Position = glm::vec3(i * 2.0f, 0.0f, 0);
+	//}
 
 	return someData;
 }
@@ -150,6 +149,12 @@ void Gorilla::Input(GLFWwindow* aWindow)
 	{
 		glfwSetWindowShouldClose(window, true);
 	}
+}
+
+void Gorilla::CreateVirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader)
+{
+	VirtualObject* newObject = new VirtualObject(aMesh, aTexture, aShader);
+	myObjects.push_back(newObject);
 }
 
 std::vector<VirtualObject*> Gorilla::GetObjects()

@@ -7,17 +7,29 @@
 #include <string>
 #include "ObjectEntry.h"
 
+#include "ShaderEditor.h"
+#include "ResourceEditor.h"
+
 #define itoc(a) ((char*)(intptr_t)(a))
 
-Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow)
+Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler)
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	ImGui::StyleColorsDark();
+	ImGui::StyleColorsLight();
 	ImGui_ImplGlfw_InitForOpenGL(aWindow, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
+
+	myResources = aResourceHandler;
+
+	myCurrentEditor = ECurrentEditor::COUNT;
+
+	myShaderEditor = new ShaderEditor();
+	myResourceEditor = new ResourceEditor(myResources);
 }
+
+
 
 Chimp::MonkyGUI::~MonkyGUI()
 {
@@ -36,20 +48,60 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects)
 	ImGui::NewFrame();
 
 
-	ImGui::Begin("Object Hierarchy", &alwaysTrue, ImGuiWindowFlags_MenuBar);
+	ImGui::Begin("Monky", &alwaysTrue, ImGuiWindowFlags_MenuBar);
 
 	if (ImGui::BeginMenuBar())
 	{
 		if (ImGui::BeginMenu("File"))
 		{
-			//if (ImGui::MenuItem("Open..", "Ctrl+O")) { /* Do stuff */ }
-			//if (ImGui::MenuItem("Save", "Ctrl+S")) { /* Do stuff */ }
-			//if (ImGui::MenuItem("Close", "Ctrl+W")) { my_tool_active = false; }
+			if (ImGui::MenuItem("Shader Editor", "Ctrl+O"))		{ myCurrentEditor = ECurrentEditor::EShaderEditor;		}
+			if (ImGui::MenuItem("Resource Viewer", "Ctrl+S"))	{ myCurrentEditor = ECurrentEditor::EResourceViewer;	}
+			if (ImGui::MenuItem("Object Hierarchy", "Ctrl+W"))	{ myCurrentEditor = ECurrentEditor::EObjectHierarchy;	}
 			ImGui::EndMenu();
 		}
 		ImGui::EndMenuBar();
 	}
 
+	switch (myCurrentEditor)
+	{
+	case Chimp::ECurrentEditor::EObjectHierarchy:
+
+		UpdateHierarchy(someObjects);
+
+		break;
+
+	case Chimp::ECurrentEditor::EShaderEditor:
+
+		myShaderEditor->Update();
+
+		break;
+
+	case Chimp::ECurrentEditor::EResourceViewer:
+
+		myResourceEditor->Update();
+
+		break;
+
+	case Chimp::ECurrentEditor::COUNT:
+		break;
+
+	default:
+		break;
+	}
+
+	
+
+	ImGui::End();
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+}
+
+void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects)
+{
+	if(ImGui::Button("Create Object"))
+	{
+	
+	}
 
 	if (someObjects.size() != myObjectEntries.size())
 	{
@@ -83,12 +135,7 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects)
 		}
 	}
 	ImGui::EndChild();
-
-	ImGui::End();
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
-
 
 void Chimp::MonkyGUI::RepopulateEntries(std::vector<VirtualObject*> someObjects)
 {

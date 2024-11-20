@@ -1,0 +1,156 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C6031",
+          "message": {
+            "text": "Return value ignored: 'sscanf'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_impl_opengl3_loader.h"
+                },
+                "region": {
+                  "startLine": 807,
+                  "startColumn": 13,
+                  "endLine": 807,
+                  "endColumn": 65
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "parse_version",
+                  "decoratedName": "parse_version",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6031",
+          "message": {
+            "text": "Return value ignored: 'sscanf'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_impl_opengl3.cpp"
+                },
+                "region": {
+                  "startLine": 311,
+                  "startColumn": 9,
+                  "endLine": 311,
+                  "endColumn": 50
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGui_ImplOpenGL3_Init",
+                  "decoratedName": "?ImGui_ImplOpenGL3_Init@@YA_NPBD@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6031",
+          "message": {
+            "text": "Return value ignored: 'sscanf'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_impl_opengl3.cpp"
+                },
+                "region": {
+                  "startLine": 770,
+                  "startColumn": 5,
+                  "endLine": 770,
+                  "endColumn": 51
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGui_ImplOpenGL3_CreateDeviceObjects",
+                  "decoratedName": "?ImGui_ImplOpenGL3_CreateDeviceObjects@@YA_NXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.36.32542.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_impl_opengl3_loader.h"
+          },
+          "roles": [
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "9d17b1679dc876e0ca693631030e70656c372c808c6767644c3b545834483e24"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_impl_opengl3.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "2c4a68994609f08264d8f9a63a5dffcb207a0f4768f1ce6b4ace02a9364ee67b"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imgui.h"
+          },
+          "hashes": {
+            "sha-256": "67df3822efa2423590d4b626374844dd5d2a23eed63b5dd735c684c617035cb8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imconfig.h"
+          },
+          "hashes": {
+            "sha-256": "67dc0af367b72a62e91800ab3494d8076f74338076e49d458e33b29dcf2206d8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imgui_impl_opengl3.h"
+          },
+          "hashes": {
+            "sha-256": "f24c1f4ee475f7c85b0321ecad80ffcd832c3f731f4be8a0da83756610acd57e"
+          }
+        }
+      ]
+    }
+  ]
+}

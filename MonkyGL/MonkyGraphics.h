@@ -5,6 +5,10 @@
 struct GLFWwindow;
 class VirtualObject;
 
+class Mesh;
+class Texture;
+class Shader;
+
 namespace Gorilla
 {
 	class Camera;
@@ -20,6 +24,8 @@ namespace Gorilla
 	void End();
 	bool ShouldClose();
 	void Input(GLFWwindow* aWindow);
+
+	void CreateVirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader);
 
 	std::vector<VirtualObject*> GetObjects();
 

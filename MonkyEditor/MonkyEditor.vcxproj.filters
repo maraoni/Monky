@@ -21,12 +21,24 @@
     <ClInclude Include="ObjectEntry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ShaderEditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceEditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonkyGUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ObjectEntry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceEditor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

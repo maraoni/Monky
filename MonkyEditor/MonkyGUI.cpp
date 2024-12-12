@@ -9,6 +9,7 @@
 
 #include "ShaderEditor.h"
 #include "ResourceEditor.h"
+#include "MonkyGraphics.h"
 
 #define itoc(a) ((char*)(intptr_t)(a))
 
@@ -23,7 +24,7 @@ Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler
 
 	myResources = aResourceHandler;
 
-	myCurrentEditor = ECurrentEditor::COUNT;
+	myCurrentEditor = ECurrentEditor::EObjectHierarchy;
 
 	myShaderEditor = new ShaderEditor();
 	myResourceEditor = new ResourceEditor(myResources);
@@ -98,10 +99,17 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects)
 
 void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects)
 {
-	if(ImGui::Button("Create Object"))
+	if (ImGui::BeginMenuBar())
 	{
-	
+		if (ImGui::BeginMenu("ObjectCreation"))
+		{
+			if (ImGui::MenuItem("Create Sphere", "Ctrl+O")) { Gorilla::CreateDefaultCube(); }
+			if (ImGui::MenuItem("Create Cube", "Ctrl+S"))	{ Gorilla::CreateDefaultSphere(); }
+			ImGui::EndMenu();
+		}
+		ImGui::EndMenuBar();
 	}
+	
 
 	if (someObjects.size() != myObjectEntries.size())
 	{

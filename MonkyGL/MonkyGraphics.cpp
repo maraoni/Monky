@@ -33,6 +33,9 @@ Texture* myTexture;
 Texture* myConcreteTexture;
 Mesh* MonkeyMesh;
 
+Mesh* mySphere;
+Mesh* myPlane;
+
 float myWidth;
 float myHeight;
 
@@ -84,6 +87,8 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 	myBillboard = new Shader("../Assets/Shaders/VertexBillboard.glsl", "../Assets/Shaders/FragmentShader.glsl");
 
 	MonkeyMesh = LoadObjMesh("../Assets/Models/Monkey.obj");
+	mySphere = LoadObjMesh("../Assets/Models/Sphere.obj");
+	myPlane = LoadObjMesh("../Assets/Models/Plane.obj");
 
 	myCube = new Cube();
 	mySquare = new Square();
@@ -96,12 +101,7 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 	glEnable(GL_DEPTH_TEST);
 	glfwSwapInterval(1);
 
-	//for (size_t i = 0; i < 3; i++)
-	//{
-	//	VirtualObject* monkey = new VirtualObject(MonkeyMesh, myTexture, myShader);
-	//	myObjects.push_back(monkey);
-	//	monkey->Position = glm::vec3(i * 2.0f, 0.0f, 0);
-	//}
+	CreateVirtualObject(myPlane, myTexture, myShader);
 
 	return someData;
 }
@@ -154,6 +154,18 @@ void Gorilla::Input(GLFWwindow* aWindow)
 void Gorilla::CreateVirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader)
 {
 	VirtualObject* newObject = new VirtualObject(aMesh, aTexture, aShader);
+	myObjects.push_back(newObject);
+}
+
+void Gorilla::CreateDefaultCube()
+{
+	VirtualObject* newObject = new VirtualObject(myCube, myTexture, myShader);
+	myObjects.push_back(newObject);
+}
+
+void Gorilla::CreateDefaultSphere()
+{
+	VirtualObject* newObject = new VirtualObject(mySphere, myTexture, myShader);
 	myObjects.push_back(newObject);
 }
 

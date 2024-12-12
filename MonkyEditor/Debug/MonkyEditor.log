@@ -1,7 +1,4 @@
 ﻿  MonkyGUI.cpp
-  ObjectEntry.cpp
-  ResourceEditor.cpp
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ResourceEditor.cpp(93,20): warning C4018: '<': signed/unsigned mismatch
   ShaderEditor.cpp
   Generating Code...
   MonkyEditor.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyEditor.lib

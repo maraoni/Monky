@@ -26,6 +26,8 @@ namespace Gorilla
 	void Input(GLFWwindow* aWindow);
 
 	void CreateVirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader);
+	void CreateDefaultCube();
+	void CreateDefaultSphere();
 
 	std::vector<VirtualObject*> GetObjects();
 

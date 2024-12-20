@@ -9,27 +9,20 @@
 #include <stdio.h>
 #include <string.h>
 
-Chimp::ObjectEntry::ObjectEntry()
+Chimp::ObjectEntry::ObjectEntry(VirtualObject* anObject) : myObject(anObject)
 {
-	myObject = nullptr;
-	Opened = false;
-}
-
-Chimp::ObjectEntry::ObjectEntry(VirtualObject* anObject)
-{
-	myObject = anObject;
 	Opened = false;
 }
 
 Chimp::ObjectEntry::~ObjectEntry()
 {
-
+	myObject = nullptr;
 }
 
 
 void Chimp::ObjectEntry::Update()
 {
-	if (myObject == nullptr)
+	if (&myObject == nullptr)
 	{
 		std::cout << "[CHIMP] Object entry has null object" << std::endl;
 		return;

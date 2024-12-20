@@ -1,11 +1,12 @@
 #pragma once
 #include <glm.hpp>
+#include <memory>
 
 class Mesh;
 class Texture;
 class Shader;
 
-namespace Gorilla 
+namespace Gorilla
 {
 	class Camera;
 }
@@ -14,7 +15,8 @@ class VirtualObject
 {
 public:
 
-	VirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader);
+	VirtualObject(std::shared_ptr < Mesh> aMesh, std::shared_ptr < Texture> aTexture, std::shared_ptr < Shader> aShader);
+	~VirtualObject();
 
 	void SetMesh(Mesh& aMesh);
 	void SetTexture(Texture& aTexture);
@@ -30,8 +32,8 @@ public:
 
 private:
 
-	Mesh* myMesh;
-	Texture* myTexture;
-	Shader* myShader;
+	std::shared_ptr<Mesh>		myMesh;
+	std::shared_ptr<Texture>	myTexture;
+	std::shared_ptr<Shader>		myShader;
 };
 

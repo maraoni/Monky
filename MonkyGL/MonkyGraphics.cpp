@@ -19,35 +19,12 @@
 #include <fstream>
 #include <sstream>
 
+Gorilla::Graphics::Graphics()
+{
 
-GLFWwindow* window;
+}
 
-Shader* myShader;
-Shader* myBillboard;
-
-Square* mySquare;
-Triangle* myTriangle;
-Cube* myCube;
-
-Texture* myTexture;
-Texture* myConcreteTexture;
-Mesh* MonkeyMesh;
-
-Mesh* mySphere;
-Mesh* myPlane;
-
-float myWidth;
-float myHeight;
-
-float lastTime;
-float currentTime;
-float DeltaTime;
-
-std::vector<VirtualObject*> myObjects;
-VirtualObject* myBillboardObject = nullptr;
-
-
-Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
+Gorilla::GorillaInitializeData Gorilla::Graphics::Initialize(int aWidth, int aHeight)
 {
 	GorillaInitializeData someData;
 	someData.aCamera = NULL;
@@ -65,6 +42,7 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 
 	window = glfwCreateWindow(aWidth, aHeight, "Monky", NULL, NULL);
 	glfwMakeContextCurrent(window);
+
 
 	myWidth = aWidth;
 	myHeight = aHeight;
@@ -101,12 +79,14 @@ Gorilla::GorillaInitializeData Gorilla::Initialize(int aWidth, int aHeight)
 	glEnable(GL_DEPTH_TEST);
 	glfwSwapInterval(1);
 
-	CreateVirtualObject(myPlane, myTexture, myShader);
+	VirtualObject* plane = CreateVirtualObject(myCube, myTexture, myShader);
+	plane->Scale = glm::vec3(50, 1, 50);
+	plane->Position = glm::vec3(0, -0.5f, 0);
 
 	return someData;
 }
 
-void Gorilla::BeginRender(Camera* aCamera)
+void Gorilla::Graphics::BeginRender(Camera* aCamera)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -121,11 +101,12 @@ void Gorilla::BeginRender(Camera* aCamera)
 	aCamera->CameraUpdate();
 }
 
-void Gorilla::End()
+void Gorilla::Graphics::End()
 {
 	glfwSwapBuffers(window);
 	Input(window);
 	glfwPollEvents();
+
 
 	currentTime = glfwGetTime();
 	DeltaTime = currentTime - lastTime;
@@ -133,17 +114,32 @@ void Gorilla::End()
 }
 
 
-bool Gorilla::ShouldClose()
+bool Gorilla::Graphics::ShouldClose()
 {
 	if (glfwWindowShouldClose(window))
 	{
 		glfwTerminate();
+
+		//delete window;
+		delete myShader;
+		delete myBillboard;
+		delete mySquare;
+		delete myTriangle;
+		delete myCube;
+		delete myTexture;
+		delete myConcreteTexture;
+		delete MonkeyMesh;
+		delete mySphere;
+		delete myPlane;
+
+		delete myShader;
+
 		return true;
 	}
 	return false;
 }
 
-void Gorilla::Input(GLFWwindow* aWindow)
+void Gorilla::Graphics::Input(GLFWwindow* aWindow)
 {
 	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
 	{
@@ -151,25 +147,27 @@ void Gorilla::Input(GLFWwindow* aWindow)
 	}
 }
 
-void Gorilla::CreateVirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader)
+
+VirtualObject* Gorilla::Graphics::CreateVirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader)
 {
-	VirtualObject* newObject = new VirtualObject(aMesh, aTexture, aShader);
+	VirtualObject* newObject = new VirtualObject(std::make_shared<Mesh>(aMesh), std::make_shared<Texture>(aTexture), std::make_shared<Shader>(aShader));
+	myObjects.push_back(newObject);
+	return newObject;
+}
+
+void Gorilla::Graphics::CreateDefaultCube(Graphics* aGraphics)
+{
+	VirtualObject* newObject = new VirtualObject(std::make_shared<Mesh>(myCube), std::make_shared<Texture>(myTexture), std::make_shared<Shader>(myShader));
 	myObjects.push_back(newObject);
 }
 
-void Gorilla::CreateDefaultCube()
+void Gorilla::Graphics::CreateDefaultSphere(Graphics* aGraphics)
 {
-	VirtualObject* newObject = new VirtualObject(myCube, myTexture, myShader);
+	VirtualObject* newObject = new VirtualObject(std::make_shared<Mesh>(mySphere), std::make_shared<Texture>(myTexture), std::make_shared<Shader>(myShader));
 	myObjects.push_back(newObject);
 }
 
-void Gorilla::CreateDefaultSphere()
-{
-	VirtualObject* newObject = new VirtualObject(mySphere, myTexture, myShader);
-	myObjects.push_back(newObject);
-}
-
-std::vector<VirtualObject*> Gorilla::GetObjects()
+std::vector<VirtualObject*> Gorilla::Graphics::GetObjects()
 {
 	return myObjects;
 }

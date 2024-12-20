@@ -5,90 +5,117 @@
 #include "Shader.h"
 #include <iostream>
 
-Mesh::Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize)
+
+Mesh::Mesh()
 {
-	IndicesSize = 0;
-	glGenVertexArrays(1, &VAO);
-	glBindVertexArray(VAO);
 
-	glGenBuffers(1, &VBO);
-	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, aVertexSize, someVertices, GL_STATIC_DRAW);
-
-	EBO = 0;
-	if (someIndices && aIndexSize > 0)
-	{
-		glGenBuffers(1, &EBO);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, aIndexSize, someIndices, GL_STATIC_DRAW);
-	}
-
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
-
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-	glEnableVertexAttribArray(1);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
 }
 
-Mesh::Mesh(Gorilla::ObjData someData)
+Mesh::Mesh(const std::vector<float>& vertices, const std::vector<unsigned int>& indices)
 {
+    // Set initial index size
+    IndicesSize = indices.size();
+
+    // Create and bind VAO (Vertex Array Object)
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
-    std::vector<float> vertexData;
-    for (size_t i = 0; i < someData.vertices.size(); ++i)
+    // Create and bind VBO (Vertex Buffer Object)
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float), vertices.data(), GL_STATIC_DRAW);
+
+    // If indices are provided, set up the Element Buffer Object (EBO)
+    if (IndicesSize > 0)
     {
-        vertexData.push_back(someData.vertices[i].x);
-        vertexData.push_back(someData.vertices[i].y);
-        vertexData.push_back(someData.vertices[i].z);
+        glGenBuffers(1, &EBO);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
+    }
 
-        if (i < someData.texCoords.size())
+    // Define vertex attributes for the position (3 floats)
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    // Define vertex attributes for texture coordinates (2 floats)
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
+
+    // Unbind buffers and VAO to clean up
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+}
+
+Mesh::Mesh(const Gorilla::ObjData& objData)
+{
+    // Create and bind VAO (Vertex Array Object)
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+
+    // Prepare a vector to hold all vertex data (position + texture + normal)
+    std::vector<float> vertexData;
+    size_t vertexCount = objData.vertices.size();
+
+    // Loop over vertices and create the interleaved vertex data
+    for (size_t i = 0; i < vertexCount; ++i)
+    {
+        // Add position
+        vertexData.push_back(objData.vertices[i].x);
+        vertexData.push_back(objData.vertices[i].y);
+        vertexData.push_back(objData.vertices[i].z);
+
+        // Add texture coordinates, or use defaults if not available
+        if (i < objData.texCoords.size())
         {
-            vertexData.push_back(someData.texCoords[i].x);
-            vertexData.push_back(someData.texCoords[i].y);
+            vertexData.push_back(objData.texCoords[i].x);
+            vertexData.push_back(objData.texCoords[i].y);
         }
-        else 
+        else
         {
             vertexData.push_back(0.0f); // Default value
             vertexData.push_back(0.0f); // Default value
         }
 
-        // Normal
-        if (i < someData.normals.size())
+        // Add normal vectors, or use defaults if not available
+        if (i < objData.normals.size())
         {
-            vertexData.push_back(someData.normals[i].x);
-            vertexData.push_back(someData.normals[i].y);
-            vertexData.push_back(someData.normals[i].z);
+            vertexData.push_back(objData.normals[i].x);
+            vertexData.push_back(objData.normals[i].y);
+            vertexData.push_back(objData.normals[i].z);
         }
-        else 
+        else
         {
             vertexData.push_back(0.0f); // Default value
             vertexData.push_back(0.0f); // Default value
-            vertexData.push_back(1.0f); // Default normal pointing up
+            vertexData.push_back(1.0f); // Default normal (pointing upwards)
         }
     }
 
+    // Create and bind VBO (Vertex Buffer Object)
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, vertexData.size() * sizeof(float), vertexData.data(), GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+    // Set vertex attribute pointers (Position, Texture, Normal)
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0); // Position
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float))); // TexCoords
     glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float)));
+
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(5 * sizeof(float))); // Normal
     glEnableVertexAttribArray(2);
 
+    // Create and bind EBO (Element Buffer Object) for indices
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, someData.indices.size() * sizeof(unsigned int), someData.indices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, objData.indices.size() * sizeof(unsigned int), objData.indices.data(), GL_STATIC_DRAW);
 
+    // Unbind VAO to clean up
     glBindVertexArray(0);
 
-    IndicesSize = someData.indices.size();
+    // Set index size for later use in drawing
+    IndicesSize = objData.indices.size();
 }
 
 Mesh::~Mesh()
@@ -98,12 +125,12 @@ Mesh::~Mesh()
 	glDeleteBuffers(1, &EBO);
 }
 
-void Mesh::Draw(Shader* aShader)
+void Mesh::Draw(std::shared_ptr<Shader> aShader)
 {
 	aShader->Use();
 	glBindVertexArray(VAO);
 
-	if (IndicesSize > 0)
+    	if (IndicesSize > 0)
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 

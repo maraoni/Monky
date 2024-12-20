@@ -12,7 +12,9 @@
 int main()
 {
 	ResourceHandler* resources = new ResourceHandler();
-	Gorilla::GorillaInitializeData RenderData = Gorilla::Initialize(1280, 720);
+	Gorilla::Graphics* graphics = new Gorilla::Graphics();
+
+	Gorilla::GorillaInitializeData RenderData = graphics->Initialize(1280, 720);
 	Engine::MonkyEngine* engine = new Engine::MonkyEngine(RenderData.aWindow, RenderData.aCamera);
 	Chimp::MonkyGUI* Gui = new Chimp::MonkyGUI(RenderData.aWindow, resources);
 
@@ -23,18 +25,27 @@ int main()
 	float currentTime = 0;
 	float delta = 0;
 
+
+
 	std::vector<VirtualObject*> objects;
 
-	while (!Gorilla::ShouldClose())
+	while (!graphics->ShouldClose())
 	{
-		objects = Gorilla::GetObjects();
+		objects = graphics->GetObjects();
 		currentTime = glfwGetTime();
 		delta = currentTime - lastTime;
 		lastTime = currentTime;
 
-		Gorilla::BeginRender(engine->myCamera);
-		Gui->Render(objects);
-		Gorilla::End();
+		try
+		{
+			graphics->BeginRender(engine->myCamera);
+			Gui->Render(objects, engine->myCamera);
+			graphics->End();
+		}
+		catch (int anError)
+		{
+			std::cout << anError << std::endl;
+		}
 
 		engine->Update(delta);
 	}

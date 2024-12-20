@@ -6,30 +6,37 @@
 #include "Texture.h"
 #include <gtc/matrix_transform.hpp>
 
-VirtualObject::VirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader)
+VirtualObject::VirtualObject(std::shared_ptr < Mesh> aMesh, std::shared_ptr < Texture> aTexture, std::shared_ptr < Shader> aShader)
 {
 	myMesh = aMesh;
 	myTexture = aTexture;
 	myShader = aShader;
 
-	Position =	glm::vec3(0, 0, 0);
-	Rotation =	glm::vec3(0, 0, 0);
-	Scale =		glm::vec3(1, 1, 1);
+	Position = glm::vec3(0, 0, 0);
+	Rotation = glm::vec3(0, 0, 0);
+	Scale = glm::vec3(1, 1, 1);
+}
+
+VirtualObject::~VirtualObject()
+{
+	myMesh = nullptr;
+	myTexture = nullptr;
+	myShader = nullptr;
 }
 
 void VirtualObject::SetMesh(Mesh& aMesh)
 {
-	myMesh = &aMesh;
+	//myMesh = &aMesh;
 }
 
 void VirtualObject::SetTexture(Texture& aTexture)
 {
-	myTexture = &aTexture;
+	//myTexture = &aTexture;
 }
 
 void VirtualObject::SetShader(Shader& aShader)
 {
-	myShader = &aShader;
+	//myShader = &aShader;
 }
 
 void VirtualObject::Draw(Gorilla::Camera* aCamera)
@@ -44,8 +51,11 @@ void VirtualObject::Draw(Gorilla::Camera* aCamera)
 
 	trans = glm::scale(trans, Scale);
 
-	glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
-	glBindTexture(GL_TEXTURE_2D, myTexture->TextureObject);
+	//if (myTexture)
+	//{
+		//glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
+		//glBindTexture(GL_TEXTURE_2D, myTexture->TextureObject);
+	//}
 
 
 	myShader->SetMatrix4(trans, "transform");
@@ -58,6 +68,7 @@ void VirtualObject::Draw(Gorilla::Camera* aCamera)
 
 Shader* VirtualObject::GetShader()
 {
-	return myShader;
+	return nullptr;
+	//return myShader;
 }
 

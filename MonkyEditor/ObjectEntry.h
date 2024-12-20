@@ -7,7 +7,6 @@ namespace Chimp
 	{
 	public:
 
-		ObjectEntry();
 		ObjectEntry(VirtualObject* anObject);
 		~ObjectEntry();
 

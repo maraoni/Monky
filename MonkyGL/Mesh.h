@@ -2,6 +2,8 @@
 #include <vector>
 #include <glm.hpp>
 #include "ObjLoader.h"
+#include <memory>
+
 class Shader;
 
 struct Vertex {
@@ -13,11 +15,12 @@ struct Vertex {
 class Mesh
 {
 public:
-	Mesh(const float* someVertices, size_t aVertexSize, unsigned int* someIndices, size_t aIndexSize);
-	Mesh(Gorilla::ObjData someData);
+	Mesh();
+	Mesh(const std::vector<float>& vertices, const std::vector<unsigned int>& indices);
+	Mesh(const Gorilla::ObjData&);
 
 	~Mesh();
-	void Draw(Shader* aShader);
+	void Draw(std::shared_ptr<Shader> aShader);
 
 private:
 	std::vector<Vertex> myVertices;

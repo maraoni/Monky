@@ -1,4 +1,5 @@
-﻿  MonkyGUI.cpp
-  ShaderEditor.cpp
+﻿  GizmoTest.cpp
+  MonkyGUI.cpp
+  ObjectEntry.cpp
   Generating Code...
   MonkyEditor.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyEditor.lib

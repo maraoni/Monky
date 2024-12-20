@@ -1,12 +1,15 @@
 #include "Triangle.h"
 
-static float Vertices[] =
+Triangle::Triangle() 
 {
-	-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
-	0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
-	0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f
-};
+	/*float Vertices[] =
+	{
+		-0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f,
+		0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f,  0.5f, 0.0f, 0.0f, 0.0f, 1.0f
+	};
 
-Triangle::Triangle() : Mesh(Vertices, sizeof(Vertices), nullptr, 0) { }
+	Mesh(Vertices, Vertices);*/
+}
 
 

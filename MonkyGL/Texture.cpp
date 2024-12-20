@@ -4,7 +4,7 @@
 #include <glfw3.h>
 #include <iostream>
 
-Texture::Texture(const char* aPath, const bool& shouldAlpha)
+Texture::Texture(const char* aPath, bool shouldAlpha) : Width(0), Height(0), TextureObject(0)
 {
 	int Channels = 0;
 	Width = 0;

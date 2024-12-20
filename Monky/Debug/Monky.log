@@ -1,1 +1,7 @@
-﻿  Monky.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\Monky.exe
+﻿  ResourceHandler.cpp
+  main.cpp
+C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\main.cpp(35,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+ResourceHandler.obj : error LNK2019: unresolved external symbol "public: __thiscall Texture::Texture(char const *,bool)" (??0Texture@@QAE@PBD_N@Z) referenced in function "public: void __thiscall ResourceHandler::CreateTexture(char const *,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?CreateTexture@ResourceHandler@@QAEXPBDV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\Monky.exe : fatal error LNK1120: 1 unresolved externals

@@ -2,11 +2,11 @@
 class Texture
 {
 public:
-	Texture(const char* aPath, const bool& shouldAlpha);
+	Texture(const char* aPath, bool shouldAlpha);
 
-	int Width;
-	int Height;
+	int Width = 0;
+	int Height = 0;
 
-	unsigned int TextureObject;
+	unsigned int TextureObject = 0;
 };
 

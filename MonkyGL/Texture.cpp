@@ -41,5 +41,10 @@ Texture::Texture(const char* aPath, bool shouldAlpha) : Width(0), Height(0), Tex
 	stbi_image_free(data);
 }
 
+Texture::~Texture()
+{
+	int kek = 0;
+}
+
 
 

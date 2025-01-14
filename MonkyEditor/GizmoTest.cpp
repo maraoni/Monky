@@ -26,23 +26,44 @@ GizmoTest::GizmoTest()
 
 void GizmoTest::Update(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera)
 {
+	ImVec2 window_pos = ImGui::GetWindowPos(); 
+	ImVec2 window_size = ImGui::GetWindowSize(); 
+	ImVec2 window_center = ImVec2(window_pos.x + window_size.x * 0.5f, window_pos.y + window_size.y * 0.5f); 
+	ImGui::GetBackgroundDrawList()->AddCircle(window_center, window_size.x * 0.6f, IM_COL32(255, 0, 0, 200), 0, 10 + 4); 
+	ImGui::GetForegroundDrawList()->AddCircle(window_center, window_size.y * 0.6f, IM_COL32(0, 255, 0, 200), 0, 10);
+
 	ImGuizmo::SetOrthographic(false);
-	ImGuizmo::BeginFrame();
-	glm::mat4x4 mat = glm::mat4x4(1);
-	TransformStart(glm::value_ptr(aCamera->myView), glm::value_ptr(aCamera->myProjection), glm::value_ptr(someObjects[lastUsing]->Position));
+	ImGuizmo::SetDrawlist();
+
+	float windowWidth = (float)ImGui::GetWindowWidth();
+	float windowHeight = (float)ImGui::GetWindowHeight();
+
+	ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
+
+	const glm::mat4& cameraView = aCamera->myView;
+	glm::mat4 projection = aCamera->myProjection;
+
+	glm::mat4 trans = someObjects[0]->GetTrans();
+
+	ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(projection), ImGuizmo::OPERATION::TRANSLATE, ImGuizmo::LOCAL, glm::value_ptr(trans));
 
 
-	for (size_t i = 0; i < someObjects.size(); i++)
-	{
-		ImGuizmo::PushID(i);
-		if (ImGuizmo::IsUsing())
-		{
-			EditTransform(glm::value_ptr(aCamera->myView), glm::value_ptr(aCamera->myProjection), glm::value_ptr(someObjects[i]->Position));
-			lastUsing = i;
-		}
-		ImGuizmo::PopID();
-	}
-	TransformEnd();
+	//ImGuizmo::BeginFrame();
+	//glm::mat4x4 mat = someObjects[lastUsing]->GetMat();
+	//TransformStart(glm::value_ptr(aCamera->myView), glm::value_ptr(aCamera->myProjection), glm::value_ptr(mat));
+
+
+	//for (size_t i = 0; i < someObjects.size(); i++)
+	//{
+	//	ImGuizmo::PushID(i);
+	//	if (ImGuizmo::IsUsing())
+	//	{
+	//		EditTransform(glm::value_ptr(aCamera->myView), glm::value_ptr(aCamera->myProjection), glm::value_ptr(mat));
+	//		lastUsing = i;
+	//	}
+	//	ImGuizmo::PopID();
+	//}
+	//TransformEnd();
 }
 
 void GizmoTest::TransformStart(float* cameraView, float* cameraProjection, float* matrix)

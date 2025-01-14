@@ -15,7 +15,7 @@ class VirtualObject
 {
 public:
 
-	VirtualObject(std::shared_ptr < Mesh> aMesh, std::shared_ptr < Texture> aTexture, std::shared_ptr < Shader> aShader);
+	VirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader);
 	~VirtualObject();
 
 	void SetMesh(Mesh& aMesh);
@@ -28,12 +28,14 @@ public:
 	glm::vec3 Scale;
 	glm::vec3 Rotation;
 
+	glm::mat4 GetTrans();
+
 	Shader* GetShader();
 
 private:
 
-	std::shared_ptr<Mesh>		myMesh;
-	std::shared_ptr<Texture>	myTexture;
-	std::shared_ptr<Shader>		myShader;
+	Mesh* myMesh;
+	Texture* myTexture;
+	Shader* myShader;
 };
 

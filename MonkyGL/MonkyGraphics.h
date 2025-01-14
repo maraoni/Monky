@@ -49,7 +49,7 @@ namespace Gorilla
 
 		Square* mySquare;
 		Triangle* myTriangle;
-		Cube* myCube;
+		Mesh* myCube;
 
 		Texture* myTexture;
 		Texture* myConcreteTexture;

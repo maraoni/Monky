@@ -8,50 +8,6 @@ C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(74,30)
 C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(93,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(98,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
 C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(111,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): error C2665: 'Mesh::Mesh': no overloaded function could convert all the argument types
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\Mesh.h(33,1): message : could be 'Mesh::Mesh(const Mesh &)'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): message : 'Mesh::Mesh(const Mesh &)': cannot convert argument 1 from 'Mesh *' to 'const Mesh &'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : Reason: cannot convert from 'Mesh *' to 'const Mesh'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\Mesh.h(20,2): message : or       'Mesh::Mesh(const Gorilla::ObjData &)'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): message : 'Mesh::Mesh(const Gorilla::ObjData &)': cannot convert argument 1 from 'Mesh *' to 'const Gorilla::ObjData &'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : Reason: cannot convert from 'Mesh *' to 'const Gorilla::ObjData'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): message : while trying to match the argument list '(Mesh *)'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\memory(2092,13): message : see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Mesh*&>(_Ty &,Mesh *&) noexcept(false)' being compiled
-          with
-          [
-              _Ty=Mesh
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\memory(2765,46): message : see reference to function template instantiation 'std::_Ref_count_obj2<Mesh>::_Ref_count_obj2<Mesh*&>(Mesh *&)' being compiled
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(153,52): message : see reference to function template instantiation 'std::shared_ptr<Mesh> std::make_shared<Mesh,Mesh*&>(Mesh *&)' being compiled
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): error C2665: 'Texture::Texture': no overloaded function could convert all the argument types
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\Texture.h(11,1): message : could be 'Texture::Texture(Texture &&)'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): message : 'Texture::Texture(Texture &&)': cannot convert argument 1 from 'Texture *' to 'Texture &&'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : Reason: cannot convert from 'Texture *' to 'Texture'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\Texture.h(11,1): message : or       'Texture::Texture(const Texture &)'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): message : 'Texture::Texture(const Texture &)': cannot convert argument 1 from 'Texture *' to 'const Texture &'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : Reason: cannot convert from 'Texture *' to 'const Texture'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): message : while trying to match the argument list '(Texture *)'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\memory(2092,13): message : see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Texture*&>(_Ty &,Texture *&) noexcept(false)' being compiled
-          with
-          [
-              _Ty=Texture
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\memory(2765,46): message : see reference to function template instantiation 'std::_Ref_count_obj2<Texture>::_Ref_count_obj2<Texture*&>(Texture *&)' being compiled
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(153,83): message : see reference to function template instantiation 'std::shared_ptr<Texture> std::make_shared<Texture,Texture*&>(Texture *&)' being compiled
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): error C2665: 'Shader::Shader': no overloaded function could convert all the argument types
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\Shader.h(31,1): message : could be 'Shader::Shader(const Shader &)'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): message : 'Shader::Shader(const Shader &)': cannot convert argument 1 from 'Shader *' to 'const Shader &'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : Reason: cannot convert from 'Shader *' to 'const Shader'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,77): message : No constructor could take the source type, or constructor overload resolution was ambiguous
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\xutility(265,56): message : while trying to match the argument list '(Shader *)'
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\memory(2092,13): message : see reference to function template instantiation 'void std::_Construct_in_place<_Ty,Shader*&>(_Ty &,Shader *&) noexcept(false)' being compiled
-          with
-          [
-              _Ty=Shader
-          ]
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\memory(2765,46): message : see reference to function template instantiation 'std::_Ref_count_obj2<Shader>::_Ref_count_obj2<Shader*&>(Shader *&)' being compiled
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(153,120): message : see reference to function template instantiation 'std::shared_ptr<Shader> std::make_shared<Shader,Shader*&>(Shader *&)' being compiled
+  VirtualObject.cpp
+  Generating Code...
+  MonkyGL.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyGL.lib

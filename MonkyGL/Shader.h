@@ -18,13 +18,13 @@ public:
 
 	bool RecompileShader(const char* aVertexPath, const char* aFragmentPath);
 
-	void SetMatrix4(glm::mat4 aMatrix, const std::string& aName);
+	void SetMatrix4(glm::mat4 aMatrix, std::string aName);
 
-	void SetVector4(glm::vec4 aVector4, const std::string& aName);  
-	void SetVector3(glm::vec3 aVector3, const std::string& aName);  
-	void SetVector2(glm::vec2 aVector2, const std::string& aName);  
-	void SetFloat(float aFloat, const std::string& aName);			
-	void SetInt(int aInt, const std::string& aName);				
+	void SetVector4(glm::vec4 aVector4, std::string aName);  
+	void SetVector3(glm::vec3 aVector3, std::string aName);  
+	void SetVector2(glm::vec2 aVector2, std::string aName);  
+	void SetFloat(float aFloat, std::string aName);			
+	void SetInt(int aInt, std::string aName);				
 
 	unsigned int myShaderProgram;
 	void Use();

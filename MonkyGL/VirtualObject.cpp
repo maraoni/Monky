@@ -6,11 +6,17 @@
 #include "Texture.h"
 #include <gtc/matrix_transform.hpp>
 
-VirtualObject::VirtualObject(std::shared_ptr < Mesh> aMesh, std::shared_ptr < Texture> aTexture, std::shared_ptr < Shader> aShader)
+VirtualObject::VirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader)
 {
 	myMesh = aMesh;
 	myTexture = aTexture;
 	myShader = aShader;
+
+	if (!aMesh || !aTexture || !aShader)
+	{
+		int kek = 0;
+	}
+
 
 	Position = glm::vec3(0, 0, 0);
 	Rotation = glm::vec3(0, 0, 0);
@@ -41,6 +47,11 @@ void VirtualObject::SetShader(Shader& aShader)
 
 void VirtualObject::Draw(Gorilla::Camera* aCamera)
 {
+	if (!myMesh || !myTexture || !myShader)
+	{
+		int kek = 0;
+	}
+
 	glm::mat4 trans = glm::mat4(1.0f);
 
 	trans = glm::translate(trans, Position);
@@ -51,11 +62,11 @@ void VirtualObject::Draw(Gorilla::Camera* aCamera)
 
 	trans = glm::scale(trans, Scale);
 
-	//if (myTexture)
-	//{
-		//glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
-		//glBindTexture(GL_TEXTURE_2D, myTexture->TextureObject);
-	//}
+	if (myTexture)
+	{
+		glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
+		glBindTexture(GL_TEXTURE_2D, myTexture->TextureObject);
+	}
 
 
 	myShader->SetMatrix4(trans, "transform");
@@ -64,6 +75,20 @@ void VirtualObject::Draw(Gorilla::Camera* aCamera)
 	myMesh->Draw(myShader);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+glm::mat4 VirtualObject::GetTrans()
+{
+	glm::mat4 trans = glm::mat4(1.0f);
+
+	trans = glm::translate(trans, Position);
+
+	trans = glm::rotate(trans, Rotation.x, glm::vec3(1, 0, 0));
+	trans = glm::rotate(trans, Rotation.y, glm::vec3(0, 1, 0));
+	trans = glm::rotate(trans, Rotation.z, glm::vec3(0, 0, 1));
+
+	trans = glm::scale(trans, Scale);
+	return trans;
 }
 
 Shader* VirtualObject::GetShader()

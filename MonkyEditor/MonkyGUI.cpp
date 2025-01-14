@@ -29,6 +29,11 @@ Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.ConfigWindowsResizeFromEdges = true;
+	io.ConfigWindowsMoveFromTitleBarOnly = true;
+	//io.ConfigFlags |= ImGuiConfigFlags_IsTouchScreen | ImGuiConfigFlags_ViewportsEnable |
+	//	ImGuiConfigFlags_NavEnableKeyboard;
+
 	ImGui::StyleColorsLight();
 	ImGui_ImplGlfw_InitForOpenGL(aWindow, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
@@ -62,6 +67,8 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 	ImGui::NewFrame();
 
 
+	myGizmo->Update(someObjects, aCamera);
+
 	ImGui::Begin("Monky", &alwaysTrue, ImGuiWindowFlags_MenuBar);
 
 	if (ImGui::BeginMenuBar())
@@ -81,7 +88,6 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 	case Chimp::ECurrentEditor::EObjectHierarchy:
 
 		UpdateHierarchy(someObjects, aCamera);
-		myGizmo->Update(someObjects, aCamera);
 
 		break;
 

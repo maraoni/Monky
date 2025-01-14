@@ -14,8 +14,8 @@ Game::Game(Engine::Input* aInputSystem)
 
 void Game::Update(const float& aDeltaTime)
 {
-	if (myInput->IsKeyDown(87))
+	/*if (myInput->IsKeyDown(87))
 	{
 		std::cout << aDeltaTime << std::endl;
-	}
+	}*/
 }

@@ -19,6 +19,7 @@ int main()
 	Chimp::MonkyGUI* Gui = new Chimp::MonkyGUI(RenderData.aWindow, resources);
 
 
+
 	glfwSetInputMode(RenderData.aWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	float lastTime = 0;
@@ -27,11 +28,9 @@ int main()
 
 
 
-	std::vector<VirtualObject*> objects;
-
 	while (!graphics->ShouldClose())
 	{
-		objects = graphics->GetObjects();
+		std::vector<VirtualObject*> objects = graphics->GetObjects();
 		currentTime = glfwGetTime();
 		delta = currentTime - lastTime;
 		lastTime = currentTime;

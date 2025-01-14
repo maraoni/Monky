@@ -16,11 +16,11 @@ class Mesh
 {
 public:
 	Mesh();
-	Mesh(const std::vector<float>& vertices, const std::vector<unsigned int>& indices);
+	Mesh(std::vector<float> vertices, std::vector<unsigned int> indices);
 	Mesh(const Gorilla::ObjData&);
 
 	~Mesh();
-	void Draw(std::shared_ptr<Shader> aShader);
+	void Draw(Shader* aShader);
 
 private:
 	std::vector<Vertex> myVertices;

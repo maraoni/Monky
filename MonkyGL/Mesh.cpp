@@ -11,7 +11,7 @@ Mesh::Mesh()
 
 }
 
-Mesh::Mesh(const std::vector<float>& vertices, const std::vector<unsigned int>& indices)
+Mesh::Mesh(std::vector<float> vertices, std::vector<unsigned int> indices)
 {
     // Set initial index size
     IndicesSize = indices.size();
@@ -38,7 +38,7 @@ Mesh::Mesh(const std::vector<float>& vertices, const std::vector<unsigned int>& 
     glEnableVertexAttribArray(0);
 
     // Define vertex attributes for texture coordinates (2 floats)
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
     // Unbind buffers and VAO to clean up
@@ -120,17 +120,17 @@ Mesh::Mesh(const Gorilla::ObjData& objData)
 
 Mesh::~Mesh()
 {
-	glDeleteVertexArrays(1, &VAO);
-	glDeleteBuffers(1, &VBO);
-	glDeleteBuffers(1, &EBO);
+	//glDeleteVertexArrays(1, &VAO);
+	//glDeleteBuffers(1, &VBO);
+	//glDeleteBuffers(1, &EBO);
 }
 
-void Mesh::Draw(std::shared_ptr<Shader> aShader)
+void Mesh::Draw(Shader* aShader)
 {
 	aShader->Use();
 	glBindVertexArray(VAO);
 
-    	if (IndicesSize > 0)
+    if (IndicesSize > 0)
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
@@ -139,14 +139,14 @@ void Mesh::Draw(std::shared_ptr<Shader> aShader)
 		glBindVertexArray(0);
 	}
 
-	if (EBO == 0)
-	{
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-	}
-	else
-	{
-		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-	}
+	//if (EBO == 0)
+	//{
+	//	glDrawArrays(GL_TRIANGLES, 0, 3);
+	//}
+	//else
+	//{
+	//	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+	//}
 
-	glBindVertexArray(0);
+	//glBindVertexArray(0);
 }

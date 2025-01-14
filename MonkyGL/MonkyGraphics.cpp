@@ -68,7 +68,7 @@ Gorilla::GorillaInitializeData Gorilla::Graphics::Initialize(int aWidth, int aHe
 	mySphere = LoadObjMesh("../Assets/Models/Sphere.obj");
 	myPlane = LoadObjMesh("../Assets/Models/Plane.obj");
 
-	myCube = new Cube();
+	myCube = LoadObjMesh("../Assets/Models/Cube.obj");
 	mySquare = new Square();
 
 	Camera* camera = new Camera(aWidth, aHeight);
@@ -80,7 +80,7 @@ Gorilla::GorillaInitializeData Gorilla::Graphics::Initialize(int aWidth, int aHe
 	glfwSwapInterval(1);
 
 	VirtualObject* plane = CreateVirtualObject(myCube, myTexture, myShader);
-	plane->Scale = glm::vec3(50, 1, 50);
+	plane->Scale = glm::vec3(1, 1, 1);
 	plane->Position = glm::vec3(0, -0.5f, 0);
 
 	return someData;
@@ -150,20 +150,20 @@ void Gorilla::Graphics::Input(GLFWwindow* aWindow)
 
 VirtualObject* Gorilla::Graphics::CreateVirtualObject(Mesh* aMesh, Texture* aTexture, Shader* aShader)
 {
-	VirtualObject* newObject = new VirtualObject(std::make_shared<Mesh>(aMesh), std::make_shared<Texture>(aTexture), std::make_shared<Shader>(aShader));
+	VirtualObject* newObject = new VirtualObject(aMesh, aTexture, aShader);
 	myObjects.push_back(newObject);
 	return newObject;
 }
 
 void Gorilla::Graphics::CreateDefaultCube(Graphics* aGraphics)
 {
-	VirtualObject* newObject = new VirtualObject(std::make_shared<Mesh>(myCube), std::make_shared<Texture>(myTexture), std::make_shared<Shader>(myShader));
+	VirtualObject* newObject = new VirtualObject(myCube, myTexture, myShader);
 	myObjects.push_back(newObject);
 }
 
 void Gorilla::Graphics::CreateDefaultSphere(Graphics* aGraphics)
 {
-	VirtualObject* newObject = new VirtualObject(std::make_shared<Mesh>(mySphere), std::make_shared<Texture>(myTexture), std::make_shared<Shader>(myShader));
+	VirtualObject* newObject = new VirtualObject(mySphere, myTexture, myShader);
 	myObjects.push_back(newObject);
 }
 

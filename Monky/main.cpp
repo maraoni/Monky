@@ -39,6 +39,9 @@ int main()
 		{
 			graphics->BeginRender(engine->myCamera);
 			Gui->Render(objects, engine->myCamera);
+
+
+
 			graphics->End();
 		}
 		catch (int anError)

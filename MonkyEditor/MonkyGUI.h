@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <glm.hpp>
 
 class VirtualObject;
 class ResourceHandler;
@@ -54,6 +55,9 @@ namespace Chimp
 		GLFWwindow* myWindow;
 
 		GizmoTest* myGizmo;
+		glm::vec2 m_ViewportBounds[2];
+		bool m_ViewportFocused = false, m_ViewportHovered = false;
+		glm::vec2 m_ViewportSize = { 0.0f, 0.0f };
 	};
 }
 

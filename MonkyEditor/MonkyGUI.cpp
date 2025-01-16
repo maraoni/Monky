@@ -17,10 +17,11 @@
 #include "MonkyGraphics.h"
 #include "Camera.h"
 #include "GizmoTest.h"
+#include "ImGuizmo.h"
+
 
 
 #define itoc(a) ((char*)(intptr_t)(a))
-
 
 
 
@@ -31,8 +32,8 @@ Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	io.ConfigWindowsResizeFromEdges = true;
 	io.ConfigWindowsMoveFromTitleBarOnly = true;
-	//io.ConfigFlags |= ImGuiConfigFlags_IsTouchScreen | ImGuiConfigFlags_ViewportsEnable |
-	//	ImGuiConfigFlags_NavEnableKeyboard;
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable | ImGuiConfigFlags_ViewportsEnable/* |
+		ImGuiConfigFlags_NavEnableKeyboard*/;
 
 	ImGui::StyleColorsLight();
 	ImGui_ImplGlfw_InitForOpenGL(aWindow, true);
@@ -65,9 +66,134 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
+	ImGuizmo::BeginFrame();
 
+	static bool dockspaceOpen = true;
+	static bool opt_fullscreen_persistant = true;
+	bool opt_fullscreen = opt_fullscreen_persistant;
+	static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
 
+	// We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
+	// because it would be confusing to have two docking targets within each others.
+	ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
+	if (opt_fullscreen)
+	{
+		ImGuiViewport* viewport = ImGui::GetMainViewport();
+		ImGui::SetNextWindowPos(viewport->Pos);
+		ImGui::SetNextWindowSize(viewport->Size);
+		ImGui::SetNextWindowViewport(viewport->ID);
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
+		window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
+		window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
+	}
+
+	// When using ImGuiDockNodeFlags_PassthruCentralNode, DockSpace() will render our background and handle the pass-thru hole, so we ask Begin() to not render a background.
+	if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode)
+		window_flags |= ImGuiWindowFlags_NoBackground;
+
+	ImGuiIO& io = ImGui::GetIO();
+
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+	ImGui::Begin("DockSpace Demo", &dockspaceOpen, window_flags);
+	ImGui::PopStyleVar();
+
+	if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
+	{
+		ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
+		ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
+	}
+
+	ImGui::End();
+
+	ImGui::Begin("Viewport");
+	auto viewportMinRegion = ImGui::GetWindowContentRegionMin();
+	auto viewportMaxRegion = ImGui::GetWindowContentRegionMax();
+	auto viewportOffset = ImGui::GetWindowPos();
+	m_ViewportBounds[0] = { viewportMinRegion.x + viewportOffset.x, viewportMinRegion.y + viewportOffset.y };
+	m_ViewportBounds[1] = { viewportMaxRegion.x + viewportOffset.x, viewportMaxRegion.y + viewportOffset.y };
+
+	m_ViewportFocused = ImGui::IsWindowFocused();
+	m_ViewportHovered = ImGui::IsWindowHovered();
+
+	//Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportHovered);
+
+	ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+	m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
+
+	//uint64_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+	//ImGui::Image(reinterpret_cast<void*>(textureID), ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+
+	//if (ImGui::BeginDragDropTarget())
+	//{
+	//	if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
+	//	{
+	//		const wchar_t* path = (const wchar_t*)payload->Data;
+	//		//OpenScene(path);
+	//	}
+	//	ImGui::EndDragDropTarget();
+	//}
+
+	// Gizmos
+
+	ImGuizmo::SetRect(m_ViewportBounds[0].x, m_ViewportBounds[0].y, m_ViewportBounds[1].x - m_ViewportBounds[0].x, m_ViewportBounds[1].y - m_ViewportBounds[0].y);
 	myGizmo->Update(someObjects, aCamera);
+
+	ImGui::End();
+
+	//Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
+	//if (selectedEntity && m_GizmoType != -1)
+	//{
+	//	ImGuizmo::SetOrthographic(false);
+	//	ImGuizmo::SetDrawlist();
+
+
+
+	//	// Camera
+
+	//	// Runtime camera from entity
+	//	// auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
+	//	// const auto& camera = cameraEntity.GetComponent<CameraComponent>().Camera;
+	//	// const glm::mat4& cameraProjection = camera.GetProjection();
+	//	// glm::mat4 cameraView = glm::inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
+
+	//	// Editor camera
+	//	const glm::mat4& cameraProjection = m_EditorCamera.GetProjection();
+	//	glm::mat4 cameraView = m_EditorCamera.GetViewMatrix();
+
+	//	// Entity transform
+	//	auto& tc = selectedEntity.GetComponent<TransformComponent>();
+	//	glm::mat4 transform = tc.GetTransform();
+
+	//	// Snapping
+	//	bool snap = Input::IsKeyPressed(Key::LeftControl);
+	//	float snapValue = 0.5f; // Snap to 0.5m for translation/scale
+	//	// Snap to 45 degrees for rotation
+	//	if (m_GizmoType == ImGuizmo::OPERATION::ROTATE)
+	//		snapValue = 45.0f;
+
+	//	float snapValues[3] = { snapValue, snapValue, snapValue };
+
+	//	ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection),
+	//		(ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::LOCAL, glm::value_ptr(transform),
+	//		nullptr, snap ? snapValues : nullptr);
+
+	//	if (ImGuizmo::IsUsing())
+	//	{
+	//		glm::vec3 translation, rotation, scale;
+	//		Math::DecomposeTransform(transform, translation, rotation, scale);
+
+	//		glm::vec3 deltaRotation = rotation - tc.Rotation;
+	//		tc.Translation = translation;
+	//		tc.Rotation += deltaRotation;
+	//		tc.Scale = scale;
+	//	}
+	//}
+
+
+
+
+
 
 	ImGui::Begin("Monky", &alwaysTrue, ImGuiWindowFlags_MenuBar);
 
@@ -110,11 +236,19 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 		break;
 	}
 
-
-
+	ImGui::PopStyleVar();
+	ImGui::PopStyleVar();
 	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+	if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+	{
+		GLFWwindow* backup_current_context = glfwGetCurrentContext();
+		ImGui::UpdatePlatformWindows();
+		ImGui::RenderPlatformWindowsDefault();
+		glfwMakeContextCurrent(backup_current_context);
+	}
 }
 
 void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera)

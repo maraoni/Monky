@@ -29,8 +29,6 @@ void GizmoTest::Update(std::vector<VirtualObject*> someObjects, Gorilla::Camera*
 	ImVec2 window_pos = ImGui::GetWindowPos(); 
 	ImVec2 window_size = ImGui::GetWindowSize(); 
 	ImVec2 window_center = ImVec2(window_pos.x + window_size.x * 0.5f, window_pos.y + window_size.y * 0.5f); 
-	ImGui::GetBackgroundDrawList()->AddCircle(window_center, window_size.x * 0.6f, IM_COL32(255, 0, 0, 200), 0, 10 + 4); 
-	ImGui::GetForegroundDrawList()->AddCircle(window_center, window_size.y * 0.6f, IM_COL32(0, 255, 0, 200), 0, 10);
 
 	ImGuizmo::SetOrthographic(false);
 	ImGuizmo::SetDrawlist();
@@ -46,7 +44,6 @@ void GizmoTest::Update(std::vector<VirtualObject*> someObjects, Gorilla::Camera*
 	glm::mat4 trans = someObjects[0]->GetTrans();
 
 	ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(projection), ImGuizmo::OPERATION::TRANSLATE, ImGuizmo::LOCAL, glm::value_ptr(trans));
-
 
 	//ImGuizmo::BeginFrame();
 	//glm::mat4x4 mat = someObjects[lastUsing]->GetMat();

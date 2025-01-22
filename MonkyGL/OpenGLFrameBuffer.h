@@ -1,4 +1,5 @@
 #pragma once
+#include <glm.hpp>
 namespace Gorilla
 {
 	struct FrameBufferSpecification
@@ -18,13 +19,18 @@ namespace Gorilla
 		~OpenGLFrameBuffer();
 		void Invalidate();
 		const FrameBufferSpecification& GetSpec();
+		unsigned int GetColorAttatchmentRendererID();
+
+		void Resize(const unsigned int& aWidth, const unsigned int& aHeight);
+		void Bind();
+		void Unbind();
 	private:
 
 		FrameBufferSpecification mySpec;
 
 		unsigned int samples = 1;
 		unsigned int myRendererID;
-		unsigned int myColorAttatchement;
+		unsigned int myColorAttatchement, myDepthAttatchement;
 	};
 }
 

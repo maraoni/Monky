@@ -11,6 +11,9 @@ namespace Engine
 		Input(GLFWwindow* aWindow);
 		bool IsKeyPressed(const int& aKey);
 		bool IsKeyDown(const int& aKey);
+
+		bool IsMouseDown(const int& aKey);
+
 		float GetCursorX();
 		float GetCursorY();
 	private:

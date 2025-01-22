@@ -25,21 +25,6 @@ void Engine::FlyingCamera::Update(GLFWwindow* aWindow)
 	glm::vec3 velocity = glm::vec3(0.0f, 0.0f, 0.0f);
 	glm::vec3 direction = glm::vec3(0.0f, 0.0f, 0.0f);
 
-	if (myInput->IsKeyPressed(GLFW_KEY_TAB))
-	{
-		SetCamState(aWindow);
-	}
-
-	if (Editing) return;
-
-	if (myInput->IsKeyDown(GLFW_KEY_W)) velocity.z = 1;
-	if (myInput->IsKeyDown(GLFW_KEY_A)) velocity.x = -1;
-	if (myInput->IsKeyDown(GLFW_KEY_S)) velocity.z = -1;
-	if (myInput->IsKeyDown(GLFW_KEY_D)) velocity.x = 1;
-
-	if (myInput->IsKeyDown(GLFW_KEY_SPACE)) velocity.y = 1;
-	if (myInput->IsKeyDown(GLFW_KEY_LEFT_SHIFT)) velocity.y = -1;
-
 	float xpos, ypos;
 	xpos = myInput->GetCursorX();
 	ypos = myInput->GetCursorY();
@@ -49,8 +34,23 @@ void Engine::FlyingCamera::Update(GLFWwindow* aWindow)
 	lastX = xpos;
 	lastY = ypos;
 
-	//*myTime->DeltaTime()
-	//	* myTime->DeltaTime()
+	if (myInput->IsMouseDown(1))
+	{
+		glfwSetInputMode(aWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	}
+	else 
+	{
+		glfwSetInputMode(aWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		return;
+	}
+
+	if (myInput->IsKeyDown(GLFW_KEY_W)) velocity.z = 1;
+	if (myInput->IsKeyDown(GLFW_KEY_A)) velocity.x = -1;
+	if (myInput->IsKeyDown(GLFW_KEY_S)) velocity.z = -1;
+	if (myInput->IsKeyDown(GLFW_KEY_D)) velocity.x = 1;
+
+	if (myInput->IsKeyDown(GLFW_KEY_SPACE)) velocity.y = 1;
+	if (myInput->IsKeyDown(GLFW_KEY_LEFT_SHIFT)) velocity.y = -1;
 
 	xoffset *= Sensitivity;
 	yoffset *= Sensitivity;
@@ -69,6 +69,8 @@ void Engine::FlyingCamera::Update(GLFWwindow* aWindow)
 
 	myCamera->Move(velocity * MoveSpeed * myTime->DeltaTime());
 	myCamera->SetDirection(direction);
+
+	std::cout << "-- " << lastX << " " << lastY << " --" << std::endl;
 }
 
 void Engine::FlyingCamera::SetCamState(GLFWwindow* aWindow)
@@ -77,10 +79,10 @@ void Engine::FlyingCamera::SetCamState(GLFWwindow* aWindow)
 
 	if (Editing)
 	{
-		glfwSetInputMode(aWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+		
 	}
 	else
 	{
-		glfwSetInputMode(aWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+		
 	}
 }

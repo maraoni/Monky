@@ -5,6 +5,7 @@
 //#include "imgui_internal.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "OpenGLFrameBuffer.h"
 
 #include "MonkyGUI.h"
 #include <glm.hpp>
@@ -18,15 +19,16 @@
 #include "Camera.h"
 #include "GizmoTest.h"
 #include "ImGuizmo.h"
-
+#include <Input.h>
 
 
 #define itoc(a) ((char*)(intptr_t)(a))
 
 
 
-Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler)
+Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler, Engine::Input* someInput)
 {
+	myInput = someInput;
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -46,7 +48,7 @@ Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler
 	myShaderEditor = new ShaderEditor();
 	myResourceEditor = new ResourceEditor(myResources);
 
-	myGizmo = new GizmoTest();
+	myGizmo = new GizmoTest(someInput);
 }
 
 
@@ -61,7 +63,7 @@ Chimp::MonkyGUI::~MonkyGUI()
 int selectedItem = -1;
 bool alwaysTrue = true;
 
-void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera)
+void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera, Gorilla::OpenGLFrameBuffer* aFrameBuffer)
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
@@ -73,8 +75,7 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 	bool opt_fullscreen = opt_fullscreen_persistant;
 	static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
 
-	// We are using the ImGuiWindowFlags_NoDocking flag to make the parent window not dockable into,
-	// because it would be confusing to have two docking targets within each others.
+
 	ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
 	if (opt_fullscreen)
 	{
@@ -88,7 +89,6 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 		window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
 	}
 
-	// When using ImGuiDockNodeFlags_PassthruCentralNode, DockSpace() will render our background and handle the pass-thru hole, so we ask Begin() to not render a background.
 	if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode)
 		window_flags |= ImGuiWindowFlags_NoBackground;
 
@@ -106,7 +106,21 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 
 	ImGui::End();
 
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
 	ImGui::Begin("Viewport");
+	ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
+
+	glm::vec2 viewPortSize = { viewportPanelSize.x, viewportPanelSize.y };
+
+	if (m_ViewportSize != viewPortSize) 
+	{
+		m_ViewportSize = viewPortSize;
+		aFrameBuffer->Resize(m_ViewportSize.x, m_ViewportSize.y);
+		aCamera->Resize(m_ViewportSize.x, m_ViewportSize.y);
+	}
+
+
+
 	auto viewportMinRegion = ImGui::GetWindowContentRegionMin();
 	auto viewportMaxRegion = ImGui::GetWindowContentRegionMax();
 	auto viewportOffset = ImGui::GetWindowPos();
@@ -116,36 +130,16 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 	m_ViewportFocused = ImGui::IsWindowFocused();
 	m_ViewportHovered = ImGui::IsWindowHovered();
 
-	//Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportHovered);
 
-	ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
-	m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
-
-	//uint64_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
-	//ImGui::Image(reinterpret_cast<void*>(textureID), ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-
-	//if (ImGui::BeginDragDropTarget())
-	//{
-	//	if (const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("CONTENT_BROWSER_ITEM"))
-	//	{
-	//		const wchar_t* path = (const wchar_t*)payload->Data;
-	//		//OpenScene(path);
-	//	}
-	//	ImGui::EndDragDropTarget();
-	//}
-
-	// Gizmos
+	uint32_t textureID = aFrameBuffer->GetColorAttatchmentRendererID();
+	ImGui::Image(textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2(0, 0), ImVec2(1, -1));
 
 	ImGuizmo::SetRect(m_ViewportBounds[0].x, m_ViewportBounds[0].y, m_ViewportBounds[1].x - m_ViewportBounds[0].x, m_ViewportBounds[1].y - m_ViewportBounds[0].y);
+
 	myGizmo->Update(someObjects, aCamera);
 
+	ImGui::PopStyleVar();
 	ImGui::End();
-
-	//Entity selectedEntity = m_SceneHierarchyPanel.GetSelectedEntity();
-	//if (selectedEntity && m_GizmoType != -1)
-	//{
-	//	ImGuizmo::SetOrthographic(false);
-	//	ImGuizmo::SetDrawlist();
 
 
 
@@ -253,6 +247,9 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 
 void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera)
 {
+
+
+
 	if (ImGui::BeginMenuBar())
 	{
 		if (ImGui::BeginMenu("ObjectCreation"))

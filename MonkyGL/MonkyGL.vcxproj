@@ -164,6 +164,7 @@
     <ClInclude Include="..\imgui\imstb_truetype.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="MonkeyMath.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MonkyGraphics.h" />
     <ClInclude Include="ObjLoader.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="MonkeyMath.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MonkyGraphics.cpp" />
     <ClCompile Include="ObjLoader.cpp" />

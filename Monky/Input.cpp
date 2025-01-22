@@ -48,6 +48,22 @@ bool Engine::Input::IsKeyDown(const int& aKey)
 	return glfwGetKey(myWindow, aKey) == GLFW_PRESS;
 }
 
+bool Engine::Input::IsMouseDown(const int& aKey)
+{
+	if (aKey == 0)
+	{
+		return glfwGetMouseButton(myWindow, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS;
+	}
+	else if (aKey == 1)
+	{
+		return glfwGetMouseButton(myWindow, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 Engine::Input::Input(GLFWwindow* aWindow)
 {
 	myWindow = aWindow;

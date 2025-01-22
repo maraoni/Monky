@@ -34,6 +34,11 @@ void Gorilla::Camera::SetRotation(const glm::vec3& aRotation)
 
 }
 
+void Gorilla::Camera::Resize(const float& aWidth, const float& aHeight)
+{
+	myProjection = glm::perspective(glm::radians(45.0f), aWidth / aHeight, 0.1f, 100.0f);
+}
+
 void Gorilla::Camera::Move(const glm::vec3& aMove)
 {
 	myPosition += myDirection * aMove.z;

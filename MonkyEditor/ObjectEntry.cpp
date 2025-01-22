@@ -52,7 +52,7 @@ void Chimp::ObjectEntry::Update()
 
 	ImGui::InputFloat3("Position ", *pos);
 	ImGui::InputFloat3("Scale ", *scale);
-	ImGui::SliderFloat3("Rotation ", *rot, -glm::pi<float>(), glm::pi<float>());
+	//ImGui::InputFloat3("Rotation ", *rot);
 
 	// -- Move to dedicated shader tool
 

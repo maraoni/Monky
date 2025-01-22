@@ -11,10 +11,15 @@ class ShaderEditor;
 
 class GizmoTest;
 
+namespace Engine 
+{
+	class Input;
+}
+
 namespace Gorilla
 {
 	class Camera;
-
+	class OpenGLFrameBuffer;
 }
 
 namespace Chimp
@@ -32,9 +37,9 @@ namespace Chimp
 	class MonkyGUI
 	{
 	public:
-		MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler);
+		MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler, Engine::Input* someInput);
 		~MonkyGUI();
-		void Render(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera);
+		void Render(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera, Gorilla::OpenGLFrameBuffer* aFrameBufferS);
 
 	private:
 
@@ -53,6 +58,8 @@ namespace Chimp
 		ShaderEditor* myShaderEditor;
 
 		GLFWwindow* myWindow;
+
+		Engine::Input* myInput;
 
 		GizmoTest* myGizmo;
 		glm::vec2 m_ViewportBounds[2];

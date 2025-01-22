@@ -16,7 +16,7 @@ namespace Engine
 	{
 	public:
 
-		MonkyEngine(GLFWwindow* aWindow, Gorilla::Camera* aCamera);
+		MonkyEngine(GLFWwindow* aWindow, Gorilla::Camera* aCamera, Input* anInput);
 
 		void Update(const float& aDeltaTime);
 

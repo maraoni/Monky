@@ -1,15 +1,17 @@
 #include "GizmoTest.h"
 
+#include "MonkeyMath.h"
+#include <gtc/type_ptr.hpp>
+
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "imgui.h"
 #include "imgui_internal.h"
 #include "ImGuizmo.h"
 
-#include <glm.hpp>
-#include <gtc/type_ptr.hpp>
 
 #include "Camera.h"
 #include "VirtualObject.h"
+#include <Input.h>
 
 
 static ImGuizmo::OPERATION mCurrentGizmoOperation(ImGuizmo::TRANSLATE);
@@ -18,49 +20,80 @@ static ImGuizmo::MODE mCurrentGizmoMode(ImGuizmo::WORLD);
 int lastUsing = 0;
 
 
-GizmoTest::GizmoTest()
+GizmoTest::GizmoTest(Engine::Input* someInput)
 {
+	input = someInput;
 	useSnap = false;
 	useWindow = true;
 }
 
+
+
 void GizmoTest::Update(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera)
 {
-	ImVec2 window_pos = ImGui::GetWindowPos(); 
-	ImVec2 window_size = ImGui::GetWindowSize(); 
-	ImVec2 window_center = ImVec2(window_pos.x + window_size.x * 0.5f, window_pos.y + window_size.y * 0.5f); 
+	ImVec2 window_pos = ImGui::GetWindowPos();
+	ImVec2 window_size = ImGui::GetWindowSize();
+	ImVec2 window_center = ImVec2(window_pos.x + window_size.x * 0.5f, window_pos.y + window_size.y * 0.5f);
 
-	ImGuizmo::SetOrthographic(false);
-	ImGuizmo::SetDrawlist();
+	if (input->IsKeyPressed(GLFW_KEY_R)) gizmoType = ImGuizmo::OPERATION::SCALE;
+	else if (input->IsKeyPressed(GLFW_KEY_W)) gizmoType = ImGuizmo::OPERATION::TRANSLATE;
+	else if (input->IsKeyPressed(GLFW_KEY_E)) gizmoType = ImGuizmo::OPERATION::ROTATE;
 
-	float windowWidth = (float)ImGui::GetWindowWidth();
-	float windowHeight = (float)ImGui::GetWindowHeight();
+	int kek = 0;
 
-	ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
+	if (gizmoType != -1)
+	{
+		ImGuizmo::SetOrthographic(false);
+		ImGuizmo::SetDrawlist();
 
-	const glm::mat4& cameraView = aCamera->myView;
-	glm::mat4 projection = aCamera->myProjection;
+		float windowWidth = (float)ImGui::GetWindowWidth();
+		float windowHeight = (float)ImGui::GetWindowHeight();
 
-	glm::mat4 trans = someObjects[0]->GetTrans();
+		ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
 
-	ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(projection), ImGuizmo::OPERATION::TRANSLATE, ImGuizmo::LOCAL, glm::value_ptr(trans));
+		const glm::mat4& cameraView = aCamera->myView;
+		glm::mat4 projection = aCamera->myProjection;
 
-	//ImGuizmo::BeginFrame();
-	//glm::mat4x4 mat = someObjects[lastUsing]->GetMat();
-	//TransformStart(glm::value_ptr(aCamera->myView), glm::value_ptr(aCamera->myProjection), glm::value_ptr(mat));
+		glm::mat4 trans = someObjects[0]->GetTrans();
+
+		ImGuizmo::MODE aMode = ImGuizmo::LOCAL;
+
+		/*if (gizmoType == ImGuizmo::OPERATION::ROTATE)
+		{
+			aMode = ImGuizmo::WORLD;
+		}*/
+		ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(projection), (ImGuizmo::OPERATION)gizmoType, aMode, glm::value_ptr(trans));
 
 
-	//for (size_t i = 0; i < someObjects.size(); i++)
-	//{
-	//	ImGuizmo::PushID(i);
-	//	if (ImGuizmo::IsUsing())
-	//	{
-	//		EditTransform(glm::value_ptr(aCamera->myView), glm::value_ptr(aCamera->myProjection), glm::value_ptr(mat));
-	//		lastUsing = i;
-	//	}
-	//	ImGuizmo::PopID();
-	//}
-	//TransformEnd();
+		if (ImGuizmo::IsUsing)
+		{
+			glm::vec3 translation, scale, rotation;
+
+			MonkeyMath::DecomposeTransform(trans, translation, rotation, scale);
+
+			glm::vec3 deltaRotation = rotation - someObjects[0]->Rotation;
+
+			int kek = 0;
+			ImGuizmo::OPERATION myOperation = (ImGuizmo::OPERATION)gizmoType;
+
+			switch (myOperation)
+			{
+			case ImGuizmo::OPERATION::ROTATE:
+				someObjects[0]->Rotation += deltaRotation;
+				break;
+			case ImGuizmo::OPERATION::SCALE:
+				someObjects[0]->Scale = scale;
+				break;
+			case ImGuizmo::OPERATION::TRANSLATE:
+				someObjects[0]->Position = translation;
+				break;
+			default:
+				break;
+			}
+			//someObjects[0]->SetTransform(trans);
+
+		}
+	}
 }
 
 void GizmoTest::TransformStart(float* cameraView, float* cameraProjection, float* matrix)

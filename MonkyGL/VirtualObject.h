@@ -22,6 +22,10 @@ public:
 	void SetTexture(Texture& aTexture);
 	void SetShader(Shader& aShader);
 
+	void SetRotation(const glm::vec3& aRotation);
+
+	void SetTransform(const glm::mat4& aTransform);
+
 	void Draw(Gorilla::Camera* aCamera);
 
 	glm::vec3 Position;

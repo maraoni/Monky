@@ -29,6 +29,8 @@ namespace Gorilla
 		void SetPosition(const glm::vec3& aPosition);
 		void SetRotation(const glm::vec3& aRotation);
 
+		void Resize(const float& aWidth, const float& aHeight);
+
 		void Move(const glm::vec3& aMove);
 		void SetDirection(const glm::vec3& aDirection);
 	};

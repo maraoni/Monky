@@ -1,4 +1,3 @@
 ﻿  GizmoTest.cpp
-  MonkyGUI.cpp
-  Generating Code...
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\GizmoTest.cpp(68,17): warning C4551: function call missing argument list
   MonkyEditor.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyEditor.lib

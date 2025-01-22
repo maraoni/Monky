@@ -9,9 +9,9 @@
 
 
 
-Engine::MonkyEngine::MonkyEngine(GLFWwindow* aWindow, Gorilla::Camera* aCamera)
+Engine::MonkyEngine::MonkyEngine(GLFWwindow* aWindow, Gorilla::Camera* aCamera, Input* anInput)
 {
-	myInput = new Input(aWindow);
+	myInput = anInput;
 	myTime = new ETime();
 	myWindow = aWindow;
 

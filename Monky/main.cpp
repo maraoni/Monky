@@ -2,6 +2,8 @@
 #include "MonkyEngine.h"
 #include "MonkyGraphics.h"
 #include "ResourceHandler.h"
+#include "OpenGLFrameBuffer.h"
+#include "Input.h"
 
 #include <glfw3.h>
 #include <iostream>
@@ -14,9 +16,20 @@ int main()
 	ResourceHandler* resources = new ResourceHandler();
 	Gorilla::Graphics* graphics = new Gorilla::Graphics();
 
-	Gorilla::GorillaInitializeData RenderData = graphics->Initialize(1280, 720);
-	Engine::MonkyEngine* engine = new Engine::MonkyEngine(RenderData.aWindow, RenderData.aCamera);
-	Chimp::MonkyGUI* Gui = new Chimp::MonkyGUI(RenderData.aWindow, resources);
+	int Width, Height;
+	Width = 1280;
+	Height = 720;
+
+	Gorilla::GorillaInitializeData RenderData = graphics->Initialize(Width, Height);
+	Gorilla::FrameBufferSpecification FrameBufferSpec;
+	FrameBufferSpec.width = Width;
+	FrameBufferSpec.height = Height;
+
+	Engine::Input* input = new Engine::Input(RenderData.aWindow);
+
+	Gorilla::OpenGLFrameBuffer* buffer = new Gorilla::OpenGLFrameBuffer(FrameBufferSpec);
+	Engine::MonkyEngine* engine = new Engine::MonkyEngine(RenderData.aWindow, RenderData.aCamera, input);
+	Chimp::MonkyGUI* Gui = new Chimp::MonkyGUI(RenderData.aWindow, resources, input);
 
 
 
@@ -37,8 +50,10 @@ int main()
 
 		try
 		{
+			buffer->Bind();
 			graphics->BeginRender(engine->myCamera);
-			Gui->Render(objects, engine->myCamera);
+			buffer->Unbind();
+			Gui->Render(objects, engine->myCamera, buffer);
 
 
 

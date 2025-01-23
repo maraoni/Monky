@@ -28,8 +28,8 @@ namespace Gorilla
 	public:
 		Graphics();
 
-		void CreateDefaultCube(Graphics* aGraphics);
-		void CreateDefaultSphere(Graphics* aGraphics);
+		void CreateDefaultCube();
+		void CreateDefaultSphere();
 
 		GorillaInitializeData Initialize(int aWidth, int aHeight);
 		void BeginRender(Camera* aCamera);

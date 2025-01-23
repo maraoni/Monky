@@ -69,8 +69,6 @@ void Engine::FlyingCamera::Update(GLFWwindow* aWindow)
 
 	myCamera->Move(velocity * MoveSpeed * myTime->DeltaTime());
 	myCamera->SetDirection(direction);
-
-	std::cout << "-- " << lastX << " " << lastY << " --" << std::endl;
 }
 
 void Engine::FlyingCamera::SetCamState(GLFWwindow* aWindow)

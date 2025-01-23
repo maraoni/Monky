@@ -1,3 +1,12 @@
-﻿  GizmoTest.cpp
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\GizmoTest.cpp(68,17): warning C4551: function call missing argument list
+﻿  MonkyGUI.cpp
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\MonkyGUI.cpp(133,56): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\MonkyGUI.cpp(133,38): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+          with
+          [
+              T=float
+          ]
   MonkyEditor.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyEditor.lib

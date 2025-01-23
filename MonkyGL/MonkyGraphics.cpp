@@ -79,10 +79,6 @@ Gorilla::GorillaInitializeData Gorilla::Graphics::Initialize(int aWidth, int aHe
 	glEnable(GL_DEPTH_TEST);
 	glfwSwapInterval(1);
 
-	VirtualObject* plane = CreateVirtualObject(myCube, myTexture, myShader);
-	plane->Scale = glm::vec3(1, 1, 1);
-	plane->Position = glm::vec3(0, -0.5f, 0);
-
 	return someData;
 }
 
@@ -155,13 +151,13 @@ VirtualObject* Gorilla::Graphics::CreateVirtualObject(Mesh* aMesh, Texture* aTex
 	return newObject;
 }
 
-void Gorilla::Graphics::CreateDefaultCube(Graphics* aGraphics)
+void Gorilla::Graphics::CreateDefaultCube()
 {
 	VirtualObject* newObject = new VirtualObject(myCube, myTexture, myShader);
 	myObjects.push_back(newObject);
 }
 
-void Gorilla::Graphics::CreateDefaultSphere(Graphics* aGraphics)
+void Gorilla::Graphics::CreateDefaultSphere()
 {
 	VirtualObject* newObject = new VirtualObject(mySphere, myTexture, myShader);
 	myObjects.push_back(newObject);

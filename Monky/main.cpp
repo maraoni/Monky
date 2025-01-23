@@ -1,6 +1,8 @@
 #include "MonkyGUI.h"
 #include "MonkyEngine.h"
 #include "MonkyGraphics.h"
+#include "MonkyPhysics.h"
+
 #include "ResourceHandler.h"
 #include "OpenGLFrameBuffer.h"
 #include "Input.h"
@@ -22,14 +24,16 @@ int main()
 
 	Gorilla::GorillaInitializeData RenderData = graphics->Initialize(Width, Height);
 	Gorilla::FrameBufferSpecification FrameBufferSpec;
+
 	FrameBufferSpec.width = Width;
 	FrameBufferSpec.height = Height;
 
 	Engine::Input* input = new Engine::Input(RenderData.aWindow);
 
 	Gorilla::OpenGLFrameBuffer* buffer = new Gorilla::OpenGLFrameBuffer(FrameBufferSpec);
-	Engine::MonkyEngine* engine = new Engine::MonkyEngine(RenderData.aWindow, RenderData.aCamera, input);
-	Chimp::MonkyGUI* Gui = new Chimp::MonkyGUI(RenderData.aWindow, resources, input);
+	Engine::MonkyEngine* engine = new Engine::MonkyEngine(RenderData.aWindow, RenderData.aCamera, input, graphics);
+	Chimp::MonkyGUI* Gui = new Chimp::MonkyGUI(RenderData.aWindow, resources, input, engine);
+	Banana::MonkyPhysics* Physics = new Banana::MonkyPhysics(engine);
 
 
 
@@ -55,7 +59,10 @@ int main()
 			buffer->Unbind();
 			Gui->Render(objects, engine->myCamera, buffer);
 
-
+			if(engine->ShouldSimulate) 
+			{
+				Physics->Simulate();
+			}
 
 			graphics->End();
 		}

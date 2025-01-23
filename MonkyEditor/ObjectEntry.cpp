@@ -52,11 +52,6 @@ void Chimp::ObjectEntry::Update()
 
 	ImGui::InputFloat3("Position ", *pos);
 	ImGui::InputFloat3("Scale ", *scale);
-	//ImGui::InputFloat3("Rotation ", *rot);
-
-	// -- Move to dedicated shader tool
-
-	// -- Move to dedicated shader tool
-
+	ImGui::InputFloat3("Rotation ", *rot);
 }
 

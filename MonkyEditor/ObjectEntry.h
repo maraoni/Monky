@@ -14,7 +14,7 @@ namespace Chimp
 
 		bool Opened = false;
 
-	private:
 		VirtualObject* myObject;
+	private:
 	};
 }

@@ -1,5 +1,6 @@
 #include "MonkyEngine.h"
 
+#include "MonkyGraphics.h"
 #include "Camera.h"
 #include <glfw3.h>
 #include "Input.h"
@@ -9,7 +10,7 @@
 
 
 
-Engine::MonkyEngine::MonkyEngine(GLFWwindow* aWindow, Gorilla::Camera* aCamera, Input* anInput)
+Engine::MonkyEngine::MonkyEngine(GLFWwindow* aWindow, Gorilla::Camera* aCamera, Input* anInput, Gorilla::Graphics* aGraphics)
 {
 	myInput = anInput;
 	myTime = new ETime();
@@ -17,12 +18,23 @@ Engine::MonkyEngine::MonkyEngine(GLFWwindow* aWindow, Gorilla::Camera* aCamera, 
 
 	myFlyingCamera = new FlyingCamera(aCamera, myInput, myTime);
 	myCamera = aCamera;
+	myGraphics = aGraphics;
 }
 
 void Engine::MonkyEngine::Update(const float& aDeltaTime)
 {
 	myFlyingCamera->Update(myWindow);
 	myTime->UpdateDeltaTime(aDeltaTime);
+}
+
+void Engine::MonkyEngine::CreateCube()
+{
+	myGraphics->CreateDefaultCube();
+}
+
+void Engine::MonkyEngine::CreateSphere()
+{
+	myGraphics->CreateDefaultSphere();
 }
 
 

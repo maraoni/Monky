@@ -14,6 +14,7 @@ class GizmoTest;
 namespace Engine 
 {
 	class Input;
+	class MonkyEngine;
 }
 
 namespace Gorilla
@@ -37,7 +38,7 @@ namespace Chimp
 	class MonkyGUI
 	{
 	public:
-		MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler, Engine::Input* someInput);
+		MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler, Engine::Input* someInput, Engine::MonkyEngine* anEngine);
 		~MonkyGUI();
 		void Render(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera, Gorilla::OpenGLFrameBuffer* aFrameBufferS);
 
@@ -51,7 +52,7 @@ namespace Chimp
 
 		std::vector<ObjectEntry*> myObjectEntries;
 		ResourceHandler* myResources;
-
+		Engine::MonkyEngine* myEngine;
 		ECurrentEditor	myCurrentEditor;
 
 		ResourceEditor* myResourceEditor;
@@ -60,6 +61,8 @@ namespace Chimp
 		GLFWwindow* myWindow;
 
 		Engine::Input* myInput;
+
+		VirtualObject* SelectedObject;
 
 		GizmoTest* myGizmo;
 		glm::vec2 m_ViewportBounds[2];

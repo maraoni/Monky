@@ -12,6 +12,7 @@
 #include "VirtualObject.h"
 #include <string>
 #include "ObjectEntry.h"
+#include "MonkyEngine.h"
 
 #include "ShaderEditor.h"
 #include "ResourceEditor.h"
@@ -26,8 +27,10 @@
 
 
 
-Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler, Engine::Input* someInput)
+Chimp::MonkyGUI::MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler, Engine::Input* someInput, Engine::MonkyEngine* anEngine)
 {
+	myEngine = anEngine;
+	SelectedObject = nullptr;
 	myInput = someInput;
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -107,12 +110,24 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 	ImGui::End();
 
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-	ImGui::Begin("Viewport");
+	ImGui::Begin("Viewport", &alwaysTrue, ImGuiWindowFlags_MenuBar);
+
+	if (ImGui::BeginMenuBar())
+	{
+		if (ImGui::BeginMenu("Space"))
+		{
+			if (ImGui::MenuItem("World space", "")) { myGizmo->SetMode(ImGuizmo::MODE::WORLD); }
+			if (ImGui::MenuItem("Local space", "")) { myGizmo->SetMode(ImGuizmo::MODE::LOCAL); }
+			ImGui::EndMenu();
+		}
+		ImGui::EndMenuBar();
+	}
+
 	ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 
 	glm::vec2 viewPortSize = { viewportPanelSize.x, viewportPanelSize.y };
 
-	if (m_ViewportSize != viewPortSize) 
+	if (m_ViewportSize != viewPortSize)
 	{
 		m_ViewportSize = viewPortSize;
 		aFrameBuffer->Resize(m_ViewportSize.x, m_ViewportSize.y);
@@ -136,58 +151,10 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 
 	ImGuizmo::SetRect(m_ViewportBounds[0].x, m_ViewportBounds[0].y, m_ViewportBounds[1].x - m_ViewportBounds[0].x, m_ViewportBounds[1].y - m_ViewportBounds[0].y);
 
-	myGizmo->Update(someObjects, aCamera);
+	myGizmo->Update(SelectedObject, aCamera);
 
 	ImGui::PopStyleVar();
 	ImGui::End();
-
-
-
-	//	// Camera
-
-	//	// Runtime camera from entity
-	//	// auto cameraEntity = m_ActiveScene->GetPrimaryCameraEntity();
-	//	// const auto& camera = cameraEntity.GetComponent<CameraComponent>().Camera;
-	//	// const glm::mat4& cameraProjection = camera.GetProjection();
-	//	// glm::mat4 cameraView = glm::inverse(cameraEntity.GetComponent<TransformComponent>().GetTransform());
-
-	//	// Editor camera
-	//	const glm::mat4& cameraProjection = m_EditorCamera.GetProjection();
-	//	glm::mat4 cameraView = m_EditorCamera.GetViewMatrix();
-
-	//	// Entity transform
-	//	auto& tc = selectedEntity.GetComponent<TransformComponent>();
-	//	glm::mat4 transform = tc.GetTransform();
-
-	//	// Snapping
-	//	bool snap = Input::IsKeyPressed(Key::LeftControl);
-	//	float snapValue = 0.5f; // Snap to 0.5m for translation/scale
-	//	// Snap to 45 degrees for rotation
-	//	if (m_GizmoType == ImGuizmo::OPERATION::ROTATE)
-	//		snapValue = 45.0f;
-
-	//	float snapValues[3] = { snapValue, snapValue, snapValue };
-
-	//	ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection),
-	//		(ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::LOCAL, glm::value_ptr(transform),
-	//		nullptr, snap ? snapValues : nullptr);
-
-	//	if (ImGuizmo::IsUsing())
-	//	{
-	//		glm::vec3 translation, rotation, scale;
-	//		Math::DecomposeTransform(transform, translation, rotation, scale);
-
-	//		glm::vec3 deltaRotation = rotation - tc.Rotation;
-	//		tc.Translation = translation;
-	//		tc.Rotation += deltaRotation;
-	//		tc.Scale = scale;
-	//	}
-	//}
-
-
-
-
-
 
 	ImGui::Begin("Monky", &alwaysTrue, ImGuiWindowFlags_MenuBar);
 
@@ -254,8 +221,14 @@ void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects, G
 	{
 		if (ImGui::BeginMenu("ObjectCreation"))
 		{
-			//if (ImGui::MenuItem("Create Sphere", "")) { Gorilla::CreateDefaultSphere(); }
-			//if (ImGui::MenuItem("Create Cube", ""))	{ Gorilla::CreateDefaultCube(); }
+			if (ImGui::MenuItem("Create Cube", ""))	
+			{
+				myEngine->CreateCube();
+			}
+			if (ImGui::MenuItem("Create Sphere", "")) 
+			{
+				myEngine->CreateSphere();
+			}
 			ImGui::EndMenu();
 		}
 		ImGui::EndMenuBar();
@@ -276,6 +249,12 @@ void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects, G
 		if (ImGui::Button(Title.c_str()))
 		{
 			myObjectEntries[i]->Opened = !myObjectEntries[i]->Opened;
+
+			if(myObjectEntries[i]->Opened == false) 
+			{
+				SelectedObject = nullptr;
+			}
+
 			selectedItem = i;
 		}
 
@@ -286,6 +265,7 @@ void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects, G
 
 		if (selectedItem == i)
 		{
+			SelectedObject = myObjectEntries[i]->myObject;
 			myObjectEntries[i]->Update();
 		}
 		else
@@ -306,101 +286,4 @@ void Chimp::MonkyGUI::RepopulateEntries(std::vector<VirtualObject*> someObjects)
 
 		myObjectEntries.push_back(e);
 	}
-}
-
-void TransformStart(float* cameraView, float* cameraProjection, float* matrix)
-{
-	//static float bounds[] = { -0.5f, -0.5f, -0.5f, 0.5f, 0.5f, 0.5f };
-	//static float boundsSnap[] = { 0.1f, 0.1f, 0.1f };
-	//static bool boundSizing = false;
-	//static bool boundSizingSnap = false;
-
-	//if (ImGui::IsKeyPressed(ImGuiKey_T))
-	//	mCurrentGizmoOperation = ImGuizmo::TRANSLATE;
-	//if (ImGui::IsKeyPressed(ImGuiKey_E))
-	//	mCurrentGizmoOperation = ImGuizmo::ROTATE;
-	//if (ImGui::IsKeyPressed(ImGuiKey_R)) // r Key
-	//	mCurrentGizmoOperation = ImGuizmo::SCALE;
-	//if (ImGui::RadioButton("Translate", mCurrentGizmoOperation == ImGuizmo::TRANSLATE))
-	//	mCurrentGizmoOperation = ImGuizmo::TRANSLATE;
-	//ImGui::SameLine();
-	//if (ImGui::RadioButton("Rotate", mCurrentGizmoOperation == ImGuizmo::ROTATE))
-	//	mCurrentGizmoOperation = ImGuizmo::ROTATE;
-	//ImGui::SameLine();
-	//if (ImGui::RadioButton("Scale", mCurrentGizmoOperation == ImGuizmo::SCALE))
-	//	mCurrentGizmoOperation = ImGuizmo::SCALE;
-	//float matrixTranslation[3], matrixRotation[3], matrixScale[3];
-	//ImGuizmo::DecomposeMatrixToComponents(matrix, matrixTranslation, matrixRotation, matrixScale);
-	//ImGui::InputFloat3("Tr", matrixTranslation);
-	//ImGui::InputFloat3("Rt", matrixRotation);
-	//ImGui::InputFloat3("Sc", matrixScale);
-	//ImGuizmo::RecomposeMatrixFromComponents(matrixTranslation, matrixRotation, matrixScale, matrix);
-
-	//if (mCurrentGizmoOperation != ImGuizmo::SCALE)
-	//{
-	//	if (ImGui::RadioButton("Local", mCurrentGizmoMode == ImGuizmo::LOCAL))
-	//		mCurrentGizmoMode = ImGuizmo::LOCAL;
-	//	ImGui::SameLine();
-	//	if (ImGui::RadioButton("World", mCurrentGizmoMode == ImGuizmo::WORLD))
-	//		mCurrentGizmoMode = ImGuizmo::WORLD;
-	//}
-
-	//if (ImGui::IsKeyPressed(ImGuiKey_S))
-	//	useSnap = !useSnap;
-	//ImGui::Checkbox(" ", &useSnap);
-	//ImGui::SameLine();
-	//switch (mCurrentGizmoOperation)
-	//{
-	//case ImGuizmo::TRANSLATE:
-	//	ImGui::InputFloat3("Snap", &snap[0]);
-	//	break;
-	//case ImGuizmo::ROTATE:
-	//	ImGui::InputFloat("Angle Snap", &snap[0]);
-	//	break;
-	//case ImGuizmo::SCALE:
-	//	ImGui::InputFloat("Scale Snap", &snap[0]);
-	//	break;
-	//}
-
-	//ImGuiIO& io = ImGui::GetIO();
-	//float viewManipulateRight = io.DisplaySize.x;
-	//float viewManipulateTop = 0;
-	//static ImGuiWindowFlags gizmoWindowFlags = 0;
-	//ImGui::SetNextWindowSize(ImVec2(800, 400), ImGuiCond_Appearing);
-	//ImGui::SetNextWindowPos(ImVec2(400, 20), ImGuiCond_Appearing);
-	//ImGui::PushStyleColor(ImGuiCol_WindowBg, (ImVec4)ImColor(0.35f, 0.3f, 0.3f));
-	//if (useWindow)
-	//{
-	//	ImGui::Begin("Gizmo", 0, gizmoWindowFlags);
-	//	ImGuizmo::SetDrawlist();
-	//}
-	//float windowWidth = (float)ImGui::GetWindowWidth();
-	//float windowHeight = (float)ImGui::GetWindowHeight();
-
-	//if (!useWindow)
-	//{
-	//	ImGuizmo::SetRect(0, 0, io.DisplaySize.x, io.DisplaySize.y);
-	//}
-	//else
-	//{
-	//	ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, windowWidth, windowHeight);
-	//}
-	//viewManipulateRight = ImGui::GetWindowPos().x + windowWidth;
-	//viewManipulateTop = ImGui::GetWindowPos().y;
-	////gizmoWindowFlags = ImGui::IsWindowHovered() && ImGui::IsMouseHoveringRect(window->InnerRect.Min, window->InnerRect.Max) ? ImGuiWindowFlags_NoMove : 0;
-	////gizmoWindowFlags = ImGui::IsWindowHovered() && ImGui::IsMouseHoveringRect(myWindow->, window->InnerRect.Max) ? ImGuiWindowFlags_NoMove : 0;
-
-	////ImGuizmo::DrawGrid(cameraView, cameraProjection, identityMatrix, 100.f);
-	////ImGuizmo::DrawCubes(cameraView, cameraProjection, &objectMatrix[0][0], gizmoCount);
-
-	//ImGuizmo::ViewManipulate(cameraView, 15, ImVec2(viewManipulateRight - 128, viewManipulateTop), ImVec2(128, 128), 0x10101010);
-}
-
-void TransformEnd()
-{
-	//if (useWindow)
-	//{
-	//	ImGui::End();
-	//}
-	//ImGui::PopStyleColor(1);
 }

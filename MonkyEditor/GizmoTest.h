@@ -19,17 +19,14 @@ private:
 	float snap[3] = { 1.f, 1.f, 1.f };
 	bool useSnap = false;
 	int gizmoType = -1;
+	int orientMode = 0;
 	Engine::Input* input;
 
 public:
 	GizmoTest(Engine::Input* someInput);
-	void Update(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera);
+	void Update(VirtualObject* SelectedObject, Gorilla::Camera* aCamera);
 	bool useWindow = false;
 
-
-	void EditTransform(float* cameraView, float* cameraProjection, float* matrix);
-	void TransformStart(float* cameraView, float* cameraProjection, float* matrix);
-	void TransformEnd();
-
+	void SetMode(const int& aMode);
 };
 

@@ -1,10 +1,10 @@
 ﻿  MonkyGUI.cpp
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\MonkyGUI.cpp(133,56): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\MonkyGUI.cpp(149,56): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
           with
           [
               T=float
           ]
-C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\MonkyGUI.cpp(133,38): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\MonkyGUI.cpp(149,38): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
           with
           [
               T=float

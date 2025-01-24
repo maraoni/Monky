@@ -1,5 +1,7 @@
 #pragma once
 
+#include <glm.hpp>
+
 namespace Engine
 {
 	class Input;
@@ -18,7 +20,9 @@ namespace Banana
 	{
 	public:
 		MonkyPhysics(Engine::MonkyEngine* aEngine);
-		void Simulate();
+		void Simulate(const float& aDeltaTime);
+
+
 
 	private:
 

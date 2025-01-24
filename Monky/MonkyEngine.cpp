@@ -37,4 +37,18 @@ void Engine::MonkyEngine::CreateSphere()
 	myGraphics->CreateDefaultSphere();
 }
 
+void Engine::MonkyEngine::StartSimulation()
+{
+	ShouldSimulate = true;
+}
+void Engine::MonkyEngine::StopSimulation()
+{
+	ShouldSimulate = false;
+}
+
+const bool& Engine::MonkyEngine::IsSimulating()
+{
+	return ShouldSimulate;
+}
+
 

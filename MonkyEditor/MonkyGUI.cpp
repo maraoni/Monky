@@ -120,6 +120,22 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 			if (ImGui::MenuItem("Local space", "")) { myGizmo->SetMode(ImGuizmo::MODE::LOCAL); }
 			ImGui::EndMenu();
 		}
+
+		if (myEngine->IsSimulating())
+		{
+			if (ImGui::Button("Stop >>"))
+			{
+				myEngine->StopSimulation();
+			}
+		}
+		else
+		{
+			if (ImGui::Button("Play ||"))
+			{
+				myEngine->StartSimulation();
+			}
+		}
+
 		ImGui::EndMenuBar();
 	}
 
@@ -151,7 +167,10 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 
 	ImGuizmo::SetRect(m_ViewportBounds[0].x, m_ViewportBounds[0].y, m_ViewportBounds[1].x - m_ViewportBounds[0].x, m_ViewportBounds[1].y - m_ViewportBounds[0].y);
 
-	myGizmo->Update(SelectedObject, aCamera);
+	if (!myEngine->IsSimulating())
+	{
+		myGizmo->Update(SelectedObject, aCamera);
+	}
 
 	ImGui::PopStyleVar();
 	ImGui::End();
@@ -219,13 +238,14 @@ void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects, G
 
 	if (ImGui::BeginMenuBar())
 	{
+
 		if (ImGui::BeginMenu("ObjectCreation"))
 		{
-			if (ImGui::MenuItem("Create Cube", ""))	
+			if (ImGui::MenuItem("Create Cube", ""))
 			{
 				myEngine->CreateCube();
 			}
-			if (ImGui::MenuItem("Create Sphere", "")) 
+			if (ImGui::MenuItem("Create Sphere", ""))
 			{
 				myEngine->CreateSphere();
 			}
@@ -250,7 +270,7 @@ void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects, G
 		{
 			myObjectEntries[i]->Opened = !myObjectEntries[i]->Opened;
 
-			if(myObjectEntries[i]->Opened == false) 
+			if (myObjectEntries[i]->Opened == false)
 			{
 				SelectedObject = nullptr;
 			}

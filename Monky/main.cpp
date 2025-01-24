@@ -59,9 +59,9 @@ int main()
 			buffer->Unbind();
 			Gui->Render(objects, engine->myCamera, buffer);
 
-			if(engine->ShouldSimulate) 
+			if(engine->IsSimulating()) 
 			{
-				Physics->Simulate();
+				Physics->Simulate(delta);
 			}
 
 			graphics->End();

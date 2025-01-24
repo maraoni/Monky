@@ -26,10 +26,14 @@ namespace Engine
 		void CreateCube();
 		void CreateSphere();
 
-		bool ShouldSimulate = false;
+		void StartSimulation();
+		void StopSimulation();
+		const bool& IsSimulating();
+
 
 	private:
 
+		bool ShouldSimulate = false;
 		Input* myInput;
 		ETime* myTime;
 		FlyingCamera* myFlyingCamera;

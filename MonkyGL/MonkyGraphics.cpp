@@ -157,10 +157,24 @@ void Gorilla::Graphics::CreateDefaultCube()
 	myObjects.push_back(newObject);
 }
 
+VirtualObject* Gorilla::Graphics::CreateDefaultCubeReturn()
+{
+	VirtualObject* newObject = new VirtualObject(myCube, myTexture, myShader);
+	myObjects.push_back(newObject);
+	return newObject;
+}
+
 void Gorilla::Graphics::CreateDefaultSphere()
 {
 	VirtualObject* newObject = new VirtualObject(mySphere, myTexture, myShader);
 	myObjects.push_back(newObject);
+}
+
+VirtualObject* Gorilla::Graphics::CreateDefaultSphereReturn()
+{
+	VirtualObject* newObject = new VirtualObject(mySphere, myTexture, myShader);
+	myObjects.push_back(newObject);
+	return newObject;
 }
 
 std::vector<VirtualObject*> Gorilla::Graphics::GetObjects()

@@ -1,20 +1,20 @@
 #pragma once
 
-class VirtualObject;
+class GameObject;
 namespace Chimp
 {
 	class ObjectEntry
 	{
 	public:
 
-		ObjectEntry(VirtualObject* anObject);
+		ObjectEntry(GameObject* anObject);
 		~ObjectEntry();
 
 		void Update();
 
 		bool Opened = false;
 
-		VirtualObject* myObject;
+		GameObject* myObject;
 	private:
 	};
 }

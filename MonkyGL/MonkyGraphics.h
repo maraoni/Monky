@@ -29,7 +29,9 @@ namespace Gorilla
 		Graphics();
 
 		void CreateDefaultCube();
+		VirtualObject* CreateDefaultCubeReturn();
 		void CreateDefaultSphere();
+		VirtualObject* CreateDefaultSphereReturn();
 
 		GorillaInitializeData Initialize(int aWidth, int aHeight);
 		void BeginRender(Camera* aCamera);

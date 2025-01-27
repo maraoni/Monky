@@ -11,6 +11,7 @@
 
 #include "Camera.h"
 #include "VirtualObject.h"
+#include "GameObject.h"
 #include <Input.h>
 
 
@@ -29,7 +30,7 @@ GizmoTest::GizmoTest(Engine::Input* someInput)
 
 
 
-void GizmoTest::Update(VirtualObject* SelectedObject, Gorilla::Camera* aCamera)
+void GizmoTest::Update(GameObject* SelectedObject, Gorilla::Camera* aCamera)
 {
 	if(SelectedObject == nullptr) 
 	{
@@ -58,7 +59,7 @@ void GizmoTest::Update(VirtualObject* SelectedObject, Gorilla::Camera* aCamera)
 		const glm::mat4& cameraView = aCamera->myView;
 		glm::mat4 projection = aCamera->myProjection;
 
-		glm::mat4 trans = SelectedObject->GetTrans();
+		glm::mat4 trans = SelectedObject->GetVirtual()->GetTrans();
 
 		ImGuizmo::MODE aMode = (ImGuizmo::MODE)orientMode;
 
@@ -71,7 +72,7 @@ void GizmoTest::Update(VirtualObject* SelectedObject, Gorilla::Camera* aCamera)
 
 			MonkeyMath::DecomposeTransform(trans, translation, rotation, scale);
 
-			glm::vec3 deltaRotation = rotation - SelectedObject->Rotation;
+			glm::vec3 deltaRotation = rotation - SelectedObject->GetVirtual()->Rotation;
 
 			int kek = 0;
 			ImGuizmo::OPERATION myOperation = (ImGuizmo::OPERATION)gizmoType;
@@ -79,13 +80,13 @@ void GizmoTest::Update(VirtualObject* SelectedObject, Gorilla::Camera* aCamera)
 			switch (myOperation)
 			{
 			case ImGuizmo::OPERATION::ROTATE:
-				SelectedObject->Rotation += deltaRotation;
+				SelectedObject->GetVirtual()->Rotation += deltaRotation;
 				break;
 			case ImGuizmo::OPERATION::SCALE:
-				SelectedObject->Scale = scale;
+				SelectedObject->GetVirtual()->Scale = scale;
 				break;
 			case ImGuizmo::OPERATION::TRANSLATE:
-				SelectedObject->Position = translation;
+				SelectedObject->GetVirtual()->Position = translation;
 				break;
 			default:
 				break;

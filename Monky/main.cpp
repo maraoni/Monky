@@ -57,7 +57,7 @@ int main()
 			buffer->Bind();
 			graphics->BeginRender(engine->myCamera);
 			buffer->Unbind();
-			Gui->Render(objects, engine->myCamera, buffer);
+			Gui->Render(engine->GetGameObjects(), engine->myCamera, buffer);
 
 			if(engine->IsSimulating()) 
 			{

@@ -8,8 +8,9 @@
 #include "Shader.h"
 #include <stdio.h>
 #include <string.h>
+#include "GameObject.h"
 
-Chimp::ObjectEntry::ObjectEntry(VirtualObject* anObject) : myObject(anObject)
+Chimp::ObjectEntry::ObjectEntry(GameObject* anObject) : myObject(anObject)
 {
 	Opened = false;
 }
@@ -30,24 +31,24 @@ void Chimp::ObjectEntry::Update()
 
 	float* pos[] =
 	{
-		&myObject->Position.x,
-		&myObject->Position.y,
-		&myObject->Position.z,
+		&myObject->GetVirtual()->Position.x,
+		&myObject->GetVirtual()->Position.y,
+		&myObject->GetVirtual()->Position.z,
 	};
 
 	float* rot[] =
 	{
-		&myObject->Rotation.x,
-		&myObject->Rotation.y,
-		&myObject->Rotation.z,
+		&myObject->GetVirtual()->Rotation.x,
+		&myObject->GetVirtual()->Rotation.y,
+		&myObject->GetVirtual()->Rotation.z,
 	};
 
 
 	float* scale[] =
 	{
-		&myObject->Scale.x,
-		&myObject->Scale.y,
-		&myObject->Scale.z,
+		&myObject->GetVirtual()->Scale.x,
+		&myObject->GetVirtual()->Scale.y,
+		&myObject->GetVirtual()->Scale.z,
 	};
 
 	ImGui::InputFloat3("Position ", *pos);

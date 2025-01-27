@@ -10,6 +10,7 @@ class ResourceEditor;
 class ShaderEditor;
 
 class GizmoTest;
+class GameObject;
 
 namespace Engine 
 {
@@ -40,13 +41,13 @@ namespace Chimp
 	public:
 		MonkyGUI(GLFWwindow* aWindow, ResourceHandler* aResourceHandler, Engine::Input* someInput, Engine::MonkyEngine* anEngine);
 		~MonkyGUI();
-		void Render(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera, Gorilla::OpenGLFrameBuffer* aFrameBufferS);
+		void Render(std::vector<GameObject*> someObjects, Gorilla::Camera* aCamera, Gorilla::OpenGLFrameBuffer* aFrameBufferS);
 
 	private:
 
-		void UpdateHierarchy(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera);
+		void UpdateHierarchy(std::vector<GameObject*> someObjects, Gorilla::Camera* aCamera);
 
-		void RepopulateEntries(std::vector<VirtualObject*> someObjects);
+		void RepopulateEntries(std::vector<GameObject*> someObjects);
 
 
 
@@ -62,7 +63,7 @@ namespace Chimp
 
 		Engine::Input* myInput;
 
-		VirtualObject* SelectedObject;
+		GameObject* SelectedObject;
 
 		GizmoTest* myGizmo;
 		glm::vec2 m_ViewportBounds[2];

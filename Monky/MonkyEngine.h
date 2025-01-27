@@ -1,4 +1,7 @@
 #pragma once
+#include "GameObject.h"
+#include <vector>
+
 struct GLFWwindow;
 
 namespace Gorilla
@@ -30,6 +33,8 @@ namespace Engine
 		void StopSimulation();
 		const bool& IsSimulating();
 
+		std::vector<GameObject*> GetGameObjects();
+
 
 	private:
 
@@ -38,6 +43,7 @@ namespace Engine
 		ETime* myTime;
 		FlyingCamera* myFlyingCamera;
 		Gorilla::Graphics* myGraphics;
+		std::vector<GameObject*> myGameObjects;
 
 		GLFWwindow* myWindow;
 	};

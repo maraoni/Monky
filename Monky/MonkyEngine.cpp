@@ -29,12 +29,14 @@ void Engine::MonkyEngine::Update(const float& aDeltaTime)
 
 void Engine::MonkyEngine::CreateCube()
 {
-	myGraphics->CreateDefaultCube();
+	GameObject* cube = new GameObject(myGraphics->CreateDefaultCubeReturn(), nullptr);
+	myGameObjects.push_back(cube);
 }
 
 void Engine::MonkyEngine::CreateSphere()
 {
-	myGraphics->CreateDefaultSphere();
+	GameObject* sphere = new GameObject(myGraphics->CreateDefaultSphereReturn(), nullptr);
+	myGameObjects.push_back(sphere);
 }
 
 void Engine::MonkyEngine::StartSimulation()
@@ -49,6 +51,11 @@ void Engine::MonkyEngine::StopSimulation()
 const bool& Engine::MonkyEngine::IsSimulating()
 {
 	return ShouldSimulate;
+}
+
+std::vector<GameObject*> Engine::MonkyEngine::GetGameObjects()
+{
+	return myGameObjects;
 }
 
 

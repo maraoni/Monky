@@ -148,6 +148,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="FlyingCamera.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="MonkyEngine.h" />
     <ClInclude Include="ETime.h" />
@@ -156,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="..\MonkyGL\glad.c" />
     <ClCompile Include="FlyingCamera.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MonkyEngine.cpp" />

@@ -9,7 +9,7 @@
 
 #include "MonkyGUI.h"
 #include <glm.hpp>
-#include "VirtualObject.h"
+#include "GameObject.h"
 #include <string>
 #include "ObjectEntry.h"
 #include "MonkyEngine.h"
@@ -66,7 +66,7 @@ Chimp::MonkyGUI::~MonkyGUI()
 int selectedItem = -1;
 bool alwaysTrue = true;
 
-void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera, Gorilla::OpenGLFrameBuffer* aFrameBuffer)
+void Chimp::MonkyGUI::Render(std::vector<GameObject*> someObjects, Gorilla::Camera* aCamera, Gorilla::OpenGLFrameBuffer* aFrameBuffer)
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
@@ -231,7 +231,7 @@ void Chimp::MonkyGUI::Render(std::vector<VirtualObject*> someObjects, Gorilla::C
 	}
 }
 
-void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects, Gorilla::Camera* aCamera)
+void Chimp::MonkyGUI::UpdateHierarchy(std::vector<GameObject*> someObjects, Gorilla::Camera* aCamera)
 {
 
 
@@ -296,7 +296,7 @@ void Chimp::MonkyGUI::UpdateHierarchy(std::vector<VirtualObject*> someObjects, G
 	ImGui::EndChild();
 }
 
-void Chimp::MonkyGUI::RepopulateEntries(std::vector<VirtualObject*> someObjects)
+void Chimp::MonkyGUI::RepopulateEntries(std::vector<GameObject*> someObjects)
 {
 	myObjectEntries.clear();
 

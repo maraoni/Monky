@@ -12,6 +12,7 @@ namespace Engine
 }
 
 class VirtualObject;
+class GameObject;
 
 class GizmoTest
 {
@@ -24,7 +25,7 @@ private:
 
 public:
 	GizmoTest(Engine::Input* someInput);
-	void Update(VirtualObject* SelectedObject, Gorilla::Camera* aCamera);
+	void Update(GameObject* SelectedObject, Gorilla::Camera* aCamera);
 	bool useWindow = false;
 
 	void SetMode(const int& aMode);

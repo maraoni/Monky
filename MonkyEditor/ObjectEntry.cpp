@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "GameObject.h"
+#include <DirectXCollision.h>
 
 Chimp::ObjectEntry::ObjectEntry(GameObject* anObject) : myObject(anObject)
 {
@@ -54,5 +55,26 @@ void Chimp::ObjectEntry::Update()
 	ImGui::InputFloat3("Position ", *pos);
 	ImGui::InputFloat3("Scale ", *scale);
 	ImGui::InputFloat3("Rotation ", *rot);
+
+	if (myObject->GetCollider())
+	{
+
+	}
+	else
+	{
+		if (ImGui::BeginMenu("Add collider"))
+		{
+			if (ImGui::MenuItem("Sphere collider", ""))
+			{
+				myObject->CreateSphereCollider(1.0f);
+			}
+			if (ImGui::MenuItem("Cube collider", ""))
+			{
+				myObject->CreateBoxCollider(glm::vec3(1.0f, 1.0f, 1.0f));
+			}
+			ImGui::EndMenu();
+		}
+	}
+
 }
 

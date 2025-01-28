@@ -15,7 +15,6 @@
 
 int main()
 {
-	ResourceHandler* resources = new ResourceHandler();
 	Gorilla::Graphics* graphics = new Gorilla::Graphics();
 
 	int Width, Height;
@@ -24,6 +23,7 @@ int main()
 
 	Gorilla::GorillaInitializeData RenderData = graphics->Initialize(Width, Height);
 	Gorilla::FrameBufferSpecification FrameBufferSpec;
+	ResourceHandler* resources = new ResourceHandler();
 
 	FrameBufferSpec.width = Width;
 	FrameBufferSpec.height = Height;

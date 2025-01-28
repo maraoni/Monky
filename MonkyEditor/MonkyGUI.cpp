@@ -13,7 +13,9 @@
 #include <string>
 #include "ObjectEntry.h"
 #include "MonkyEngine.h"
+#include "Texture.h"
 
+#include "ResourceHandler.h"
 #include "ShaderEditor.h"
 #include "ResourceEditor.h"
 #include "MonkyGraphics.h"
@@ -98,7 +100,7 @@ void Chimp::MonkyGUI::Render(std::vector<GameObject*> someObjects, Gorilla::Came
 	ImGuiIO& io = ImGui::GetIO();
 
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-	ImGui::Begin("DockSpace Demo", &dockspaceOpen, window_flags);
+	ImGui::Begin("DockSpace", &dockspaceOpen, window_flags);
 	ImGui::PopStyleVar();
 
 	if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
@@ -110,6 +112,9 @@ void Chimp::MonkyGUI::Render(std::vector<GameObject*> someObjects, Gorilla::Came
 	ImGui::End();
 
 	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
+
+	ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.0f, 0.0f, 0.0f, 1.0f)); // Set window background to red
+
 	ImGui::Begin("Viewport", &alwaysTrue, ImGuiWindowFlags_MenuBar);
 
 	if (ImGui::BeginMenuBar())
@@ -173,9 +178,12 @@ void Chimp::MonkyGUI::Render(std::vector<GameObject*> someObjects, Gorilla::Came
 	}
 
 	ImGui::PopStyleVar();
+	ImGui::PopStyleColor();
 	ImGui::End();
 
 	ImGui::Begin("Monky", &alwaysTrue, ImGuiWindowFlags_MenuBar);
+
+	ImGui::Image(myResources->GetTexture("Monkey")->TextureObject, ImVec2(50.0f, 50.0f));
 
 	if (ImGui::BeginMenuBar())
 	{

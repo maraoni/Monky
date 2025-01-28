@@ -7,7 +7,8 @@
 
 ResourceHandler::ResourceHandler()
 {
-
+	Texture* monkey = new Texture("../Assets/Images/Monkey.png", true);
+	myTextures.emplace("Monkey", monkey);
 }
 
 ResourceHandler::~ResourceHandler()

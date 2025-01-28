@@ -6,13 +6,17 @@ namespace Banana
 {
 	class Collider
 	{
-	public:
-		Collider() = default;
-		Collider(const glm::vec3& aCenter)
-		{
-			center = aCenter;
-		}
-		glm::vec3 position;
+	public: virtual ~Collider() {}
+
+		  glm::vec3 position;
+		  template<typename T>
+		  bool isOf() {
+			  return (dynamic_cast<T*>(this) != NULL);
+		  }
+
+		  //move to dynamic body
+		  bool HasGravity;
+		  glm::vec3 velocity;
 
 	protected:
 		glm::vec3 center;
@@ -31,7 +35,7 @@ namespace Banana
 
 	};
 
-	class SphereCollider : Collider
+	class SphereCollider : public Collider
 	{
 	public:
 		SphereCollider(const glm::vec3& aCenter, const float& aRadius)
@@ -41,5 +45,17 @@ namespace Banana
 		}
 	protected:
 		float radius;
+	};
+
+	class BoxCollider : public Collider
+	{
+	public:
+		BoxCollider(const glm::vec3& aCenter, const glm::vec3& someExtents)
+		{
+			center = aCenter;
+			extents = someExtents;
+		}
+	protected:
+		glm::vec3 extents;
 	};
 }

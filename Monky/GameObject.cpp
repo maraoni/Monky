@@ -26,3 +26,19 @@ VirtualObject* GameObject::GetVirtual()
 	return myVirtualObject;
 }
 
+Banana::Collider* GameObject::GetCollider()
+{
+	return myCollider;
+}
+
+void GameObject::CreateSphereCollider(const float& aRadius)
+{
+	myCollider = new Banana::SphereCollider(myVirtualObject->Position, aRadius);
+}
+
+void GameObject::CreateBoxCollider(const glm::vec3& someExtents)
+{
+	myCollider = new Banana::BoxCollider(myVirtualObject->Position, someExtents);
+}
+
+

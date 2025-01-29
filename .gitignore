@@ -31,3 +31,6 @@
 *.app
 
 *.vs/
+
+# Except .obj files in Monky/Assets/Models/
+!Monky/Assets/Models/*.obj

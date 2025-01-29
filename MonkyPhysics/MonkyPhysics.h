@@ -1,6 +1,9 @@
 #pragma once
 
 #include <glm.hpp>
+#include <vector>
+
+const float GravityMultiplier = -9.82f;
 
 namespace Engine
 {
@@ -13,6 +16,11 @@ namespace Gorilla
 	class Camera;
 	class OpenGLFrameBuffer;
 }
+namespace Banana 
+{
+	class Collider;
+	struct Collision;
+}
 
 namespace Banana
 {
@@ -22,17 +30,13 @@ namespace Banana
 		MonkyPhysics(Engine::MonkyEngine* aEngine);
 		void Simulate(const float& aDeltaTime);
 
-
+		void BeginStep(std::vector<Collider*> colliders, const float& dt);
+		void HandleCollisions(std::vector<Collision> collisions);
+		void EndStep();
 
 	private:
 
 		Engine::MonkyEngine* myEngine;
 	};
 }
-//
-//template <class DstType, class SrcType>
-//bool IsType(const SrcType* src)
-//{
-//	return dynamic_cast<const DstType*>(src) != nullptr;
-//}
 

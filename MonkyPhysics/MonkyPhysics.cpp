@@ -2,7 +2,9 @@
 #include "MonkyEngine.h"
 #include "GameObject.h"
 #include "Collisions.h"
+#include "Intersections.h"
 #include <iostream>
+#include "VirtualObject.h"
 
 namespace Banana
 {
@@ -20,6 +22,7 @@ namespace Banana
 			Collider* col = c->GetCollider();
 			if (col != nullptr)
 			{
+				col->position = c->GetVirtual()->Position;
 				cols.push_back(col);
 			}
 		}
@@ -30,9 +33,9 @@ namespace Banana
 			{
 				if (c1 != c2)
 				{
-					if (c1->isOf<SphereCollider>() && c2->isOf<SphereCollider>())
+					if (CheckIntersect(c1, c2))
 					{
-						std::cout << "We have 2 sphere colliders" << std::endl;
+
 					}
 				}
 			}

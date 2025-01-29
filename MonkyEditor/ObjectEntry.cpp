@@ -56,9 +56,48 @@ void Chimp::ObjectEntry::Update()
 	ImGui::InputFloat3("Scale ", *scale);
 	ImGui::InputFloat3("Rotation ", *rot);
 
-	if (myObject->GetCollider())
+	Banana::Collider* c = myObject->GetCollider();
+	if (c)
 	{
+		ColliderData data = myObject->GetData();;
 
+		if (myObject->IsSphereCollider())
+		{
+
+			ImGui::LabelText("Sphere Collider", "");
+
+			if (ImGui::Button("Remove collider"))
+			{
+				myObject->RemoveCollider();
+			}
+
+			ImGui::InputFloat("Radius", &data.Radius);
+			ImGui::Checkbox("Gravity", &data.HasGravity);
+
+			myObject->SetData(data);
+
+		}
+		else if (myObject->IsBoxCollider())
+		{
+
+			ImGui::LabelText("Box Collider", "");
+
+			if (ImGui::Button("Remove collider"))
+			{
+				myObject->RemoveCollider();
+			}
+
+			ImGui::LabelText("Extents", "");
+
+			ImGui::InputFloat("x ", &data.Extents.x);
+			ImGui::InputFloat("y ", &data.Extents.y);
+			ImGui::InputFloat("z ", &data.Extents.z);
+
+			ImGui::Checkbox("Gravity", &data.HasGravity);
+
+			myObject->SetData(data);
+
+		}
 	}
 	else
 	{

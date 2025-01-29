@@ -1,6 +1,6 @@
 #pragma once
 #include <glm.hpp>
-
+#include <iostream>
 
 namespace Banana
 {
@@ -8,18 +8,15 @@ namespace Banana
 	{
 	public: virtual ~Collider() {}
 
-		  glm::vec3 position;
 		  template<typename T>
-		  bool isOf() {
-			  return (dynamic_cast<T*>(this) != NULL);
-		  }
+		  bool isOf() { return (dynamic_cast<T*>(this) != NULL); }
 
+		  glm::vec3		position;
+		  glm::vec3		center;
 		  //move to dynamic body
-		  bool HasGravity;
-		  glm::vec3 velocity;
-
-	protected:
-		glm::vec3 center;
+		  bool			hasGravity;
+		  glm::vec3		velocity;
+		  float			mass;
 	};
 
 	struct Collision
@@ -40,10 +37,10 @@ namespace Banana
 	public:
 		SphereCollider(const glm::vec3& aCenter, const float& aRadius)
 		{
+			hasGravity = false;
 			center = aCenter;
 			radius = aRadius;
 		}
-	protected:
 		float radius;
 	};
 
@@ -52,10 +49,12 @@ namespace Banana
 	public:
 		BoxCollider(const glm::vec3& aCenter, const glm::vec3& someExtents)
 		{
+			hasGravity = false;
 			center = aCenter;
 			extents = someExtents;
 		}
-	protected:
 		glm::vec3 extents;
 	};
+
+	
 }

@@ -1,9 +1,19 @@
 #pragma once
 #include <glm.hpp>
 
-namespace Banana 
+struct ColliderData
+{
+	float Radius;
+	glm::vec3 Extents;
+	glm::vec3 Center;
+	bool HasGravity;
+};
+
+namespace Banana
 {
 	class Collider;
+	class SphereCollider;
+	class BoxCollider;
 }
 
 class VirtualObject;
@@ -15,15 +25,27 @@ public:
 	~GameObject();
 
 	void Update();
-
 	VirtualObject* GetVirtual();
+
+
+
+	// collision properties -- because we lack ECS
 	Banana::Collider* GetCollider();
 
-	void CreateSphereCollider(const float& aRadius);
-	void CreateBoxCollider(const glm::vec3& someExtents);
+	void				CreateSphereCollider(const float& aRadius);
+	void				CreateBoxCollider(const glm::vec3& someExtents);
+
+	void				SetData(const ColliderData& someData);
+	const				ColliderData& GetData();
+	bool				IsSphereCollider();
+	bool				IsBoxCollider();
+
+	void				RemoveCollider();
 
 private:
-	Banana::Collider* myCollider; // Because we lack a ECS
+	Banana::Collider* myCollider;
 	VirtualObject* myVirtualObject;
 };
+
+
 

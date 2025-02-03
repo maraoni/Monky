@@ -136,6 +136,7 @@
     <ClInclude Include="MonkyPhysics.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Collisions.cpp" />
     <ClCompile Include="Intersections.cpp" />
     <ClCompile Include="MonkyPhysics.cpp" />
   </ItemGroup>

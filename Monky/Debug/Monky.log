@@ -1,6 +1,1 @@
-﻿  GameObject.cpp
-  main.cpp
-C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\main.cpp(51,28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\GameObject.cpp(81): warning C4172: returning address of local variable or temporary: d
-  Monky.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\Monky.exe
+﻿  Monky.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\Monky.exe

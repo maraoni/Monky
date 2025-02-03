@@ -5,6 +5,8 @@
 #include "Intersections.h"
 #include <iostream>
 #include "VirtualObject.h"
+#include <gtc/matrix_transform.hpp>
+#include "MonkeyMath.h"
 
 namespace Banana
 {
@@ -15,21 +17,12 @@ namespace Banana
 
 	void MonkyPhysics::Simulate(const float& aDeltaTime)
 	{
-		//Just setting the positions of the colliders to match the visual
 		std::vector<Collider*> cols = UpdatePhysicsScene();
-
-		//Checking for any intersections and storing their data in a vector of collisions
 		std::vector<Collision> collisions = CheckIntersections(cols);
 
-		//As a result of those collisions, what should happen?
 		HandleCollisions(collisions);
-
-		//At the moment this is only applying gravity to my colliders since i have no
-		//calculations for linear and angular velocity based on collisions.
-		//This should ideally be in HandleCollisions
 		ApplyVelocity(cols, aDeltaTime);
 
-		//Making sure that the visuals of the colliders is aligned with the colliders
 		UpdateVisuals();
 	}
 
@@ -41,7 +34,11 @@ namespace Banana
 			{
 				c->velocity += glm::vec3(0, GravityMultiplier, 0) * dt;
 			}
-			c->position += c->velocity * dt;
+
+			// Extract position from transform, apply velocity, and update transform
+			glm::vec3 position = glm::vec3(c->transform[3]);
+			position += c->velocity * dt;
+			c->transform[3] = glm::vec4(position, 1.0f);
 		}
 	}
 
@@ -61,6 +58,7 @@ namespace Banana
 			Collider* col = c->GetCollider();
 			if (col != nullptr)
 			{
+				col->transform = c->GetVirtual()->GetTrans();
 				col->position = c->GetVirtual()->Position;
 				cols.push_back(col);
 			}
@@ -82,12 +80,10 @@ namespace Banana
 						std::cout << "Hey we are colliding" << std::endl;
 						std::cout << "!" << std::endl;
 
-						//This will eventually become the return value of check intersect
 						Collision collision;
 						collision.col1 = c1;
 						collision.col2 = c2;
 						collisions.push_back(collision);
-						//---------------------------------------------------------------
 					}
 				}
 			}
@@ -102,7 +98,7 @@ namespace Banana
 			Collider* col = c->GetCollider();
 			if (col != nullptr)
 			{
-				c->GetVirtual()->Position = col->position;
+				c->GetVirtual()->SetTransform(col->transform);
 			}
 		}
 	}

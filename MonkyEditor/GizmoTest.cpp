@@ -8,18 +8,15 @@
 #include "imgui_internal.h"
 #include "ImGuizmo.h"
 
-
 #include "Camera.h"
 #include "VirtualObject.h"
 #include "GameObject.h"
 #include <Input.h>
 
-
 static ImGuizmo::OPERATION mCurrentGizmoOperation(ImGuizmo::TRANSLATE);
 static ImGuizmo::MODE mCurrentGizmoMode(ImGuizmo::WORLD);
 
 int lastUsing = 0;
-
 
 GizmoTest::GizmoTest(Engine::Input* someInput)
 {
@@ -28,14 +25,13 @@ GizmoTest::GizmoTest(Engine::Input* someInput)
 	useWindow = true;
 }
 
-
-
 void GizmoTest::Update(GameObject* SelectedObject, Gorilla::Camera* aCamera)
 {
 	if(SelectedObject == nullptr) 
 	{
 		return;
 	}
+
 	ImVec2 window_pos = ImGui::GetWindowPos();
 	ImVec2 window_size = ImGui::GetWindowSize();
 	ImVec2 window_center = ImVec2(window_pos.x + window_size.x * 0.5f, window_pos.y + window_size.y * 0.5f);
@@ -43,8 +39,6 @@ void GizmoTest::Update(GameObject* SelectedObject, Gorilla::Camera* aCamera)
 	if (input->IsKeyPressed(GLFW_KEY_R)) gizmoType = ImGuizmo::OPERATION::SCALE;
 	else if (input->IsKeyPressed(GLFW_KEY_W)) gizmoType = ImGuizmo::OPERATION::TRANSLATE;
 	else if (input->IsKeyPressed(GLFW_KEY_E)) gizmoType = ImGuizmo::OPERATION::ROTATE;
-
-	int kek = 0;
 
 	if (gizmoType != -1)
 	{
@@ -74,7 +68,6 @@ void GizmoTest::Update(GameObject* SelectedObject, Gorilla::Camera* aCamera)
 
 			glm::vec3 deltaRotation = rotation - SelectedObject->GetVirtual()->Rotation;
 
-			int kek = 0;
 			ImGuizmo::OPERATION myOperation = (ImGuizmo::OPERATION)gizmoType;
 
 			switch (myOperation)

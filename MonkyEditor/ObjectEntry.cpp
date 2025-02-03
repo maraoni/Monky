@@ -59,7 +59,7 @@ void Chimp::ObjectEntry::Update()
 	Banana::Collider* c = myObject->GetCollider();
 	if (c)
 	{
-		ColliderData data = myObject->GetData();;
+		ColliderData data = myObject->GetData();
 
 		if (myObject->IsSphereCollider())
 		{

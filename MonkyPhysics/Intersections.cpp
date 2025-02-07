@@ -28,9 +28,24 @@ namespace Banana
 		}
 	}
 
+	bool CheckRayIntersect(const Ray& aRay, Collider* aCollider)
+	{
+		if (aCollider->isOf<SphereCollider>())
+		{
+			SphereCollider* sphere = dynamic_cast<SphereCollider*>(aCollider);
+			return RaySphereIntersect(aRay, *sphere);
+		}
+		else if (aCollider->isOf<BoxCollider>())
+		{
+			BoxCollider* box = dynamic_cast<BoxCollider*>(aCollider);
+			return RayBoxIntersect(aRay, *box);
+		}
+		return false;
+	}
+
 	bool RaySphereIntersect(const Ray& aRay, const SphereCollider& aSphere)
 	{
-		glm::vec3 sphereCenter = glm::vec3(aSphere.transform[3]);	
+		glm::vec3 sphereCenter = glm::vec3(aSphere.transform[3]);
 		float radius = aSphere.radius;
 
 		glm::vec3 oc = aRay.origin - sphereCenter;
@@ -39,10 +54,10 @@ namespace Banana
 		float c = glm::dot(oc, oc) - radius * radius;
 
 		float discriminant = b * b - 4 * a * c;
-		if (discriminant < 0) return false;							
+		if (discriminant < 0) return false;
 
-		float t = (-b - sqrt(discriminant)) / (2.0f * a);			
-		return t >= 0;												
+		float t = (-b - sqrt(discriminant)) / (2.0f * a);
+		return t >= 0;
 	}
 
 	bool RayBoxIntersect(const Ray& aRay, const BoxCollider& aBox)
@@ -78,22 +93,6 @@ namespace Banana
 
 		Ray localRay(localOrigin, localDirection);
 		return RayBoxIntersect(localRay, localBox);
-	}
-
-
-	bool CheckRayIntersect(const Ray& aRay, Collider* aCollider)
-	{
-		if (aCollider->isOf<SphereCollider>())
-		{
-			SphereCollider* sphere = dynamic_cast<SphereCollider*>(aCollider);
-			return RaySphereIntersect(aRay, *sphere);
-		}
-		else if (aCollider->isOf<BoxCollider>())
-		{
-			BoxCollider* box = dynamic_cast<BoxCollider*>(aCollider);
-			return RayBoxIntersect(aRay, *box);
-		}
-		return false;
 	}
 
 	bool SphereSphereIntersect(const SphereCollider& aSphere1, const SphereCollider& aSphere2)

@@ -102,12 +102,6 @@ namespace Banana
 				c->GetVirtual()->SetTransform(col->transform);
 			}
 		}
-		Ray ray = Ray(glm::vec3(0, 0, 0), glm::vec3(0, 0, 1));
-		RayHit hit;
-		if (MonkeyRaycast(ray, hit))
-		{
-			hit.collider->hasGravity = true;
-		}
 	}
 
 	bool MonkyPhysics::MonkeyRaycast(const Ray& aRay, RayHit& aHit)

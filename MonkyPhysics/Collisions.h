@@ -61,6 +61,4 @@ namespace Banana
 		}
 		glm::vec3 extents;
 	};
-
-
 }

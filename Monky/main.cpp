@@ -43,8 +43,6 @@ int main()
 	float currentTime = 0;
 	float delta = 0;
 
-
-
 	while (!graphics->ShouldClose())
 	{
 		std::vector<VirtualObject*> objects = graphics->GetObjects();

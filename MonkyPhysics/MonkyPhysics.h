@@ -2,6 +2,8 @@
 
 #include <glm.hpp>
 #include <vector>
+#include <optional>
+#include "Raycast.h"
 
 const float GravityMultiplier = -9.82f;
 
@@ -36,8 +38,10 @@ namespace Banana
 		std::vector<Collision> CheckIntersections(std::vector<Collider*> colliders);
 		void UpdateVisuals();
 
-	private:
+		bool MonkeyRaycast(const Ray& aRay, RayHit& aHit);
 
+	private:
+		std::vector<Collider*> colliders;
 		Engine::MonkyEngine* myEngine;
 	};
 }

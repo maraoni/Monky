@@ -62,25 +62,5 @@ namespace Banana
 		glm::vec3 extents;
 	};
 
-	class Ray 
-	{
-	public:
-		Ray(const glm::vec3& anOrigin, const glm::vec3& aDirection) 
-		{
-			origin = anOrigin;
-			direction = aDirection;
-		}
 
-	private:
-
-		glm::vec3 origin;
-		glm::vec3 direction;
-	};
-
-	struct RayHit
-	{
-		glm::vec3 point;
-		float distance;
-
-	};
 }

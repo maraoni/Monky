@@ -7,6 +7,8 @@
 #include "VirtualObject.h"
 #include <gtc/matrix_transform.hpp>
 #include "MonkeyMath.h"
+#include "Raycast.h"
+
 
 namespace Banana
 {
@@ -17,11 +19,11 @@ namespace Banana
 
 	void MonkyPhysics::Simulate(const float& aDeltaTime)
 	{
-		std::vector<Collider*> cols = UpdatePhysicsScene();
-		std::vector<Collision> collisions = CheckIntersections(cols);
+		colliders = UpdatePhysicsScene();
+		std::vector<Collision> collisions = CheckIntersections(colliders);
 
 		HandleCollisions(collisions);
-		ApplyVelocity(cols, aDeltaTime);
+		ApplyVelocity(colliders, aDeltaTime);
 
 		UpdateVisuals();
 	}
@@ -69,22 +71,21 @@ namespace Banana
 	std::vector<Collision> MonkyPhysics::CheckIntersections(std::vector<Collider*> colliders)
 	{
 		std::vector<Collision> collisions;
-		for (Collider* c1 : colliders)
-		{
-			for (Collider* c2 : colliders)
-			{
-				if (c1 != c2)
-				{
-					if (CheckIntersect(c1, c2))
-					{
-						std::cout << "Hey we are colliding" << std::endl;
-						std::cout << "!" << std::endl;
 
-						Collision collision;
-						collision.col1 = c1;
-						collision.col2 = c2;
-						collisions.push_back(collision);
-					}
+		int count = colliders.size();
+
+		for (int i = 0; i < count; i++)
+		{
+			for (int j = i + 1; j < count; j++)
+			{
+				if (CheckIntersect(colliders[i], colliders[j]))
+				{
+					Collision collision;
+
+					collision.col1 = colliders[i];
+					collision.col2 = colliders[j];
+
+					collisions.push_back(collision);
 				}
 			}
 		}
@@ -101,5 +102,26 @@ namespace Banana
 				c->GetVirtual()->SetTransform(col->transform);
 			}
 		}
+		Ray ray = Ray(glm::vec3(0, 0, 0), glm::vec3(0, 0, 1));
+		RayHit hit;
+		if (MonkeyRaycast(ray, hit))
+		{
+			hit.collider->hasGravity = true;
+		}
+	}
+
+	bool MonkyPhysics::MonkeyRaycast(const Ray& aRay, RayHit& aHit)
+	{
+		for (Collider* c : colliders)
+		{
+			if (CheckRayIntersect(aRay, c))
+			{
+				aHit.collider = c;
+				aHit.point = glm::vec3(0, 0, 0);
+				aHit.distance = 10;
+				return true;
+			}
+		}
+		return false;
 	}
 }

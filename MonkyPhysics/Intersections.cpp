@@ -4,7 +4,7 @@
 #include "Collisions.h"
 #include "Intersections.h"
 
-namespace Banana 
+namespace Banana
 {
 	bool CheckIntersect(Collider* aCollider1, Collider* aCollider2)
 	{
@@ -14,7 +14,7 @@ namespace Banana
 			SphereCollider* sphere2 = dynamic_cast<SphereCollider*>(aCollider2);
 			return SphereSphereIntersect(*sphere1, *sphere2);
 		}
-		else if(aCollider1->isOf<BoxCollider>() && aCollider2->isOf<SphereCollider>())
+		else if (aCollider1->isOf<BoxCollider>() && aCollider2->isOf<SphereCollider>())
 		{
 			BoxCollider* box1 = dynamic_cast<BoxCollider*>(aCollider1);
 			SphereCollider* sphere2 = dynamic_cast<SphereCollider*>(aCollider2);
@@ -26,6 +26,74 @@ namespace Banana
 			BoxCollider* box2 = dynamic_cast<BoxCollider*>(aCollider2);
 			return BoxBoxIntersect(*box1, *box2);
 		}
+	}
+
+	bool RaySphereIntersect(const Ray& aRay, const SphereCollider& aSphere)
+	{
+		glm::vec3 sphereCenter = glm::vec3(aSphere.transform[3]);	
+		float radius = aSphere.radius;
+
+		glm::vec3 oc = aRay.origin - sphereCenter;
+		float a = glm::dot(aRay.direction, aRay.direction);
+		float b = 2.0f * glm::dot(oc, aRay.direction);
+		float c = glm::dot(oc, oc) - radius * radius;
+
+		float discriminant = b * b - 4 * a * c;
+		if (discriminant < 0) return false;							
+
+		float t = (-b - sqrt(discriminant)) / (2.0f * a);			
+		return t >= 0;												
+	}
+
+	bool RayBoxIntersect(const Ray& aRay, const BoxCollider& aBox)
+	{
+		glm::vec3 min = glm::vec3(aBox.transform[3]) - aBox.extents;
+		glm::vec3 max = glm::vec3(aBox.transform[3]) + aBox.extents;
+
+		glm::vec3 invDir = 1.0f / aRay.direction;
+
+		float t1 = (min.x - aRay.origin.x) * invDir.x;
+		float t2 = (max.x - aRay.origin.x) * invDir.x;
+		float t3 = (min.y - aRay.origin.y) * invDir.y;
+		float t4 = (max.y - aRay.origin.y) * invDir.y;
+		float t5 = (min.z - aRay.origin.z) * invDir.z;
+		float t6 = (max.z - aRay.origin.z) * invDir.z;
+
+		float tmin = std::max(std::max(std::min(t1, t2), std::min(t3, t4)), std::min(t5, t6));
+		float tmax = std::min(std::min(std::max(t1, t2), std::max(t3, t4)), std::max(t5, t6));
+
+		return tmax >= std::max(0.0f, tmin);
+	}
+
+	bool RayOBBIntersect(const Ray& aRay, const BoxCollider& aBox)
+	{
+		glm::vec3 center = glm::vec3(aBox.transform[3]);
+		glm::mat3 rotation = glm::mat3(aBox.transform);
+
+		glm::vec3 localOrigin = glm::transpose(rotation) * (aRay.origin - center);
+		glm::vec3 localDirection = glm::transpose(rotation) * aRay.direction;
+
+		BoxCollider localBox = BoxCollider(glm::vec3(0, 0, 0), aBox.extents);
+		localBox.extents = aBox.extents;
+
+		Ray localRay(localOrigin, localDirection);
+		return RayBoxIntersect(localRay, localBox);
+	}
+
+
+	bool CheckRayIntersect(const Ray& aRay, Collider* aCollider)
+	{
+		if (aCollider->isOf<SphereCollider>())
+		{
+			SphereCollider* sphere = dynamic_cast<SphereCollider*>(aCollider);
+			return RaySphereIntersect(aRay, *sphere);
+		}
+		else if (aCollider->isOf<BoxCollider>())
+		{
+			BoxCollider* box = dynamic_cast<BoxCollider*>(aCollider);
+			return RayBoxIntersect(aRay, *box);
+		}
+		return false;
 	}
 
 	bool SphereSphereIntersect(const SphereCollider& aSphere1, const SphereCollider& aSphere2)

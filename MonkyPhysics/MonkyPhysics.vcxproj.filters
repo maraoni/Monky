@@ -24,6 +24,9 @@
     <ClInclude Include="Intersections.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Raycast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MonkyPhysics.cpp">

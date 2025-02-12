@@ -1,1 +1,7 @@
-﻿
+﻿  Collisions.cpp
+  Intersections.cpp
+  MonkyPhysics.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.36.32532\include\optional(12): warning STL4038: The contents of <optional> are available only with C++17 or later.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyPhysics\MonkyPhysics.cpp(75,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating Code...
+  MonkyPhysics.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\x64\Debug\MonkyPhysics.lib

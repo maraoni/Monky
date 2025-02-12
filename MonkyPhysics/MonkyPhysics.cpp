@@ -15,6 +15,9 @@ namespace Banana
 	MonkyPhysics::MonkyPhysics(Engine::MonkyEngine* aEngine)
 	{
 		myEngine = aEngine;
+
+		main_plane = new PlaneCollider(glm::vec3(0, 1, 0), 1);
+		main_plane->position = glm::vec3(0, 0, 0);
 	}
 
 	void MonkyPhysics::Simulate(const float& aDeltaTime)
@@ -22,25 +25,37 @@ namespace Banana
 		colliders = UpdatePhysicsScene();
 		std::vector<Collision> collisions = CheckIntersections(colliders);
 
+		ApplyGravity(colliders, aDeltaTime);
+
 		HandleCollisions(collisions);
+
 		ApplyVelocity(colliders, aDeltaTime);
 
 		UpdateVisuals();
+	}
+
+	void MonkyPhysics::ApplyGravity(std::vector<Collider*> colliders, const float& dt)
+	{
+		for (Collider* c : colliders)
+		{
+			if (c->hasGravity && !c->isKinematic)
+			{
+				c->velocity += glm::vec3(0, GravityMultiplier, 0) * dt;
+			}
+		}
 	}
 
 	void MonkyPhysics::ApplyVelocity(std::vector<Collider*> colliders, const float& dt)
 	{
 		for (Collider* c : colliders)
 		{
-			if (c->hasGravity)
+			if (!c->isKinematic)
 			{
-				c->velocity += glm::vec3(0, GravityMultiplier, 0) * dt;
+				glm::vec3 position = glm::vec3(c->transform[3]);
+				position += c->velocity * dt;
+				c->position = position;
+				c->transform[3] = glm::vec4(position, 1.0f);
 			}
-
-			// Extract position from transform, apply velocity, and update transform
-			glm::vec3 position = glm::vec3(c->transform[3]);
-			position += c->velocity * dt;
-			c->transform[3] = glm::vec4(position, 1.0f);
 		}
 	}
 
@@ -48,13 +63,43 @@ namespace Banana
 	{
 		for (Collision c : collisions)
 		{
+			if (!c.col1->isKinematic || !c.col2->isKinematic)
+			{
+				glm::vec3 normal = c.normal;
 
+				// Relative velocity
+				glm::vec3 relativeVelocity = c.col2->velocity - c.col1->velocity;
+				float velocityAlongNormal = glm::dot(relativeVelocity, normal);
+
+				// < 0 means they are moving towards eachother
+				if (velocityAlongNormal < 0)
+				{
+					// Coefficient of restitution (bounciness) and calculating impulse
+					float restitution = 0.2f;
+					float impulse = (1 + restitution) * velocityAlongNormal;
+
+					if (!c.col1->isKinematic)
+					{
+						glm::vec3 impulseVector = impulse * normal;
+						c.col1->velocity += impulseVector;
+					}
+
+					if (!c.col2->isKinematic)
+					{
+						glm::vec3 impulseVector = impulse * normal;
+						c.col2->velocity -= impulseVector; 
+					}
+				}
+			}
 		}
 	}
 
 	std::vector<Collider*> MonkyPhysics::UpdatePhysicsScene()
 	{
 		std::vector<Collider*> cols;
+
+		cols.push_back(main_plane);
+
 		for (GameObject* c : myEngine->GetGameObjects())
 		{
 			Collider* col = c->GetCollider();
@@ -78,14 +123,10 @@ namespace Banana
 		{
 			for (int j = i + 1; j < count; j++)
 			{
-				if (CheckIntersect(colliders[i], colliders[j]))
+				Collision c = CheckIntersect(colliders[i], colliders[j]);
+				if (c.col1 != nullptr && c.col2 != nullptr)
 				{
-					Collision collision;
-
-					collision.col1 = colliders[i];
-					collision.col2 = colliders[j];
-
-					collisions.push_back(collision);
+					collisions.push_back(c);
 				}
 			}
 		}

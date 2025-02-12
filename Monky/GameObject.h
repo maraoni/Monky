@@ -3,10 +3,12 @@
 
 struct ColliderData
 {
+	float Mass;
 	float Radius;
 	glm::vec3 Extents;
 	glm::vec3 Center;
 	bool HasGravity;
+	bool IsKinematic;
 };
 
 namespace Banana

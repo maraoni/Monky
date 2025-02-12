@@ -6,8 +6,12 @@
 
 namespace Banana
 {
-	bool CheckIntersect(Collider* aCollider1, Collider* aCollider2)
+	Collision CheckIntersect(Collider* aCollider1, Collider* aCollider2)
 	{
+		if (aCollider1->isOf<BoxCollider>() && aCollider2->isOf<SphereCollider>())		std::swap(aCollider1, aCollider2);
+		if (aCollider1->isOf<BoxCollider>() && aCollider2->isOf<PlaneCollider>())		std::swap(aCollider1, aCollider2);
+		if (aCollider1->isOf<SphereCollider>() && aCollider2->isOf<PlaneCollider>())	std::swap(aCollider1, aCollider2);
+
 		if (aCollider1->isOf<SphereCollider>() && aCollider2->isOf<SphereCollider>())
 		{
 			SphereCollider* sphere1 = dynamic_cast<SphereCollider*>(aCollider1);
@@ -26,6 +30,19 @@ namespace Banana
 			BoxCollider* box2 = dynamic_cast<BoxCollider*>(aCollider2);
 			return BoxBoxIntersect(*box1, *box2);
 		}
+		else if (aCollider1->isOf<PlaneCollider>() && aCollider2->isOf<BoxCollider>())
+		{
+			PlaneCollider* plane = dynamic_cast<PlaneCollider*>(aCollider1);
+			BoxCollider* box = dynamic_cast<BoxCollider*>(aCollider2);
+			return PlaneBoxIntersect(*plane, *box);
+		}
+		else if (aCollider1->isOf<PlaneCollider>() && aCollider2->isOf<SphereCollider>())
+		{
+			PlaneCollider* plane = dynamic_cast<PlaneCollider*>(aCollider1);
+			SphereCollider* sphere = dynamic_cast<SphereCollider*>(aCollider2);
+			return PlaneSphereIntersect(*plane, *sphere);
+		}
+		return { nullptr, nullptr, glm::vec3() };
 	}
 
 	bool CheckRayIntersect(const Ray& aRay, Collider* aCollider)
@@ -45,19 +62,33 @@ namespace Banana
 
 	bool RaySphereIntersect(const Ray& aRay, const SphereCollider& aSphere)
 	{
-		glm::vec3 sphereCenter = glm::vec3(aSphere.transform[3]);
-		float radius = aSphere.radius;
+		//Look at glm "intersectRaySphere"
 
-		glm::vec3 oc = aRay.origin - sphereCenter;
-		float a = glm::dot(aRay.direction, aRay.direction);
-		float b = 2.0f * glm::dot(oc, aRay.direction);
-		float c = glm::dot(oc, oc) - radius * radius;
+		// vector from ray origin to sphere center
+		glm::vec3 center = aSphere.transform[3];
+		glm::vec3 diff = center - aRay.origin;
 
-		float discriminant = b * b - 4 * a * c;
-		if (discriminant < 0) return false;
+		// project diff onto ray direction
+		float t0 = glm::dot(diff, aRay.direction);
 
-		float t = (-b - sqrt(discriminant)) / (2.0f * a);
-		return t >= 0;
+		// perpendicular distance! ....? also dot on itself makes sense since diff is not normalized
+		float dSquared = glm::dot(diff, diff) - t0 * t0;
+
+		// distance is greater than the sphere's radius squared, no intersection
+		float radiusSquared = aSphere.radius * aSphere.radius;
+		if (dSquared > radiusSquared)
+		{
+			return false;
+		}
+
+		// distance from closest to the intersection point
+		float t1 = glm::sqrt(radiusSquared - dSquared);
+
+		float Epsilon = 0.000001f; // just a small number to help with tiny floating point errors
+		float outIntersectionDistance = (t0 > t1 + Epsilon) ? t0 - t1 : t0 + t1; // could actually return this as the distance
+
+		// return true if intersection distance is positive
+		return outIntersectionDistance > Epsilon;
 	}
 
 	bool RayBoxIntersect(const Ray& aRay, const BoxCollider& aBox)
@@ -95,17 +126,31 @@ namespace Banana
 		return RayBoxIntersect(localRay, localBox);
 	}
 
-	bool SphereSphereIntersect(const SphereCollider& aSphere1, const SphereCollider& aSphere2)
+	Collision SphereSphereIntersect(const SphereCollider& aSphere1, const SphereCollider& aSphere2)
 	{
+		Collision returnCollision = { nullptr, nullptr, glm::vec3() };
+
 		glm::vec3 pos1 = glm::vec3(aSphere1.transform[3]);
 		glm::vec3 pos2 = glm::vec3(aSphere2.transform[3]);
 		float dist2 = glm::distance2(pos1, pos2);
 		float radiusSum = aSphere1.radius + aSphere2.radius;
-		return dist2 < radiusSum * radiusSum;
+
+		if (dist2 < radiusSum * radiusSum)
+		{
+			float dist = glm::sqrt(dist2);
+			glm::vec3 normal = (dist > 0.0f) ? (pos2 - pos1) / dist : glm::vec3(1, 0, 0);
+			glm::vec3 contactPoint = pos1 + normal * aSphere1.radius;
+
+			returnCollision = { const_cast<SphereCollider*>(&aSphere1), const_cast<SphereCollider*>(&aSphere2), contactPoint, normal };
+		}
+
+		return returnCollision;
 	}
 
-	bool BoxBoxIntersect(const BoxCollider& aBox1, const BoxCollider& aBox2)
+	Collision BoxBoxIntersect(const BoxCollider& aBox1, const BoxCollider& aBox2)
 	{
+		Collision returnCollision = { nullptr, nullptr, glm::vec3() };
+
 		glm::mat3 rotation1 = glm::mat3(aBox1.transform);
 		glm::mat3 rotation2 = glm::mat3(aBox2.transform);
 		glm::vec3 translation = glm::vec3(aBox2.transform[3]) - glm::vec3(aBox1.transform[3]);
@@ -123,25 +168,87 @@ namespace Banana
 		for (int i = 0; i < 3; ++i) {
 			float ra = aBox1.extents[i];
 			float rb = glm::dot(absRotation[i], aBox2.extents);
-			if (glm::abs(translation[i]) > ra + rb) return false;
+			if (glm::abs(translation[i]) > ra + rb) return returnCollision;
 		}
 
 		for (int i = 0; i < 3; ++i) {
 			float ra = glm::dot(absRotation[i], aBox1.extents);
 			float rb = aBox2.extents[i];
-			if (glm::abs(glm::dot(rotation[i], translation)) > ra + rb) return false;
+			if (glm::abs(glm::dot(rotation[i], translation)) > ra + rb) return returnCollision;
 		}
 
-		return true;
+		glm::vec3 normal = glm::normalize(translation);
+		glm::vec3 contactPoint = glm::vec3(aBox1.transform[3]) + normal * aBox1.extents;
+		return { const_cast<BoxCollider*>(&aBox1), const_cast<BoxCollider*>(&aBox2), contactPoint, normal };
 	}
 
-	bool BoxSphereIntersect(const BoxCollider& aBox1, const SphereCollider& aSphere2)
+	Collision BoxSphereIntersect(const BoxCollider& aBox1, const SphereCollider& aSphere2)
 	{
 		glm::vec3 sphereCenter = glm::vec3(aSphere2.transform[3]);
 		glm::vec3 localSphereCenter = glm::inverse(aBox1.transform) * glm::vec4(sphereCenter, 1.0f);
 		glm::vec3 closestPoint = glm::clamp(localSphereCenter, -aBox1.extents, aBox1.extents);
 		float dist2 = glm::length2(localSphereCenter - closestPoint);
-		return dist2 < aSphere2.radius * aSphere2.radius;
+
+		if (dist2 < aSphere2.radius * aSphere2.radius)
+		{
+			glm::vec3 normal = glm::normalize(localSphereCenter - closestPoint);
+			glm::vec3 worldContactPoint = aBox1.transform * glm::vec4(closestPoint, 1.0f);
+			return { const_cast<BoxCollider*>(&aBox1), const_cast<SphereCollider*>(&aSphere2), worldContactPoint, normal };
+		}
+
+		return { nullptr, nullptr, glm::vec3(0) };
+	}
+
+	Collision PlaneBoxIntersect(const PlaneCollider& aPlane, const BoxCollider& aBox)
+	{
+		Collision returnCollision = { nullptr, nullptr, glm::vec3(), glm::vec3() };
+		
+		glm::vec3 boxPos = glm::vec3(aBox.transform[3]);
+		glm::mat3 rotation = glm::mat3(aBox.transform);
+		glm::vec3 normal = glm::normalize(aPlane.normal);
+		
+		glm::vec3 corners[8];
+		for (int i = 0; i < 8; ++i)
+		{
+			glm::vec3 offset = glm::vec3(
+				(i & 1 ? 1 : -1) * aBox.extents.x,
+				(i & 2 ? 1 : -1) * aBox.extents.y,
+				(i & 4 ? 1 : -1) * aBox.extents.z
+			);
+			corners[i] = boxPos + rotation * offset;
+		}
+		
+		int inFront = 0, behind = 0;
+		for (const auto& corner : corners)
+		{
+			float dist = glm::dot(normal, corner) - aPlane.distance;
+			if (dist > 0) inFront++;
+			else behind++;
+		}
+		
+		if (inFront > 0 && behind > 0)
+		{
+			glm::vec3 contactPoint = boxPos - normal * (glm::dot(normal, boxPos) - aPlane.distance);
+			return { const_cast<PlaneCollider*>(&aPlane), const_cast<BoxCollider*>(&aBox), contactPoint, normal };
+		}
+		
+		return returnCollision;
+	}
+
+	Collision PlaneSphereIntersect(const PlaneCollider& aPlane, const SphereCollider& aSphere)
+	{
+
+		glm::vec3 normal = glm::normalize(aPlane.normal);
+		float d = glm::dot(normal, aPlane.position);
+		float distance = glm::dot(normal, aSphere.position) - d;
+		
+		if (glm::abs(distance) <= aSphere.radius)
+		{
+			glm::vec3 collisionPoint = aSphere.position - normal * distance;
+			return { const_cast<PlaneCollider*>(&aPlane), const_cast<SphereCollider*>(&aSphere), collisionPoint, normal };
+		}
+		
+		return { nullptr, nullptr, glm::vec3(), glm::vec3() };
 	}
 }
 

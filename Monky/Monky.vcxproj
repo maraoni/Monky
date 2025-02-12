@@ -77,7 +77,7 @@
     <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include;$(SolutionDir)Dependencies\Math\glm;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)Dependencies\GLFW\include;$(SolutionDir)Dependencies\Glad\include;$(IncludePath)</IncludePath>
@@ -121,12 +121,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)MonkyGL;$(SolutionDir)Dependencies\Math\glm\;$(SolutionDir)MonkyEditor;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)MonkyGL;$(SolutionDir)Dependencies\Math\glm\;$(SolutionDir)MonkyEditor\;$(SolutionDir)MonkyPhysics\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;$(SolutionDir)Dependencies\GLFW\lib\glfw3.lib;$(SolutionDir)\$(Configuration)\MonkyGL.lib;$(SolutionDir)\$(Configuration)\MonkyEditor.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;$(SolutionDir)Dependencies\GLFW\lib\glfw3.lib;$(SolutionDir)\$(Configuration)\MonkyGL.lib;$(SolutionDir)\$(Configuration)\MonkyEditor.lib;$(SolutionDir)\$(Configuration)\MonkyPhysics.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

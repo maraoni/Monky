@@ -21,6 +21,7 @@ namespace Gorilla
 namespace Banana 
 {
 	class Collider;
+	class PlaneCollider;
 	struct Collision;
 }
 
@@ -32,6 +33,7 @@ namespace Banana
 		MonkyPhysics(Engine::MonkyEngine* aEngine);
 		void Simulate(const float& aDeltaTime);
 
+		void ApplyGravity(std::vector<Collider*> colliders, const float& dt);
 		void ApplyVelocity(std::vector<Collider*> colliders, const float& dt);
 		void HandleCollisions(std::vector<Collision> collisions);
 		std::vector<Collider*> UpdatePhysicsScene();
@@ -43,6 +45,9 @@ namespace Banana
 	private:
 		std::vector<Collider*> colliders;
 		Engine::MonkyEngine* myEngine;
+
+		PlaneCollider* main_plane;
+
 	};
 }
 

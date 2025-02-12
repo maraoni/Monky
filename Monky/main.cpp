@@ -57,9 +57,18 @@ int main()
 			buffer->Unbind();
 			Gui->Render(engine->GetGameObjects(), engine->myCamera, buffer);
 
+			RayHit hit;
+			
+
 			if(engine->IsSimulating()) 
 			{
 				Physics->Simulate(delta);
+
+				/*Ray myRay = Ray(glm::vec3(0, 0, 0), glm::vec3(0, 0, 1));
+				if (Physics->MonkeyRaycast(myRay, hit))
+				{
+					std::cout << "Hit " << delta << std::endl;
+				}*/
 			}
 
 			graphics->End();

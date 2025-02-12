@@ -16,6 +16,7 @@ namespace Banana
 		  glm::mat4		transform;
 		  //move to dynamic body
 		  bool			hasGravity;
+		  bool			isKinematic;
 		  glm::vec3		velocity;
 		  float			mass;
 	};
@@ -26,14 +27,7 @@ namespace Banana
 		Collider* col2;
 
 		glm::vec3 point;
-		
-		glm::vec3 normal1;
-		glm::vec3 normal2;
-	};
-
-	struct CollisionResponse
-	{
-
+		glm::vec3 normal;
 	};
 
 	class SphereCollider : public Collider
@@ -45,6 +39,7 @@ namespace Banana
 			hasGravity = false;
 			center = aCenter;
 			radius = aRadius;
+			mass = 1;
 		}
 		float radius;
 	};
@@ -58,7 +53,25 @@ namespace Banana
 			hasGravity = false;
 			center = aCenter;
 			extents = someExtents;
+			mass = 1;
 		}
 		glm::vec3 extents;
+	};
+
+	class PlaneCollider : public Collider
+	{
+	public:
+		PlaneCollider(const glm::vec3& aNormal, float aDistance)
+		{
+			velocity = glm::vec3(0, 0, 0);
+			hasGravity = false;
+			isKinematic = true;
+			normal = glm::normalize(aNormal); 
+			distance = aDistance;
+			mass = 1; 
+		}
+
+		glm::vec3 normal; 
+		float distance;   
 	};
 }

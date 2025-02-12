@@ -72,7 +72,9 @@ void Chimp::ObjectEntry::Update()
 			}
 
 			ImGui::InputFloat("Radius", &data.Radius);
+			ImGui::InputFloat("Mass", &data.Mass);
 			ImGui::Checkbox("Gravity", &data.HasGravity);
+			ImGui::Checkbox("IsKinematic", &data.IsKinematic);
 
 			myObject->SetData(data);
 
@@ -93,7 +95,9 @@ void Chimp::ObjectEntry::Update()
 			ImGui::InputFloat("y ", &data.Extents.y);
 			ImGui::InputFloat("z ", &data.Extents.z);
 
+			ImGui::InputFloat("Mass", &data.Mass);
 			ImGui::Checkbox("Gravity", &data.HasGravity);
+			ImGui::Checkbox("IsKinematic", &data.IsKinematic);
 
 			myObject->SetData(data);
 

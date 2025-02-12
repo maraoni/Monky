@@ -1,2 +1,2 @@
 ﻿  Game.cpp
-LINK : fatal error LNK1104: cannot open file 'C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\GLFW\lib\glfw3.lib'
+  Game.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\x64\Debug\Game.exe

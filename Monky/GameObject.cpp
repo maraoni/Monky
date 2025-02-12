@@ -46,16 +46,20 @@ void GameObject::SetData(const ColliderData& someData)
 	if (myCollider->isOf<Banana::SphereCollider>())
 	{
 		Banana::SphereCollider* sc = dynamic_cast<Banana::SphereCollider*>(myCollider);
+		sc->mass		= someData.Mass;
 		sc->center		= someData.Center;
 		sc->hasGravity	= someData.HasGravity;
 		sc->radius		= someData.Radius;
+		sc->isKinematic = someData.IsKinematic;
 	}
 	else if (myCollider->isOf<Banana::BoxCollider>())
 	{
 		Banana::BoxCollider* bc = dynamic_cast<Banana::BoxCollider*>(myCollider);
+		bc->mass		= someData.Mass;
 		bc->center		= someData.Center;
 		bc->hasGravity  = someData.HasGravity;
 		bc->extents		= someData.Extents;
+		bc->isKinematic = someData.IsKinematic;
 	}
 }
 
@@ -66,16 +70,20 @@ const ColliderData& GameObject::GetData()
 	if (myCollider->isOf<Banana::SphereCollider>())
 	{
 		Banana::SphereCollider* sc = dynamic_cast<Banana::SphereCollider*>(myCollider);
+		d.Mass			= sc->mass;
 		d.Center		= sc->center;
 		d.HasGravity	= sc->hasGravity;
 		d.Radius		= sc->radius;
+		d.IsKinematic	= sc->isKinematic;
 	}
 	else if (myCollider->isOf<Banana::BoxCollider>())
 	{
 		Banana::BoxCollider* bc = dynamic_cast<Banana::BoxCollider*>(myCollider);
+		d.Mass			= bc->mass;
 		d.Center		= bc->center;
 		d.HasGravity	= bc->hasGravity;
 		d.Extents		= bc->extents;
+		d.IsKinematic	= bc->isKinematic;
 	}
 
 	return d;

@@ -18,15 +18,17 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonkyEditor", "MonkyEditor\MonkyEditor.vcxproj", "{06A44033-897E-46C8-9D66-A5D37B093CC5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{03B96BAB-A14A-4CFB-907C-D017171CDF5C} = {03B96BAB-A14A-4CFB-907C-D017171CDF5C}
-		{79038A98-AB94-4245-8993-E26D39152FF0} = {79038A98-AB94-4245-8993-E26D39152FF0}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MonkyPhysics", "MonkyPhysics\MonkyPhysics.vcxproj", "{22F163EE-F84E-4DDE-B90A-C2360922695F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{03B96BAB-A14A-4CFB-907C-D017171CDF5C} = {03B96BAB-A14A-4CFB-907C-D017171CDF5C}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{573C29B7-95A7-4239-A829-3A916908EB8A}"
 	ProjectSection(SolutionItems) = preProject
-		Assets\Shaders\FragmentShader.glsl = Assets\Shaders\FragmentShader.glsl
 		Assets\Shaders\BlankColor.glsl = Assets\Shaders\BlankColor.glsl
+		Assets\Shaders\FragmentShader.glsl = Assets\Shaders\FragmentShader.glsl
 		Assets\Shaders\VertexBillboard.glsl = Assets\Shaders\VertexBillboard.glsl
 		Assets\Shaders\VertexShader.glsl = Assets\Shaders\VertexShader.glsl
 		Assets\Shaders\WavingGrass.glsl = Assets\Shaders\WavingGrass.glsl

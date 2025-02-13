@@ -149,36 +149,81 @@ namespace Banana
 
 	Collision BoxBoxIntersect(const BoxCollider& aBox1, const BoxCollider& aBox2)
 	{
-		Collision returnCollision = { nullptr, nullptr, glm::vec3() };
+		Collision returnCollision = { nullptr, nullptr, glm::vec3(), glm::vec3() };
 
+		// Extract rotation and translation
 		glm::mat3 rotation1 = glm::mat3(aBox1.transform);
 		glm::mat3 rotation2 = glm::mat3(aBox2.transform);
 		glm::vec3 translation = glm::vec3(aBox2.transform[3]) - glm::vec3(aBox1.transform[3]);
-		translation = glm::transpose(rotation1) * translation;
 
-		glm::mat3 rotation = glm::transpose(rotation1) * rotation2;
-
+		glm::mat3 rotation = rotation1 * glm::transpose(rotation2);
 		glm::mat3 absRotation = glm::mat3(
-			glm::abs(rotation[0]),
-			glm::abs(rotation[1]),
-			glm::abs(rotation[2])
-		) + glm::mat3(0.000001f);
+			glm::abs(rotation[0]) + 0.000001f,
+			glm::abs(rotation[1]) + 0.000001f,
+			glm::abs(rotation[2]) + 0.000001f
+		);
 
-		// SAT (seperating axis theorem)
+		float minPenetration = FLT_MAX;
+		glm::vec3 bestAxis = glm::vec3(0.0f);
+
+		// --- 1. Box 1's face axes ---
 		for (int i = 0; i < 3; ++i) {
 			float ra = aBox1.extents[i];
 			float rb = glm::dot(absRotation[i], aBox2.extents);
-			if (glm::abs(translation[i]) > ra + rb) return returnCollision;
+			float penetration = (ra + rb) - glm::abs(glm::dot(translation, rotation1[i]));
+
+			if (penetration < 0.0f) return returnCollision;
+
+			if (penetration < minPenetration) {
+				minPenetration = penetration;
+				bestAxis = rotation1[i];
+			}
 		}
 
+		// --- 2. Box 2's face axes ---
 		for (int i = 0; i < 3; ++i) {
 			float ra = glm::dot(absRotation[i], aBox1.extents);
 			float rb = aBox2.extents[i];
-			if (glm::abs(glm::dot(rotation[i], translation)) > ra + rb) return returnCollision;
+			float penetration = (ra + rb) - glm::abs(glm::dot(translation, rotation2[i]));
+
+			if (penetration < 0.0f) return returnCollision;
+
+			if (penetration < minPenetration) {
+				minPenetration = penetration;
+				bestAxis = rotation2[i];
+			}
 		}
 
-		glm::vec3 normal = glm::normalize(translation);
-		glm::vec3 contactPoint = glm::vec3(aBox1.transform[3]) + normal * aBox1.extents;
+		// --- 3. Cross-product axes ---
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 3; ++j) {
+				glm::vec3 axis = glm::cross(rotation1[i], rotation2[j]);
+
+				if (glm::length(axis) < 0.0001f) continue;
+				axis = glm::normalize(axis);
+
+				float ra = glm::dot(aBox1.extents, glm::abs(rotation1 * axis));
+				float rb = glm::dot(aBox2.extents, glm::abs(rotation2 * axis));
+				float penetration = (ra + rb) - glm::abs(glm::dot(translation, axis));
+
+				if (penetration < 0.0f) return returnCollision;
+
+				if (penetration < minPenetration) {
+					minPenetration = penetration;
+					bestAxis = axis;
+				}
+			}
+		}
+
+		// Ensure normal points from box1 to box2
+		glm::vec3 normal = glm::normalize(bestAxis);
+		if (glm::dot(normal, translation) < 0.0f) {
+			normal = -normal;
+		}
+
+		// Compute contact point
+		glm::vec3 contactPoint = glm::vec3(aBox1.transform[3]) + normal * minPenetration * 0.5f;
+
 		return { const_cast<BoxCollider*>(&aBox1), const_cast<BoxCollider*>(&aBox2), contactPoint, normal };
 	}
 

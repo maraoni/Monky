@@ -4,6 +4,8 @@
 
 namespace Banana
 {
+	glm::mat3 ComputeMomentOfInertiaBox(float mass, glm::vec3 extents);
+
 	class Collider
 	{
 	public: virtual ~Collider() {}
@@ -15,9 +17,13 @@ namespace Banana
 		  glm::vec3		position;
 		  glm::mat4		transform;
 		  //move to dynamic body
+
+		  glm::mat3		momentOfInertia;
+		  glm::mat3		inverseMomentOfInertia;
 		  bool			hasGravity;
 		  bool			isKinematic;
 		  glm::vec3		velocity;
+		  glm::vec3		angularVelocity;
 		  float			mass;
 	};
 
@@ -36,6 +42,7 @@ namespace Banana
 		SphereCollider(const glm::vec3& aCenter, const float& aRadius)
 		{
 			velocity = glm::vec3(0, 0, 0);
+			angularVelocity = glm::vec3(0, 0, 0);
 			hasGravity = false;
 			center = aCenter;
 			radius = aRadius;
@@ -50,10 +57,14 @@ namespace Banana
 		BoxCollider(const glm::vec3& aCenter, const glm::vec3& someExtents)
 		{
 			velocity = glm::vec3(0, 0, 0);
+			angularVelocity = glm::vec3(0, 0, 0);
 			hasGravity = false;
 			center = aCenter;
 			extents = someExtents;
+
 			mass = 1;
+			momentOfInertia = ComputeMomentOfInertiaBox(mass, someExtents);
+			inverseMomentOfInertia = glm::inverse(momentOfInertia);
 		}
 		glm::vec3 extents;
 	};
@@ -64,6 +75,7 @@ namespace Banana
 		PlaneCollider(const glm::vec3& aNormal, float aDistance)
 		{
 			velocity = glm::vec3(0, 0, 0);
+			angularVelocity = glm::vec3(0, 0, 0);
 			hasGravity = false;
 			isKinematic = true;
 			normal = glm::normalize(aNormal); 
@@ -74,4 +86,6 @@ namespace Banana
 		glm::vec3 normal; 
 		float distance;   
 	};
+
+
 }

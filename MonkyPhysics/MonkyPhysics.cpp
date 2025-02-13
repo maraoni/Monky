@@ -51,10 +51,29 @@ namespace Banana
 		{
 			if (!c->isKinematic)
 			{
+				// Update position
 				glm::vec3 position = glm::vec3(c->transform[3]);
 				position += c->velocity * dt;
 				c->position = position;
 				c->transform[3] = glm::vec4(position, 1.0f);
+
+				float angularDamping = 0.25f;
+
+				c->angularVelocity *= angularDamping;
+
+				// Update rotation using angular velocity (convert axis-angle to quaternion)
+				float angle = glm::length(c->angularVelocity) * dt;
+				if (angle > 0.0001f) // Prevent precision errors
+				{
+					glm::vec3 axis = glm::normalize(c->angularVelocity);
+					glm::quat rotationQuat = glm::angleAxis(angle, axis);
+
+					// Apply rotation to the current transform
+					glm::mat3 rotationMatrix = glm::mat3(c->transform);
+					rotationMatrix = glm::mat3(rotationQuat) * rotationMatrix;
+					c->transform = glm::mat4(rotationMatrix);
+					c->transform[3] = glm::vec4(position, 1.0f); // Keep position unchanged
+				}
 			}
 		}
 	}
@@ -66,33 +85,81 @@ namespace Banana
 			if (!c.col1->isKinematic || !c.col2->isKinematic)
 			{
 				glm::vec3 normal = c.normal;
+				glm::vec3 r1 = c.point - c.col1->position; // Offset from center of mass
+				glm::vec3 r2 = c.point - c.col2->position;
 
 				// Relative velocity
 				glm::vec3 relativeVelocity = c.col2->velocity - c.col1->velocity;
 				float velocityAlongNormal = glm::dot(relativeVelocity, normal);
 
-				// < 0 means they are moving towards eachother
+				float impulse = 0;
+				float invMass1 = 0;
+				float invMass2 = 0;
 				if (velocityAlongNormal < 0)
 				{
-					// Coefficient of restitution (bounciness) and calculating impulse
 					float restitution = 0.2f;
-					float impulse = (1 + restitution) * velocityAlongNormal;
+					invMass1 = c.col1->isKinematic ? 0.0f : (1.0f / c.col1->mass);
+					invMass2 = c.col2->isKinematic ? 0.0f : (1.0f / c.col2->mass);
+
+					// Compute rotational effects
+					glm::vec3 cross1 = glm::cross(r1, normal);
+					glm::vec3 cross2 = glm::cross(r2, normal);
+					float angularEffect1 = invMass1 + glm::dot(cross1, cross1) / c.col1->mass;
+					float angularEffect2 = invMass2 + glm::dot(cross2, cross2) / c.col2->mass;
+
+					// Compute final impulse
+					float impulseDenom = invMass1 + invMass2 + angularEffect1 + angularEffect2;
+					impulse = (-(1 + restitution) * velocityAlongNormal) / impulseDenom;
+					glm::vec3 impulseVector = impulse * normal;
 
 					if (!c.col1->isKinematic)
 					{
-						glm::vec3 impulseVector = impulse * normal;
-						c.col1->velocity += impulseVector;
+						c.col1->velocity -= impulseVector;
+						c.col1->angularVelocity -= glm::cross(r1, impulseVector) * (1.0f / c.col1->momentOfInertia);
 					}
 
 					if (!c.col2->isKinematic)
 					{
-						glm::vec3 impulseVector = impulse * normal;
-						c.col2->velocity -= impulseVector; 
+						c.col2->velocity += impulseVector;
+						c.col2->angularVelocity += glm::cross(r2, impulseVector) * (1.0f / c.col2->momentOfInertia);
+					}
+				}
+
+				// --- Friction ---
+				glm::vec3 tangent = relativeVelocity - (glm::dot(relativeVelocity, normal) * normal);
+
+				if (glm::length(tangent) > 0.0001f)
+				{
+					tangent = glm::normalize(tangent);
+
+					float staticFriction = 0.2f;
+					float dynamicFriction = 0.1f;
+					float frictionImpulse = -glm::dot(relativeVelocity, tangent);
+
+					float maxFriction = staticFriction * glm::abs(impulse) / (invMass1 + invMass2);
+					if (glm::abs(frictionImpulse) > maxFriction)
+					{
+						frictionImpulse *= dynamicFriction;
+					}
+
+					glm::vec3 frictionVector = frictionImpulse * tangent;
+
+					if (!c.col1->isKinematic)
+					{
+						c.col1->velocity -= frictionVector;
+						c.col1->angularVelocity -= glm::cross(r1, frictionVector) * (1.0f / c.col1->momentOfInertia);
+					}
+
+					if (!c.col2->isKinematic)
+					{
+						c.col2->velocity += frictionVector;
+						c.col2->angularVelocity += glm::cross(r2, frictionVector) * (1.0f / c.col2->momentOfInertia);
 					}
 				}
 			}
 		}
 	}
+
 
 	std::vector<Collider*> MonkyPhysics::UpdatePhysicsScene()
 	{

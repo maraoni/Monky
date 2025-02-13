@@ -1,3 +1,1 @@
-﻿  GameObject.cpp
-C:\Users\Martin.Andersson\Documents\Place\Monky\Monky\GameObject.cpp(89): warning C4172: returning address of local variable or temporary: d
-  Monky.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\Monky.exe
+﻿  Monky.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\Monky.exe

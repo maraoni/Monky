@@ -1,0 +1,133 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_impl_glfw.cpp"
+                },
+                "region": {
+                  "startLine": 782,
+                  "startColumn": 51,
+                  "endLine": 782,
+                  "endColumn": 83
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGui_ImplGlfw_UpdateMouseData",
+                  "decoratedName": "?ImGui_ImplGlfw_UpdateMouseData@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_impl_glfw.cpp"
+                },
+                "region": {
+                  "startLine": 782,
+                  "startColumn": 97,
+                  "endLine": 782,
+                  "endColumn": 129
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGui_ImplGlfw_UpdateMouseData",
+                  "decoratedName": "?ImGui_ImplGlfw_UpdateMouseData@@YAXXZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.36.32542.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_impl_glfw.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "0f74c275176cd073704695d455b55f589f1b1506b6ba3b152469dfe8b745565c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imgui.h"
+          },
+          "hashes": {
+            "sha-256": "47c44412067480117bf51c1eb76cd04a320f89e1744e6c2c76f036cdc1c2a144"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imconfig.h"
+          },
+          "hashes": {
+            "sha-256": "bd89b32de6a8a286700383bae47b4f4bba753ba13058d1a350770c5232b2e4e8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imgui_impl_glfw.h"
+          },
+          "hashes": {
+            "sha-256": "f77e5bba02a819b78df2251e9cf41ddca2866557309ef1b74eee6ce95f70a91d"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/dependencies/glfw/include/glfw3.h"
+          },
+          "hashes": {
+            "sha-256": "0fd04b330d92fc4bd6630c20d1006cef36d25b16ec9f911ec4041918482307bb"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/dependencies/glfw/include/glfw3native.h"
+          },
+          "hashes": {
+            "sha-256": "aa1ca4038db59adcf7c3e0d297a9b9bb160b2a11a5c51ca40acc278fd970341d"
+          }
+        }
+      ]
+    }
+  ]
+}

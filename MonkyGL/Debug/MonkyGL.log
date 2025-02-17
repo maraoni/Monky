@@ -8,30 +8,62 @@
   Camera.cpp
   Cube.cpp
   MonkeyMath.cpp
-C:\Work_new\EngineCourse\Monky\MonkyGL\MonkeyMath.cpp(31,15): warning C4101: 'Pdum3': unreferenced local variable
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkeyMath.cpp(31,15): warning C4101: 'Pdum3': unreferenced local variable
   Mesh.cpp
   MonkyGraphics.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
-C:\Work_new\EngineCourse\Monky\Dependencies\Glad\include\glad\glad.h(650,1): message : see previous definition of 'APIENTRY'
-C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(47,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(48,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(74,38): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(74,30): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(89,20): warning C4018: '<': signed/unsigned mismatch
-C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(94,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(107,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\Glad\include\glad\glad.h(650,1): message : see previous definition of 'APIENTRY'
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(47,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(48,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(74,38): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(74,30): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(89,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(94,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(107,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   ObjLoader.cpp
   OpenGLFrameBuffer.cpp
-C:\Work_new\EngineCourse\Monky\MonkyGL\OpenGLFrameBuffer.cpp(54,8): warning C4101: 'no': unreferenced local variable
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\OpenGLFrameBuffer.cpp(54,8): warning C4101: 'no': unreferenced local variable
   Shader.cpp
   Square.cpp
   stb_image.cpp
   Texture.cpp
   Triangle.cpp
   VirtualObject.cpp
+  Running Code Analysis for C/C++...
   Generating Code...
   Compiling...
   Window.cpp
+  Running Code Analysis for C/C++...
   Generating Code...
   glad.c
-  MonkyGL.vcxproj -> C:\Work_new\EngineCourse\Monky\Debug\MonkyGL.lib
+  MonkyGL.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyGL.lib
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(10308): warning C33010: Unchecked lower bound for enum source used as index..
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(10314): warning C33010: Unchecked lower bound for enum source used as index..
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(16232): warning C6011: Dereferencing NULL pointer 'window->Viewport'. 
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(16237): warning C6011: Dereferencing NULL pointer 'window'. See line 16108 for an earlier location where this can occur
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(17306): warning C6011: Dereferencing NULL pointer 'node'. See line 17217 for an earlier location where this can occur
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(17537): warning C6011: Dereferencing NULL pointer 'node->TabBar'. 
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(17724): warning C28182: Dereferencing NULL pointer. 'node' contains the same NULL value as 'info->CentralNode' did. See line 17710 for an earlier location where this can occur
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(19071): warning C6011: Dereferencing NULL pointer 'merge_lead_child'. 
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(20110): warning C6011: Dereferencing NULL pointer 'node'. 
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui.cpp(20181): warning C28182: Dereferencing NULL pointer. 'window->DockNode' contains the same NULL value as 'node' did. See line 20110 for an earlier location where this can occur
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui_demo.cpp(9924): warning C6011: Dereferencing NULL pointer 'p_open'. 
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imstb_truetype.h(2148): warning C26819: Unannotated fallthrough between switch labels (es.78).
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui_impl_glfw.cpp(782): warning C26451: Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui_impl_glfw.cpp(782): warning C26451: Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui_impl_opengl3_loader.h(807): warning C6031: Return value ignored: 'sscanf'.
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui_impl_opengl3.cpp(319): warning C6031: Return value ignored: 'sscanf'.
+C:\Users\Martin.Andersson\Documents\Place\Monky\imgui\imgui_impl_opengl3.cpp(782): warning C6031: Return value ignored: 'sscanf'.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkeyMath.cpp(36): warning C6001: Using uninitialized memory 'Row'.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\Mesh.cpp(9): warning C26495: Variable 'Mesh::VBO' is uninitialized. Always initialize a member variable (type.6).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\Mesh.cpp(14): warning C26495: Variable 'Mesh::EBO' is uninitialized. Always initialize a member variable (type.6).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\MonkyGraphics.cpp(22): warning C26495: Variable 'Gorilla::Graphics::window' is uninitialized. Always initialize a member variable (type.6).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\OpenGLFrameBuffer.h(12): warning C26495: Variable 'Gorilla::FrameBufferSpecification::height' is uninitialized. Always initialize a member variable (type.6).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\Square.cpp(18): warning C26444: Don't try to declare a local variable with no name (es.84).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\stb_image.h(1895): warning C26451: Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\stb_image.h(5747): warning C26819: Unannotated fallthrough between switch labels (es.78).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\stb_image.h(6963): warning C6262: Function uses '34968' bytes of stack.  Consider moving some data to heap.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\stb_image.h(7048): warning C6262: Function uses '34932' bytes of stack.  Consider moving some data to heap.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\stb_image.h(7149): warning C26819: Unannotated fallthrough between switch labels (es.78).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\stb_image.h(7152): warning C26819: Unannotated fallthrough between switch labels (es.78).
+C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\Math\glm\detail\type_quat.inl(220): warning C26495: Variable 'glm::qua<float,0>::<unnamed-tag>::data' is uninitialized. Always initialize a member variable (type.6).

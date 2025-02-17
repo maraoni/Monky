@@ -1,0 +1,495 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C6011",
+          "message": {
+            "text": "Dereferencing NULL pointer 'p_open'. "
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                },
+                "region": {
+                  "startLine": 9924,
+                  "startColumn": 18,
+                  "endLine": 9924,
+                  "endColumn": 27
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ShowExampleAppDockSpace",
+                  "decoratedName": "?ShowExampleAppDockSpace@@YAXPA_N@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9851,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9852,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9853,
+                            "startColumn": 31
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9857,
+                            "startColumn": 22
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9858,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9871,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9876,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9884,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9886,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9887,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9890,
+                            "startColumn": 9
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9894,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9895,
+                            "startColumn": 24
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9902,
+                            "startColumn": 35
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9905,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9907,
+                            "startColumn": 29
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9911,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9912,
+                            "startColumn": 28
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9913,
+                            "startColumn": 29
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9915,
+                            "startColumn": 32
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9916,
+                            "startColumn": 32
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9917,
+                            "startColumn": 32
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9918,
+                            "startColumn": 32
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9919,
+                            "startColumn": 32
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9920,
+                            "startColumn": 32
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9921,
+                            "startColumn": 29
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9923,
+                            "startColumn": 32
+                          }
+                        },
+                        "message": {
+                          "text": "'p_open' may be NULL (Enter this branch)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+                          },
+                          "region": {
+                            "startLine": 9924,
+                            "startColumn": 25
+                          }
+                        },
+                        "message": {
+                          "text": "'p_open' is dereferenced, but may still be NULL"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.36.32542.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/imgui/imgui_demo.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "4d5587449a217c1a8f7b9b280c50ab60e4f32ff3b40dd9c918941ce8efd53df6"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imgui.h"
+          },
+          "hashes": {
+            "sha-256": "47c44412067480117bf51c1eb76cd04a320f89e1744e6c2c76f036cdc1c2a144"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imconfig.h"
+          },
+          "hashes": {
+            "sha-256": "bd89b32de6a8a286700383bae47b4f4bba753ba13058d1a350770c5232b2e4e8"
+          }
+        }
+      ]
+    }
+  ]
+}

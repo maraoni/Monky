@@ -1,0 +1,2753 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.5.json",
+  "runs": [
+    {
+      "results": [
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mCurrentOperation' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mCurrentOperation"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mBoundsBestAxis' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mBoundsBestAxis"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mBelowPlaneLimit' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mBelowPlaneLimit"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mBoundsAxis' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mBoundsAxis"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mAxisFactor' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mAxisFactor"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mBoundsPivot' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mBoundsPivot"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mBoundsMatrix' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mBoundsMatrix"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mModelScaleOrigin' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mModelScaleOrigin"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mBoundsLocalPivot' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mBoundsLocalPivot"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mViewMat' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mViewMat"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mCameraRight' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mCameraRight"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mModel' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mModel"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mMVP' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mMVP"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mProjectionMat' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mProjectionMat"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mBoundsAnchor' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mBoundsAnchor"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mBoundsPlan' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mBoundsPlan"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mMode' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mMode"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mCameraEye' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mCameraEye"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mBelowAxisLimit' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mBelowAxisLimit"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mScreenFactor' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mScreenFactor"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mMVPLocal' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mMVPLocal"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mScaleValueOrigin' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mScaleValueOrigin"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mCameraDir' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mCameraDir"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mRotationVectorSource' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mRotationVectorSource"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mRelativeOrigin' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mRelativeOrigin"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mRadiusSquareCenter' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mRadiusSquareCenter"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mModelLocal' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mModelLocal"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mDrawList' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mDrawList"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mModelInverse' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mModelInverse"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mbMouseOver' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mbMouseOver"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mReversed' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mReversed"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mRayOrigin' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mRayOrigin"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mRotationAngleOrigin' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mRotationAngleOrigin"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mCameraUp' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mCameraUp"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mViewProjection' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mViewProjection"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mScaleLast' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mScaleLast"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mSaveMousePosx' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mSaveMousePosx"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mRayVector' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mRayVector"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mModelSourceInverse' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mModelSourceInverse"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mTranslationPlan' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mTranslationPlan"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mTranslationPlanOrigin' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mTranslationPlanOrigin"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mModelSource' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mModelSource"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mMatrixOrigin' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mMatrixOrigin"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mScale' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mScale"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mTranslationLastDelta' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mTranslationLastDelta"
+          }
+        },
+        {
+          "ruleId": "C26495",
+          "message": {
+            "text": "Variable 'ImGuizmo::Context::mRotationAngle' is uninitialized. Always initialize a member variable (type.6)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 669,
+                  "startColumn": 7,
+                  "endLine": 669,
+                  "endColumn": 7
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::Context::{ctor}",
+                  "decoratedName": "??0Context@ImGuizmo@@QAE@XZ",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "properties": {
+            "targetSymbol": "ImGuizmo::Context::mRotationAngle"
+          }
+        },
+        {
+          "ruleId": "C6255",
+          "message": {
+            "text": "`_alloca` indicates failure by raising a stack overflow exception.  Consider using _malloca instead."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1314,
+                  "startColumn": 39,
+                  "endLine": 1314,
+                  "endColumn": 101
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::DrawRotationGizmo",
+                  "decoratedName": "?DrawRotationGizmo@ImGuizmo@@YAXW4OPERATION@1@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6263",
+          "message": {
+            "text": "Using `_alloca` in a loop."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1314,
+                  "startColumn": 39,
+                  "endLine": 1314,
+                  "endColumn": 101
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::DrawRotationGizmo",
+                  "decoratedName": "?DrawRotationGizmo@ImGuizmo@@YAXW4OPERATION@1@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1298,
+                            "startColumn": 7
+                          }
+                        }
+                      },
+                      "importance": "important"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1361,
+                  "startColumn": 84,
+                  "endLine": 1361,
+                  "endColumn": 117
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::DrawRotationGizmo",
+                  "decoratedName": "?DrawRotationGizmo@ImGuizmo@@YAXW4OPERATION@1@H@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6001",
+          "message": {
+            "text": "Using uninitialized memory 'axesWorldDirections'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1727,
+                  "startColumn": 35,
+                  "endLine": 1727,
+                  "endColumn": 35
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1661,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1662,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1665,
+                            "startColumn": 13
+                          }
+                        },
+                        "message": {
+                          "text": "'axesWorldDirections' is not initialized"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "essential"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1666,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1667,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1668,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1669,
+                            "startColumn": 15
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1670,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1671,
+                            "startColumn": 11
+                          }
+                        },
+                        "message": {
+                          "text": "Skip this branch, (assume '!gContext.mbUsingBounds' is false)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1698,
+                            "startColumn": 19
+                          }
+                        },
+                        "message": {
+                          "text": "Skip this branch, (assume 'numAxes==0' is false)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1705,
+                            "startColumn": 25
+                          }
+                        },
+                        "message": {
+                          "text": "Skip this branch, (assume 'bestAxis!=axes[0]' is false)"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1724,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1724,
+                            "startColumn": 50
+                          }
+                        },
+                        "message": {
+                          "text": "Enter this loop, (assume 'axisIndex<numAxes')"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1726,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1727,
+                            "startColumn": 33
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1730,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1732,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1733,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1735,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1727,
+                            "startColumn": 35
+                          }
+                        },
+                        "message": {
+                          "text": "'axesWorldDirections' is used, but may not have been initialized"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6001",
+          "message": {
+            "text": "Using uninitialized memory 'aabb'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1737,
+                  "startColumn": 26,
+                  "endLine": 1737,
+                  "endColumn": 26
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1661,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1662,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1665,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1666,
+                            "startColumn": 13
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1667,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1668,
+                            "startColumn": 20
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1669,
+                            "startColumn": 15
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1670,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1671,
+                            "startColumn": 11
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1698,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1705,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1724,
+                            "startColumn": 25
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1724,
+                            "startColumn": 50
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1726,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1727,
+                            "startColumn": 33
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1730,
+                            "startColumn": 16
+                          }
+                        },
+                        "message": {
+                          "text": "'aabb' is not initialized"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "essential"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1732,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1733,
+                            "startColumn": 14
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1735,
+                            "startColumn": 19
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1735,
+                            "startColumn": 28
+                          }
+                        },
+                        "message": {
+                          "text": "Enter this loop, (assume 'i<4')"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1737,
+                            "startColumn": 24
+                          }
+                        },
+                        "message": {
+                          "text": "'aabb' is an Output from 'ImGuizmo::vec_t::[]' (declared on line 265)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1738,
+                            "startColumn": 33
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1739,
+                            "startColumn": 32
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 1737,
+                            "startColumn": 26
+                          }
+                        },
+                        "message": {
+                          "text": "'aabb' is used, but may not have been initialized"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1901,
+                  "startColumn": 19,
+                  "endLine": 1901,
+                  "endColumn": 116
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1901,
+                  "startColumn": 19,
+                  "endLine": 1901,
+                  "endColumn": 86
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1901,
+                  "startColumn": 19,
+                  "endLine": 1901,
+                  "endColumn": 39
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1902,
+                  "startColumn": 19,
+                  "endLine": 1902,
+                  "endColumn": 116
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1902,
+                  "startColumn": 19,
+                  "endLine": 1902,
+                  "endColumn": 86
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1902,
+                  "startColumn": 19,
+                  "endLine": 1902,
+                  "endColumn": 39
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1903,
+                  "startColumn": 19,
+                  "endLine": 1903,
+                  "endColumn": 116
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1903,
+                  "startColumn": 19,
+                  "endLine": 1903,
+                  "endColumn": 86
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C26451",
+          "message": {
+            "text": "Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 1903,
+                  "startColumn": 19,
+                  "endLine": 1903,
+                  "endColumn": 39
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::HandleAndDrawLocalBounds",
+                  "decoratedName": "?HandleAndDrawLocalBounds@ImGuizmo@@YAXPBMPAUmatrix_t@1@0W4OPERATION@1@@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "C6001",
+          "message": {
+            "text": "Using uninitialized memory 'rot'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                },
+                "region": {
+                  "startLine": 2527,
+                  "startColumn": 10,
+                  "endLine": 2527,
+                  "endColumn": 10
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "ImGuizmo::RecomposeMatrixFromComponents",
+                  "decoratedName": "?RecomposeMatrixFromComponents@ImGuizmo@@YAXPBM00PAM@Z",
+                  "kind": "function"
+                }
+              ]
+            }
+          ],
+          "codeFlows": [
+            {
+              "threadFlows": [
+                {
+                  "locations": [
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 2522,
+                            "startColumn": 17
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 2524,
+                            "startColumn": 16
+                          }
+                        },
+                        "message": {
+                          "text": "'rot' is not initialized"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "essential"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 2525,
+                            "startColumn": 16
+                          }
+                        }
+                      },
+                      "importance": "unimportant"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 2525,
+                            "startColumn": 25
+                          }
+                        },
+                        "message": {
+                          "text": "Enter this loop, (assume 'i<3')"
+                        }
+                      },
+                      "kinds": [
+                        "branch"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 2527,
+                            "startColumn": 29
+                          }
+                        },
+                        "message": {
+                          "text": "'rot' is an Output from 'ImGuizmo::matrix_t::RotationAxis' (declared on line 397)"
+                        }
+                      },
+                      "kinds": [
+                        "declaration"
+                      ],
+                      "importance": "important"
+                    },
+                    {
+                      "location": {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+                          },
+                          "region": {
+                            "startLine": 2527,
+                            "startColumn": 10
+                          }
+                        },
+                        "message": {
+                          "text": "'rot' is used, but may not have been initialized"
+                        }
+                      },
+                      "kinds": [
+                        "usage"
+                      ],
+                      "importance": "essential"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "tool": {
+        "driver": {
+          "name": "PREfast",
+          "fullName": "PREfast Code Analysis",
+          "version": "14.36.32542.0",
+          "informationUri": "https://aka.ms/cpp/ca"
+        }
+      },
+      "invocations": [
+        {
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/Users/Martin.Andersson/Documents/Place/Monky/MonkyEditor/ImGuizmo.cpp"
+          },
+          "roles": [
+            "analysisTarget",
+            "resultFile"
+          ],
+          "hashes": {
+            "sha-256": "64ca3c0f167bd746acdc6e42b05007d4b25e9ebd5cf6f1a6a2951cb13cfc8657"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imgui.h"
+          },
+          "hashes": {
+            "sha-256": "47c44412067480117bf51c1eb76cd04a320f89e1744e6c2c76f036cdc1c2a144"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imconfig.h"
+          },
+          "hashes": {
+            "sha-256": "bd89b32de6a8a286700383bae47b4f4bba753ba13058d1a350770c5232b2e4e8"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/imgui/imgui_internal.h"
+          },
+          "hashes": {
+            "sha-256": "763dc48fddefe8db393be2c588f36fd894e43589a60855cedd2d0c3f0ce63f7c"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///c:/users/martin.andersson/documents/place/monky/monkyeditor/imguizmo.h"
+          },
+          "hashes": {
+            "sha-256": "538d59be68fe25284e067f7f60f5a8e08b6599ca873b8a26b102de9bb1bb95ed"
+          }
+        }
+      ]
+    }
+  ]
+}

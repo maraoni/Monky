@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\Dependencies\Math\glm\detail\</FILEPATH>
+      <FILENAME>type_quat.inl</FILENAME>
+      <LINE>220</LINE>
+      <COLUMN>45</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'glm::qua&lt;float,0&gt;::&lt;unnamed-tag&gt;::data' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>glm::qua&lt;float,0&gt;::{ctor}</FUNCTION>
+    <DECORATED>??0?$qua@M$0A@@glm@@QAE@ABU?$vec@$02M$0A@@1@@Z</DECORATED>
+    <FUNCLINE>220</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>glm::qua&lt;float,0&gt;::&lt;unnamed-tag&gt;::data</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

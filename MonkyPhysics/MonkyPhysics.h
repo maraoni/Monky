@@ -8,7 +8,7 @@
 const float GravityMultiplier = -9.82f;
 const float Restitution = 0.2f;
 const float LinearDrag = 0.32f;
-const float AngularDrag = 0.001f;
+const float AngularDrag = 0.000005f;
 
 namespace Engine
 {

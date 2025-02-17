@@ -1,0 +1,2 @@
+C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyEditor.lib.lastcodeanalysissucceeded
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\Debug\NativeCodeAnalysis.read.1.tlog

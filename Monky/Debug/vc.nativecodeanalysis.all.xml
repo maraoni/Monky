@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyPhysics\</FILEPATH>
+      <FILENAME>Collisions.h</FILENAME>
+      <LINE>30</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Banana::Collider::mass' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Banana::Collider::{ctor}</FUNCTION>
+    <DECORATED>??0Collider@Banana@@QAE@XZ</DECORATED>
+    <FUNCLINE>30</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Banana::Collider::mass</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyPhysics\</FILEPATH>
+      <FILENAME>Raycast.h</FILENAME>
+      <LINE>25</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'RayHit::collider' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>RayHit::{ctor}</FUNCTION>
+    <DECORATED>??0RayHit@@QAE@XZ</DECORATED>
+    <FUNCLINE>25</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>RayHit::collider</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\</FILEPATH>
+      <FILENAME>OpenGLFrameBuffer.h</FILENAME>
+      <LINE>12</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Gorilla::FrameBufferSpecification::width' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Gorilla::FrameBufferSpecification::{ctor}</FUNCTION>
+    <DECORATED>??0FrameBufferSpecification@Gorilla@@QAE@XZ</DECORATED>
+    <FUNCLINE>12</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Gorilla::FrameBufferSpecification::width</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

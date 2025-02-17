@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\</FILEPATH>
+      <FILENAME>OpenGLFrameBuffer.h</FILENAME>
+      <LINE>12</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Gorilla::FrameBufferSpecification::height' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Gorilla::FrameBufferSpecification::{ctor}</FUNCTION>
+    <DECORATED>??0FrameBufferSpecification@Gorilla@@QAE@XZ</DECORATED>
+    <FUNCLINE>12</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Gorilla::FrameBufferSpecification::height</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\</FILEPATH>
+      <FILENAME>OpenGLFrameBuffer.h</FILENAME>
+      <LINE>12</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Gorilla::FrameBufferSpecification::width' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Gorilla::FrameBufferSpecification::{ctor}</FUNCTION>
+    <DECORATED>??0FrameBufferSpecification@Gorilla@@QAE@XZ</DECORATED>
+    <FUNCLINE>12</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Gorilla::FrameBufferSpecification::width</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

@@ -50,6 +50,8 @@ namespace Banana
 
 	void MonkyPhysics::ApplyVelocity(std::vector<Collider*> colliders, const float& dt)
 	{
+
+
 		for (Collider* c : colliders)
 		{
 			if (!c->isKinematic)
@@ -72,8 +74,12 @@ namespace Banana
 				}
 				if (c->mass > 0)
 				{
-					c->angularVelocity *= glm::pow(1.0f - AngularDrag, dt);
+					c->angularVelocity *= glm::exp(-AngularDrag * dt);
 				}
+
+				glm::mat3 rotationMatrix = glm::mat3(c->transform);
+				glm::mat3 inertiaTensorInWorldSpace = rotationMatrix * c->momentOfInertia * glm::transpose(rotationMatrix);
+				c->inverseMomentOfInertia = glm::inverse(inertiaTensorInWorldSpace);
 			}
 			else
 			{
@@ -111,6 +117,66 @@ namespace Banana
 
 	void MonkyPhysics::HandleStaticDynamic(std::vector<Collision> collisions)
 	{
+		//const float RollingFriction = 0.1f; // Adjust this value to control rolling friction
+
+		//for (Collision c : collisions)
+		//{
+		//	Collider* A = c.col1;
+		//	Collider* B = c.col2;
+
+		//	bool A_isDynamic = !A->isKinematic;
+		//	bool B_isDynamic = !B->isKinematic;
+
+		//	if (!A_isDynamic && !B_isDynamic) continue;
+
+		//	Collider* dynamicCollider = A_isDynamic ? A : B;
+		//	Collider* staticCollider = A_isDynamic ? B : A;
+
+		//	glm::vec3 n = glm::normalize(c.normal);
+		//	glm::vec3 r = c.point - dynamicCollider->position;
+
+		//	glm::vec3 v = dynamicCollider->velocity + glm::cross(dynamicCollider->angularVelocity, r);
+		//	float vRelDotN = glm::dot(v, n);
+
+		//	if (vRelDotN > 0) continue;
+
+		//	// Calculate the impulse magnitude
+		//	float invMass = (dynamicCollider->mass > 0) ? 1.0f / dynamicCollider->mass : 0;
+		//	glm::vec3 r_cross_n = glm::cross(r, n);
+		//	float angularEffect = glm::dot(r_cross_n, dynamicCollider->inverseMomentOfInertia * r_cross_n);
+
+		//	float impulseMagnitude = -(1 + Restitution) * vRelDotN / (invMass + angularEffect);
+		//	glm::vec3 impulse = impulseMagnitude * n;
+
+		//	// Apply impulse to linear velocity
+		//	dynamicCollider->velocity += impulse * invMass;
+
+		//	// Apply angular velocity (considering moment of inertia)
+		//	dynamicCollider->angularVelocity += dynamicCollider->inverseMomentOfInertia * glm::cross(r, impulse);
+
+		//	// Calculate and apply rolling friction if there is any tangential velocity
+		//	glm::vec3 tangentVelocity = v - (n * glm::dot(v, n));
+		//	if (glm::length(tangentVelocity) > 0.0001f)
+		//	{
+		//		// The friction force should be applied in the opposite direction of the tangent velocity
+		//		glm::vec3 frictionDirection = -glm::normalize(tangentVelocity);
+
+		//		// We apply the rolling friction proportional to the velocity
+		//		float frictionImpulseMagnitude = glm::length(tangentVelocity) * RollingFriction;
+
+		//		// Prevent friction impulse from being larger than the normal impulse
+		//		glm::vec3 frictionImpulse = frictionDirection * glm::min(frictionImpulseMagnitude, impulseMagnitude);
+
+		//		// Apply the friction impulse to linear velocity
+		//		dynamicCollider->velocity += frictionImpulse * invMass;
+
+		//		// Apply angular impulse for rolling friction
+		//		dynamicCollider->angularVelocity += dynamicCollider->inverseMomentOfInertia * glm::cross(r, frictionImpulse);
+		//	}
+		//}
+
+		const float SlidingFriction = 0.5f; // Adjust this value to control sliding friction for boxes
+
 		for (Collision c : collisions)
 		{
 			Collider* A = c.col1;
@@ -132,17 +198,36 @@ namespace Banana
 
 			if (vRelDotN > 0) continue;
 
+			// Calculate the impulse magnitude
 			float invMass = (dynamicCollider->mass > 0) ? 1.0f / dynamicCollider->mass : 0;
-
 			glm::vec3 r_cross_n = glm::cross(r, n);
 			float angularEffect = glm::dot(r_cross_n, dynamicCollider->inverseMomentOfInertia * r_cross_n);
 
 			float impulseMagnitude = -(1 + Restitution) * vRelDotN / (invMass + angularEffect);
 			glm::vec3 impulse = impulseMagnitude * n;
 
+			// Apply impulse to linear velocity
 			dynamicCollider->velocity += impulse * invMass;
 
+			// Apply angular velocity (considering moment of inertia)
 			dynamicCollider->angularVelocity += dynamicCollider->inverseMomentOfInertia * glm::cross(r, impulse);
+
+			// Calculate and apply sliding friction (no rolling for boxes)
+			glm::vec3 tangentVelocity = v - (n * glm::dot(v, n));
+			if (glm::length(tangentVelocity) > 0.0001f)
+			{
+				// The friction force should be applied in the opposite direction of the tangent velocity
+				glm::vec3 frictionDirection = -glm::normalize(tangentVelocity);
+
+				// Apply sliding friction proportional to the normal force
+				glm::vec3 frictionImpulse = frictionDirection * SlidingFriction * glm::length(tangentVelocity);
+
+				// Apply the friction impulse to linear velocity
+				dynamicCollider->velocity += frictionImpulse * invMass;
+
+				// Apply angular impulse for friction (for box sliding)
+				dynamicCollider->angularVelocity += dynamicCollider->inverseMomentOfInertia * glm::cross(r, frictionImpulse);
+			}
 		}
 	}
 
@@ -171,8 +256,8 @@ namespace Banana
 			glm::vec3 torque2 = glm::cross(r2, impulseVector);
 
 			// Rotate! sort of....
-			c.col1->angularVelocity += c.col1->inverseMomentOfInertia * torque1 * 100000000.0f;
-			c.col2->angularVelocity -= c.col2->inverseMomentOfInertia * torque2 * 100000000.0f;
+			c.col1->angularVelocity += c.col1->inverseMomentOfInertia * torque1;
+			c.col2->angularVelocity -= c.col2->inverseMomentOfInertia * torque2;
 		}
 	}
 
@@ -191,11 +276,6 @@ namespace Banana
 
 				col->transform = trans;
 				col->position = glm::vec3(trans[3]);
-
-				glm::mat3 rotationMatrix = glm::mat3(col->transform);
-				glm::mat3 inertiaTensorInWorldSpace = rotationMatrix * col->momentOfInertia * glm::transpose(rotationMatrix);
-
-				col->inverseMomentOfInertia = inertiaTensorInWorldSpace;
 
 				cols.push_back(col);
 			}

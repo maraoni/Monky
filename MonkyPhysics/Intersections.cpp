@@ -157,11 +157,10 @@ namespace Banana
 		glm::vec3 translation = glm::vec3(aBox2.transform[3]) - glm::vec3(aBox1.transform[3]);
 
 		glm::mat3 rotation = rotation1 * glm::transpose(rotation2);
-		glm::mat3 absRotation = glm::mat3(
-			glm::abs(rotation[0]) + 0.000001f,
-			glm::abs(rotation[1]) + 0.000001f,
-			glm::abs(rotation[2]) + 0.000001f
-		);
+		glm::mat3 absRotation;
+		for (int i = 0; i < 3; ++i) {
+			absRotation[i] = glm::abs(rotation[i]) + 0.000001f;
+		}
 
 		float minPenetration = FLT_MAX;
 		glm::vec3 bestAxis = glm::vec3(0.0f);
@@ -199,12 +198,12 @@ namespace Banana
 			for (int j = 0; j < 3; ++j) {
 				glm::vec3 axis = glm::cross(rotation1[i], rotation2[j]);
 
-				if (glm::length(axis) < 0.0001f) continue;
+				if (glm::length(axis) < 0.001f) continue;
 				axis = glm::normalize(axis);
 
 				float ra = glm::dot(aBox1.extents, glm::abs(rotation1 * axis));
 				float rb = glm::dot(aBox2.extents, glm::abs(rotation2 * axis));
-				float penetration = (ra + rb) - glm::abs(glm::dot(translation, axis));
+				float penetration = (ra + rb) - glm::abs(glm::dot(glm::normalize(translation), axis)) * glm::length(translation);
 
 				if (penetration < 0.0f) return returnCollision;
 
@@ -221,7 +220,7 @@ namespace Banana
 			normal = -normal;
 		}
 
-		// Compute contact point
+		// Compute contact point (approximate)
 		glm::vec3 contactPoint = glm::vec3(aBox1.transform[3]) + normal * minPenetration * 0.5f;
 
 		return { const_cast<BoxCollider*>(&aBox1), const_cast<BoxCollider*>(&aBox2), contactPoint, normal };
@@ -236,22 +235,27 @@ namespace Banana
 
 		if (dist2 < aSphere2.radius * aSphere2.radius)
 		{
-			glm::vec3 normal = glm::normalize(localSphereCenter - closestPoint);
+			glm::vec3 normal = localSphereCenter - closestPoint;
+			if (glm::length(normal) > 0.0001f)
+				normal = glm::normalize(normal);
+			else
+				normal = glm::vec3(1, 0, 0); // Fallback normal
+
 			glm::vec3 worldContactPoint = aBox1.transform * glm::vec4(closestPoint, 1.0f);
 			return { const_cast<BoxCollider*>(&aBox1), const_cast<SphereCollider*>(&aSphere2), worldContactPoint, normal };
 		}
 
-		return { nullptr, nullptr, glm::vec3(0) };
+		return { nullptr, nullptr, glm::vec3(0), glm::vec3(0) };
 	}
 
 	Collision PlaneBoxIntersect(const PlaneCollider& aPlane, const BoxCollider& aBox)
 	{
 		Collision returnCollision = { nullptr, nullptr, glm::vec3(), glm::vec3() };
-		
+
 		glm::vec3 boxPos = glm::vec3(aBox.transform[3]);
 		glm::mat3 rotation = glm::mat3(aBox.transform);
 		glm::vec3 normal = glm::normalize(aPlane.normal);
-		
+
 		glm::vec3 corners[8];
 		for (int i = 0; i < 8; ++i)
 		{
@@ -262,7 +266,7 @@ namespace Banana
 			);
 			corners[i] = boxPos + rotation * offset;
 		}
-		
+
 		int inFront = 0, behind = 0;
 		for (const auto& corner : corners)
 		{
@@ -270,29 +274,39 @@ namespace Banana
 			if (dist > 0) inFront++;
 			else behind++;
 		}
-		
+
 		if (inFront > 0 && behind > 0)
 		{
 			glm::vec3 contactPoint = boxPos - normal * (glm::dot(normal, boxPos) - aPlane.distance);
+
+			// Position correction
+			glm::vec3 correction = normal * glm::abs(glm::dot(normal, boxPos) - aPlane.distance);
+			boxPos -= correction; // Adjust the position of the box to prevent penetration
+
 			return { const_cast<PlaneCollider*>(&aPlane), const_cast<BoxCollider*>(&aBox), contactPoint, normal };
 		}
-		
+
 		return returnCollision;
 	}
 
 	Collision PlaneSphereIntersect(const PlaneCollider& aPlane, const SphereCollider& aSphere)
 	{
-
 		glm::vec3 normal = glm::normalize(aPlane.normal);
 		float d = glm::dot(normal, aPlane.position);
 		float distance = glm::dot(normal, aSphere.position) - d;
-		
-		if (glm::abs(distance) <= aSphere.radius)
+
+		if (distance < aSphere.radius) // Collision detected
 		{
 			glm::vec3 collisionPoint = aSphere.position - normal * distance;
+
+			// --- Position Correction ---
+			float penetrationDepth = aSphere.radius - distance;
+			glm::vec3 correction = normal * penetrationDepth;
+			const_cast<SphereCollider*>(&aSphere)->position += correction; // Push the sphere out
+
 			return { const_cast<PlaneCollider*>(&aPlane), const_cast<SphereCollider*>(&aSphere), collisionPoint, normal };
 		}
-		
+
 		return { nullptr, nullptr, glm::vec3(), glm::vec3() };
 	}
 }

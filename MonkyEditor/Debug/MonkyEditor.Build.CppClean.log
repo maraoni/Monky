@@ -1,5 +1,17 @@
 c:\users\martin.andersson\documents\place\monky\debug\monkyeditor.pdb
 c:\users\martin.andersson\documents\place\monky\debug\monkyeditor.idb
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\gizmotest.nativecodeanalysis.sarif
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\gizmotest.nativecodeanalysis.xml
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\imguizmo.nativecodeanalysis.sarif
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\imguizmo.nativecodeanalysis.xml
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\monkygui.nativecodeanalysis.sarif
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\monkygui.nativecodeanalysis.xml
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\objectentry.nativecodeanalysis.sarif
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\objectentry.nativecodeanalysis.xml
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\resourceeditor.nativecodeanalysis.sarif
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\resourceeditor.nativecodeanalysis.xml
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\shadereditor.nativecodeanalysis.sarif
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\shadereditor.nativecodeanalysis.xml
 c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\shadereditor.obj
 c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\resourceeditor.obj
 c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\objectentry.obj
@@ -7,6 +19,7 @@ c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\monkygui.obj
 c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\imguizmo.obj
 c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\gizmotest.obj
 c:\users\martin.andersson\documents\place\monky\debug\monkyeditor.lib
+c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\vc.nativecodeanalysis.all.xml
 c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\monkyeditor.tlog\cl.command.1.tlog
 c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\monkyeditor.tlog\cl.items.tlog
 c:\users\martin.andersson\documents\place\monky\monkyeditor\debug\monkyeditor.tlog\cl.read.1.tlog

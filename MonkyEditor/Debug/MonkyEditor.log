@@ -1,5 +1,6 @@
 ﻿  GizmoTest.cpp
 C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\GizmoTest.cpp(63,17): warning C4551: function call missing argument list
+  ImGuizmo.cpp
   MonkyGUI.cpp
 C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\MonkyGUI.cpp(154,56): warning C4244: 'argument': conversion from 'T' to 'const unsigned int', possible loss of data
           with
@@ -12,5 +13,26 @@ C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\MonkyGUI.cpp(154,38)
               T=float
           ]
   ObjectEntry.cpp
+  ResourceEditor.cpp
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ResourceEditor.cpp(93,20): warning C4018: '<': signed/unsigned mismatch
+  ShaderEditor.cpp
+  Running Code Analysis for C/C++...
   Generating Code...
   MonkyEditor.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyEditor.lib
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(669): warning C26495: Variable 'ImGuizmo::Context::mCurrentOperation' is uninitialized. Always initialize a member variable (type.6).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1314): warning C6255: `_alloca` indicates failure by raising a stack overflow exception.  Consider using _malloca instead.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1314): warning C6263: Using `_alloca` in a loop.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1361): warning C26451: Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1727): warning C6001: Using uninitialized memory 'axesWorldDirections'.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1737): warning C6001: Using uninitialized memory 'aabb'.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1901): warning C26451: Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1901): warning C26451: Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1901): warning C26451: Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1902): warning C26451: Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1902): warning C26451: Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1902): warning C26451: Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1903): warning C26451: Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1903): warning C26451: Arithmetic overflow: Using operator '*' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '*' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(1903): warning C26451: Arithmetic overflow: Using operator '-' on a 4 byte value and then casting the result to a 8 byte value. Cast the value to the wider type before calling operator '-' to avoid overflow (io.2).
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\ImGuizmo.cpp(2527): warning C6001: Using uninitialized memory 'rot'.
+C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyEditor\MonkyGUI.cpp(32): warning C26495: Variable 'Chimp::MonkyGUI::m_ViewportBounds' is uninitialized. Always initialize a member variable (type.6).

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\Martin.Andersson\Documents\Place\Monky\MonkyGL\</FILEPATH>
+      <FILENAME>Square.cpp</FILENAME>
+      <LINE>18</LINE>
+      <COLUMN>5</COLUMN>
+    </SFA>
+    <DEFECTCODE>26444</DEFECTCODE>
+    <DESCRIPTION>Don't try to declare a local variable with no name (es.84).</DESCRIPTION>
+    <FUNCTION>Square::{ctor}</FUNCTION>
+    <DECORATED>??0Square@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

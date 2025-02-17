@@ -95,9 +95,13 @@ namespace Banana
 			bool B_isDynamic = !c.col2->isKinematic;
 
 			if (A_isDynamic && B_isDynamic)
+			{
 				dynamicDynamicCollisions.push_back(c);
+			}
 			else
+			{
 				staticDynamicCollisions.push_back(c);
+			}
 		}
 
 		HandleDynamicDynamic(dynamicDynamicCollisions);

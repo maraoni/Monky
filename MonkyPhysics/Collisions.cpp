@@ -14,3 +14,9 @@ glm::mat3 Banana::ComputeMomentOfInertiaBox(float mass, glm::vec3 extents)
 	return inertiaTensor;
 
 }
+
+glm::mat3 Banana::ComputeMomentOfInertiaSphere(float mass, float radius)
+{
+	float inertiaScalar = (2.0f / 3.0f) * mass * (radius * radius);
+	return glm::mat3(inertiaScalar);
+}

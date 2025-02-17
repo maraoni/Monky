@@ -6,6 +6,9 @@
 #include "Raycast.h"
 
 const float GravityMultiplier = -9.82f;
+const float Restitution = 0.2f;
+const float LinearDrag = 0.32f;
+const float AngularDrag = 0.001f;
 
 namespace Engine
 {
@@ -35,7 +38,11 @@ namespace Banana
 
 		void ApplyGravity(std::vector<Collider*> colliders, const float& dt);
 		void ApplyVelocity(std::vector<Collider*> colliders, const float& dt);
+
 		void HandleCollisions(std::vector<Collision> collisions);
+		void HandleStaticDynamic(std::vector<Collision> collisions);
+		void HandleDynamicDynamic(std::vector<Collision> collisions);
+
 		std::vector<Collider*> UpdatePhysicsScene();
 		std::vector<Collision> CheckIntersections(std::vector<Collider*> colliders);
 		void UpdateVisuals();

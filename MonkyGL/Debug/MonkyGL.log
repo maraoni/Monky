@@ -1,2 +1,37 @@
-﻿  Mesh.cpp
-  MonkyGL.vcxproj -> C:\Users\Martin.Andersson\Documents\Place\Monky\Debug\MonkyGL.lib
+﻿  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_glfw.cpp
+  imgui_impl_opengl3.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  Camera.cpp
+  Cube.cpp
+  MonkeyMath.cpp
+C:\Work_new\EngineCourse\Monky\MonkyGL\MonkeyMath.cpp(31,15): warning C4101: 'Pdum3': unreferenced local variable
+  Mesh.cpp
+  MonkyGraphics.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared\minwindef.h(130,1): warning C4005: 'APIENTRY': macro redefinition
+C:\Work_new\EngineCourse\Monky\Dependencies\Glad\include\glad\glad.h(650,1): message : see previous definition of 'APIENTRY'
+C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(47,12): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(48,13): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(74,38): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(74,30): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(89,20): warning C4018: '<': signed/unsigned mismatch
+C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(94,13): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Work_new\EngineCourse\Monky\MonkyGL\MonkyGraphics.cpp(107,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  ObjLoader.cpp
+  OpenGLFrameBuffer.cpp
+C:\Work_new\EngineCourse\Monky\MonkyGL\OpenGLFrameBuffer.cpp(54,8): warning C4101: 'no': unreferenced local variable
+  Shader.cpp
+  Square.cpp
+  stb_image.cpp
+  Texture.cpp
+  Triangle.cpp
+  VirtualObject.cpp
+  Generating Code...
+  Compiling...
+  Window.cpp
+  Generating Code...
+  glad.c
+  MonkyGL.vcxproj -> C:\Work_new\EngineCourse\Monky\Debug\MonkyGL.lib

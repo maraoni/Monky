@@ -5,6 +5,7 @@
 namespace Banana
 {
 	glm::mat3 ComputeMomentOfInertiaBox(float mass, glm::vec3 extents);
+	glm::mat3 ComputeMomentOfInertiaSphere(float mass, float radius);
 
 	class Collider
 	{
@@ -20,6 +21,7 @@ namespace Banana
 
 		  glm::mat3		momentOfInertia;
 		  glm::mat3		inverseMomentOfInertia;
+
 		  bool			hasGravity;
 		  bool			isKinematic;
 		  glm::vec3		velocity;
@@ -43,10 +45,14 @@ namespace Banana
 		{
 			velocity = glm::vec3(0, 0, 0);
 			angularVelocity = glm::vec3(0, 0, 0);
+			position = glm::vec3(0, 0, 0);
 			hasGravity = false;
 			center = aCenter;
 			radius = aRadius;
 			mass = 1;
+
+			momentOfInertia = ComputeMomentOfInertiaSphere(mass, aRadius);
+			inverseMomentOfInertia = glm::inverse(momentOfInertia);
 		}
 		float radius;
 	};
@@ -58,11 +64,12 @@ namespace Banana
 		{
 			velocity = glm::vec3(0, 0, 0);
 			angularVelocity = glm::vec3(0, 0, 0);
+			position = glm::vec3(0, 0, 0);
 			hasGravity = false;
 			center = aCenter;
 			extents = someExtents;
-
 			mass = 1;
+
 			momentOfInertia = ComputeMomentOfInertiaBox(mass, someExtents);
 			inverseMomentOfInertia = glm::inverse(momentOfInertia);
 		}
@@ -76,8 +83,12 @@ namespace Banana
 		{
 			velocity = glm::vec3(0, 0, 0);
 			angularVelocity = glm::vec3(0, 0, 0);
+			position = glm::vec3(0, 0, 0);
 			hasGravity = false;
 			isKinematic = true;
+
+
+
 			normal = glm::normalize(aNormal); 
 			distance = aDistance;
 			mass = 1; 

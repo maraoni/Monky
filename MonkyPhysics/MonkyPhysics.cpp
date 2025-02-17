@@ -8,6 +8,7 @@
 #include <gtc/matrix_transform.hpp>
 #include "MonkeyMath.h"
 #include "Raycast.h"
+#include <gtx/string_cast.hpp>
 
 
 namespace Banana
@@ -22,14 +23,16 @@ namespace Banana
 
 	void MonkyPhysics::Simulate(const float& aDeltaTime)
 	{
+		float limitDt = glm::min(aDeltaTime, 0.02f);
+
 		colliders = UpdatePhysicsScene();
 		std::vector<Collision> collisions = CheckIntersections(colliders);
 
-		ApplyGravity(colliders, aDeltaTime);
+		ApplyGravity(colliders, limitDt);
 
 		HandleCollisions(collisions);
 
-		ApplyVelocity(colliders, aDeltaTime);
+		ApplyVelocity(colliders, limitDt);
 
 		UpdateVisuals();
 	}
@@ -38,7 +41,7 @@ namespace Banana
 	{
 		for (Collider* c : colliders)
 		{
-			if (c->hasGravity && !c->isKinematic)
+			if (!c->isKinematic && c->hasGravity)
 			{
 				c->velocity += glm::vec3(0, GravityMultiplier, 0) * dt;
 			}
@@ -51,115 +54,123 @@ namespace Banana
 		{
 			if (!c->isKinematic)
 			{
-				// Update position
-				glm::vec3 position = glm::vec3(c->transform[3]);
-				position += c->velocity * dt;
-				c->position = position;
-				c->transform[3] = glm::vec4(position, 1.0f);
+				std::cout << glm::to_string(c->angularVelocity) << std::endl;
+				c->position += c->velocity * dt;
+				c->transform[3] = glm::vec4(c->position, 1.0f);
 
-				float angularDamping = 0.25f;
-
-				c->angularVelocity *= angularDamping;
-
-				// Update rotation using angular velocity (convert axis-angle to quaternion)
-				float angle = glm::length(c->angularVelocity) * dt;
-				if (angle > 0.0001f) // Prevent precision errors
+				if (glm::length(c->angularVelocity) > 0.0001f)
 				{
-					glm::vec3 axis = glm::normalize(c->angularVelocity);
-					glm::quat rotationQuat = glm::angleAxis(angle, axis);
-
-					// Apply rotation to the current transform
-					glm::mat3 rotationMatrix = glm::mat3(c->transform);
-					rotationMatrix = glm::mat3(rotationQuat) * rotationMatrix;
-					c->transform = glm::mat4(rotationMatrix);
-					c->transform[3] = glm::vec4(position, 1.0f); // Keep position unchanged
+					glm::vec3 angularVelocityNorm = glm::normalize(c->angularVelocity);
+					glm::quat angularRotation = glm::angleAxis(glm::length(c->angularVelocity) * dt, angularVelocityNorm);
+					glm::mat3 rotationDelta = glm::mat3_cast(angularRotation);
+					c->transform = glm::mat4(rotationDelta) * c->transform;
 				}
+
+				if (c->mass > 0)
+				{
+					c->velocity *= glm::pow(1.0f - LinearDrag, dt);
+				}
+				if (c->mass > 0)
+				{
+					c->angularVelocity *= glm::pow(1.0f - AngularDrag, dt);
+				}
+			}
+			else
+			{
+				c->velocity = glm::vec3(0, 0, 0);
+				c->angularVelocity = glm::vec3(0, 0, 0);
 			}
 		}
 	}
 
 	void MonkyPhysics::HandleCollisions(std::vector<Collision> collisions)
 	{
+
+		std::vector<Collision> dynamicDynamicCollisions;
+		std::vector<Collision> staticDynamicCollisions;
+
 		for (Collision c : collisions)
 		{
-			if (!c.col1->isKinematic || !c.col2->isKinematic)
-			{
-				glm::vec3 normal = c.normal;
-				glm::vec3 r1 = c.point - c.col1->position; // Offset from center of mass
-				glm::vec3 r2 = c.point - c.col2->position;
+			bool A_isDynamic = !c.col1->isKinematic;
+			bool B_isDynamic = !c.col2->isKinematic;
 
-				// Relative velocity
-				glm::vec3 relativeVelocity = c.col2->velocity - c.col1->velocity;
-				float velocityAlongNormal = glm::dot(relativeVelocity, normal);
+			if (A_isDynamic && B_isDynamic)
+				dynamicDynamicCollisions.push_back(c);
+			else
+				staticDynamicCollisions.push_back(c);
+		}
 
-				float impulse = 0;
-				float invMass1 = 0;
-				float invMass2 = 0;
-				if (velocityAlongNormal < 0)
-				{
-					float restitution = 0.2f;
-					invMass1 = c.col1->isKinematic ? 0.0f : (1.0f / c.col1->mass);
-					invMass2 = c.col2->isKinematic ? 0.0f : (1.0f / c.col2->mass);
+		HandleDynamicDynamic(dynamicDynamicCollisions);
+		HandleStaticDynamic(staticDynamicCollisions);
 
-					// Compute rotational effects
-					glm::vec3 cross1 = glm::cross(r1, normal);
-					glm::vec3 cross2 = glm::cross(r2, normal);
-					float angularEffect1 = invMass1 + glm::dot(cross1, cross1) / c.col1->mass;
-					float angularEffect2 = invMass2 + glm::dot(cross2, cross2) / c.col2->mass;
+	}
 
-					// Compute final impulse
-					float impulseDenom = invMass1 + invMass2 + angularEffect1 + angularEffect2;
-					impulse = (-(1 + restitution) * velocityAlongNormal) / impulseDenom;
-					glm::vec3 impulseVector = impulse * normal;
+	void MonkyPhysics::HandleStaticDynamic(std::vector<Collision> collisions)
+	{
+		for (Collision c : collisions)
+		{
+			Collider* A = c.col1;
+			Collider* B = c.col2;
 
-					if (!c.col1->isKinematic)
-					{
-						c.col1->velocity -= impulseVector;
-						c.col1->angularVelocity -= glm::cross(r1, impulseVector) * (1.0f / c.col1->momentOfInertia);
-					}
+			bool A_isDynamic = !A->isKinematic;
+			bool B_isDynamic = !B->isKinematic;
 
-					if (!c.col2->isKinematic)
-					{
-						c.col2->velocity += impulseVector;
-						c.col2->angularVelocity += glm::cross(r2, impulseVector) * (1.0f / c.col2->momentOfInertia);
-					}
-				}
+			if (!A_isDynamic && !B_isDynamic) continue;
 
-				// --- Friction ---
-				glm::vec3 tangent = relativeVelocity - (glm::dot(relativeVelocity, normal) * normal);
+			Collider* dynamicCollider = A_isDynamic ? A : B;
+			Collider* staticCollider = A_isDynamic ? B : A;
 
-				if (glm::length(tangent) > 0.0001f)
-				{
-					tangent = glm::normalize(tangent);
+			glm::vec3 n = glm::normalize(c.normal);
+			glm::vec3 r = c.point - dynamicCollider->position;
 
-					float staticFriction = 0.2f;
-					float dynamicFriction = 0.1f;
-					float frictionImpulse = -glm::dot(relativeVelocity, tangent);
+			glm::vec3 v = dynamicCollider->velocity + glm::cross(dynamicCollider->angularVelocity, r);
+			float vRelDotN = glm::dot(v, n);
 
-					float maxFriction = staticFriction * glm::abs(impulse) / (invMass1 + invMass2);
-					if (glm::abs(frictionImpulse) > maxFriction)
-					{
-						frictionImpulse *= dynamicFriction;
-					}
+			if (vRelDotN > 0) continue;
 
-					glm::vec3 frictionVector = frictionImpulse * tangent;
+			float invMass = (dynamicCollider->mass > 0) ? 1.0f / dynamicCollider->mass : 0;
 
-					if (!c.col1->isKinematic)
-					{
-						c.col1->velocity -= frictionVector;
-						c.col1->angularVelocity -= glm::cross(r1, frictionVector) * (1.0f / c.col1->momentOfInertia);
-					}
+			glm::vec3 r_cross_n = glm::cross(r, n);
+			float angularEffect = glm::dot(r_cross_n, dynamicCollider->inverseMomentOfInertia * r_cross_n);
 
-					if (!c.col2->isKinematic)
-					{
-						c.col2->velocity += frictionVector;
-						c.col2->angularVelocity += glm::cross(r2, frictionVector) * (1.0f / c.col2->momentOfInertia);
-					}
-				}
-			}
+			float impulseMagnitude = -(1 + Restitution) * vRelDotN / (invMass + angularEffect);
+			glm::vec3 impulse = impulseMagnitude * n;
+
+			dynamicCollider->velocity += impulse * invMass;
+
+			dynamicCollider->angularVelocity += dynamicCollider->inverseMomentOfInertia * glm::cross(r, impulse);
 		}
 	}
 
+	void MonkyPhysics::HandleDynamicDynamic(std::vector<Collision> collisions)
+	{
+		for (Collision c : collisions)
+		{
+			glm::vec3 normal = c.normal;
+
+			glm::vec3 relativeVelocity = c.col2->velocity - c.col1->velocity;
+			float velocityAlongNormal = glm::dot(relativeVelocity, normal);
+
+			if (velocityAlongNormal > 0) continue;
+
+			float impulse = (1 + Restitution) * velocityAlongNormal;
+
+			glm::vec3 impulseVector = impulse * normal;
+
+			c.col1->velocity += impulseVector;
+			c.col2->velocity -= impulseVector;
+
+			glm::vec3 r1 = c.point - c.col1->position;
+			glm::vec3 r2 = c.point - c.col2->position;
+
+			glm::vec3 torque1 = glm::cross(r1, impulseVector);
+			glm::vec3 torque2 = glm::cross(r2, impulseVector);
+
+			// Rotate! sort of....
+			c.col1->angularVelocity += c.col1->inverseMomentOfInertia * torque1 * 100000000.0f;
+			c.col2->angularVelocity -= c.col2->inverseMomentOfInertia * torque2 * 100000000.0f;
+		}
+	}
 
 	std::vector<Collider*> MonkyPhysics::UpdatePhysicsScene()
 	{
@@ -172,11 +183,20 @@ namespace Banana
 			Collider* col = c->GetCollider();
 			if (col != nullptr)
 			{
-				col->transform = c->GetVirtual()->GetTrans();
-				col->position = c->GetVirtual()->Position;
+				glm::mat4 trans = c->GetVirtual()->GetTrans();
+
+				col->transform = trans;
+				col->position = glm::vec3(trans[3]);
+
+				glm::mat3 rotationMatrix = glm::mat3(col->transform);
+				glm::mat3 inertiaTensorInWorldSpace = rotationMatrix * col->momentOfInertia * glm::transpose(rotationMatrix);
+
+				col->inverseMomentOfInertia = inertiaTensorInWorldSpace;
+
 				cols.push_back(col);
 			}
 		}
+
 		return cols;
 	}
 

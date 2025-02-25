@@ -4,7 +4,7 @@
 
 namespace Banana
 {
-	glm::mat3 ComputeMomentOfInertiaBox(float mass, glm::vec3 extents);
+	glm::mat3 ComputeMomentOfInertiaBox(float mass, glm::vec3 extents, glm::vec3 aPosition);
 	glm::mat3 ComputeMomentOfInertiaSphere(float mass, float radius);
 
 	class Collider
@@ -13,6 +13,8 @@ namespace Banana
 
 		  template<typename T>
 		  bool isOf() { return (dynamic_cast<T*>(this) != NULL); }
+
+		  virtual void ComputeInertia() = 0;
 
 		  glm::vec3		center;
 		  glm::vec3		position;
@@ -54,12 +56,19 @@ namespace Banana
 			momentOfInertia = ComputeMomentOfInertiaSphere(mass, aRadius);
 			inverseMomentOfInertia = glm::inverse(momentOfInertia);
 		}
+
+
+		void ComputeInertia() override
+		{
+		}
+
 		float radius;
 	};
 
 	class BoxCollider : public Collider
 	{
 	public:
+
 		BoxCollider(const glm::vec3& aCenter, const glm::vec3& someExtents)
 		{
 			velocity = glm::vec3(0, 0, 0);
@@ -69,10 +78,14 @@ namespace Banana
 			center = aCenter;
 			extents = someExtents;
 			mass = 1;
+		}
 
-			momentOfInertia = ComputeMomentOfInertiaBox(mass, someExtents);
+		void ComputeInertia() override
+		{
+			momentOfInertia = ComputeMomentOfInertiaBox(mass, extents, position);
 			inverseMomentOfInertia = glm::inverse(momentOfInertia);
 		}
+
 		glm::vec3 extents;
 	};
 
@@ -89,13 +102,17 @@ namespace Banana
 
 
 
-			normal = glm::normalize(aNormal); 
+			normal = glm::normalize(aNormal);
 			distance = aDistance;
-			mass = 1; 
+			mass = 1;
 		}
 
-		glm::vec3 normal; 
-		float distance;   
+		void ComputeInertia() override
+		{
+		}
+
+		glm::vec3 normal;
+		float distance;
 	};
 
 

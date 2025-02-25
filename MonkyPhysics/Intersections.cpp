@@ -2,7 +2,9 @@
 #define GLM_ENABLE_EXPERIMENTAL
 #include <gtx/norm.hpp>
 #include "Collisions.h"
+#include <iostream>
 #include "Intersections.h"
+#include <gtx/string_cast.hpp>
 
 namespace Banana
 {
@@ -250,43 +252,61 @@ namespace Banana
 
 	Collision PlaneBoxIntersect(const PlaneCollider& aPlane, const BoxCollider& aBox)
 	{
-		Collision returnCollision = { nullptr, nullptr, glm::vec3(), glm::vec3() };
+		glm::vec3 boxCenter = glm::vec3(aBox.transform[3]);
+		glm::mat3 boxRotation = glm::mat3(aBox.transform);  // Extract the rotation matrix of the box
 
-		glm::vec3 boxPos = glm::vec3(aBox.transform[3]);
-		glm::mat3 rotation = glm::mat3(aBox.transform);
+		// Step 1: Get the axis-aligned half-extents of the box (using half the full extents)
+		glm::vec3 halfExtents = aBox.extents * 0.5f;
+
+		// Step 2: Transform the box's center into the plane's coordinate system (by using inverse of box rotation)
+		glm::vec3 boxToPlane = boxCenter - glm::vec3(aPlane.position);
+		glm::vec3 transformedCenter = glm::inverse(boxRotation) * boxToPlane;
+
+		// Step 3: Project the plane normal onto the box's local coordinate system to check for overlap
 		glm::vec3 normal = glm::normalize(aPlane.normal);
+		float d = glm::dot(normal, aPlane.position);
 
-		glm::vec3 corners[8];
-		for (int i = 0; i < 8; ++i)
+		// Calculate the distance from the center of the box to the plane
+		float distance = glm::dot(normal, transformedCenter) - d;
+
+		// Step 4: Penetration depth check
+		float penetrationDepth = halfExtents.z - glm::abs(distance);
+		if (penetrationDepth > 0)  // Box is penetrating the plane
 		{
-			glm::vec3 offset = glm::vec3(
-				(i & 1 ? 1 : -1) * aBox.extents.x,
-				(i & 2 ? 1 : -1) * aBox.extents.y,
-				(i & 4 ? 1 : -1) * aBox.extents.z
-			);
-			corners[i] = boxPos + rotation * offset;
+			// Step 5: Get the box's local corners
+			glm::vec3 localCorners[8] = {
+				glm::vec3(-halfExtents.x, -halfExtents.y, -halfExtents.z),
+				glm::vec3(halfExtents.x, -halfExtents.y, -halfExtents.z),
+				glm::vec3(-halfExtents.x,  halfExtents.y, -halfExtents.z),
+				glm::vec3(halfExtents.x,  halfExtents.y, -halfExtents.z),
+				glm::vec3(-halfExtents.x, -halfExtents.y,  halfExtents.z),
+				glm::vec3(halfExtents.x, -halfExtents.y,  halfExtents.z),
+				glm::vec3(-halfExtents.x,  halfExtents.y,  halfExtents.z),
+				glm::vec3(halfExtents.x,  halfExtents.y,  halfExtents.z)
+			};
+
+			// Step 6: Rotate the corners back into world space
+			for (int i = 0; i < 8; ++i) {
+				localCorners[i] = boxRotation * localCorners[i];
+			}
+
+			// Step 7: Find the closest point to the plane and check for intersection
+			for (int i = 0; i < 8; ++i) {
+				float pointDistance = glm::dot(normal, localCorners[i]);
+				if (pointDistance < halfExtents.z)  // If any corner is closer than the box's extents, it's a collision
+				{
+					glm::vec3 correction = normal * (halfExtents.z - pointDistance);
+					glm::vec3 contactPoint = localCorners[i] + correction;
+
+					// Apply contact point correction
+					boxCenter += correction;  // Correct position to prevent clipping
+
+					return { const_cast<PlaneCollider*>(&aPlane), const_cast<BoxCollider*>(&aBox), contactPoint, normal };
+				}
+			}
 		}
 
-		int inFront = 0, behind = 0;
-		for (const auto& corner : corners)
-		{
-			float dist = glm::dot(normal, corner) - aPlane.distance;
-			if (dist > 0) inFront++;
-			else behind++;
-		}
-
-		if (inFront > 0 && behind > 0)
-		{
-			glm::vec3 contactPoint = boxPos - normal * (glm::dot(normal, boxPos) - aPlane.distance);
-
-			// Position correction
-			glm::vec3 correction = normal * glm::abs(glm::dot(normal, boxPos) - aPlane.distance);
-			boxPos -= correction; // Adjust the position of the box to prevent penetration
-
-			return { const_cast<PlaneCollider*>(&aPlane), const_cast<BoxCollider*>(&aBox), contactPoint, normal };
-		}
-
-		return returnCollision;
+		return { nullptr, nullptr, glm::vec3(0), glm::vec3(0) };
 	}
 
 	Collision PlaneSphereIntersect(const PlaneCollider& aPlane, const SphereCollider& aSphere)
@@ -295,14 +315,14 @@ namespace Banana
 		float d = glm::dot(normal, aPlane.position);
 		float distance = glm::dot(normal, aSphere.position) - d;
 
-		if (distance < aSphere.radius) // Collision detected
+		if (distance < aSphere.radius)
 		{
 			glm::vec3 collisionPoint = aSphere.position - normal * distance;
 
-			// --- Position Correction ---
+			// correct that position
 			float penetrationDepth = aSphere.radius - distance;
 			glm::vec3 correction = normal * penetrationDepth;
-			const_cast<SphereCollider*>(&aSphere)->position += correction; // Push the sphere out
+			const_cast<SphereCollider*>(&aSphere)->position += correction; // push the sphere out
 
 			return { const_cast<PlaneCollider*>(&aPlane), const_cast<SphereCollider*>(&aSphere), collisionPoint, normal };
 		}
